@@ -100,13 +100,13 @@ export function CameraController(
     updatePerspectiveCameraAspect(dimensionsState, _perspectiveCamera);
 
     _currentCamera.position.x = _cameraPosition.x + userSettings.cameraZoomAmount;
-    _currentCamera.position.z = _cameraPosition.z + userSettings.cameraZoomAmount;
-    _currentCamera.position.y = _cameraPosition.y + userSettings.cameraZoomAmount;
+    _currentCamera.position.y = _cameraPosition.y + 0.75 * userSettings.cameraZoomAmount;
+    _currentCamera.position.z = _cameraPosition.z + 0.5 * userSettings.cameraZoomAmount;
 
     _currentCamera.lookAt(
       _currentCamera.position.x - userSettings.cameraZoomAmount,
-      _currentCamera.position.y - userSettings.cameraZoomAmount,
-      _currentCamera.position.z - userSettings.cameraZoomAmount
+      _currentCamera.position.y - 0.75 * userSettings.cameraZoomAmount,
+      _currentCamera.position.z - 0.5 * userSettings.cameraZoomAmount
     );
   }
 

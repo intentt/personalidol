@@ -16,7 +16,8 @@ export class MainMenuDOMElementView extends DOMElementView<DOMElementViewContext
     evt.preventDefault();
 
     const message: MessageGameStateChange = {
-      currentLocationMap: "map-gates",
+      // currentLocationMap: "map-gates",
+      currentLocationMap: "map-shanty-town",
       // currentWorldMap: "map-northern-creek",
     };
 

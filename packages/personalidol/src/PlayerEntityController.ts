@@ -1,3 +1,5 @@
+import { Vector3 } from "three/src/math/Vector3";
+
 import { dispose as fDispose } from "@personalidol/framework/src/dispose";
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { longestVector3 } from "@personalidol/framework/src/longestVector3";
@@ -91,7 +93,7 @@ export function PlayerEntityController(
       userInputTouchController.cameraTransitionRequest
     );
 
-    const movementVector = transitionVector.clone().normalize().multiplyScalar(300);
+    const movementVector = transitionVector.clone().applyAxisAngle(new Vector3(0, 1, 0), Math.PI / 11).normalize().multiplyScalar(300);
 
     _npcEntityController.rigidBody.setLinearVelocity(movementVector);
     // _npcEntityController.rigidBody.applyCentralImpulse(movementVector);
