@@ -27,6 +27,7 @@ import type { EntityLookupCallback } from "./EntityLookupCallback.type";
 import type { EntityLookupTable } from "./EntityLookupTable.type";
 import type { EntityMD2Model } from "./EntityMD2Model.type";
 import type { EntityPlayer } from "./EntityPlayer.type";
+import type { EntityScriptedBrush } from "./EntityScriptedBrush.type";
 import type { EntityScriptedZone } from "./EntityScriptedZone.type";
 import type { EntitySounds } from "./EntitySounds.type";
 import type { EntitySparkParticles } from "./EntitySparkParticles.type";
@@ -102,6 +103,10 @@ export function EntityViewFactory(
         texturesMessagePort,
         rpcLookupTable
       );
+    },
+
+    scripted_brush(entity: EntityScriptedBrush, worldspawnTexture: ITexture): EntityView<EntityScriptedBrush> {
+      return WorldspawnGeometryView(logger, userSettings, scene, entity, worldspawnTexture);
     },
 
     scripted_zone(entity: EntityScriptedZone): EntityView<EntityScriptedZone> {

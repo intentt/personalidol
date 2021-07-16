@@ -23,24 +23,25 @@ import type { Scene } from "three/src/scenes/Scene";
 import type { Texture as ITexture } from "three/src/textures/Texture";
 
 import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { EntityWorldspawn } from "./EntityWorldspawn.type";
 import type { MountableCallback } from "@personalidol/framework/src/MountableCallback.type";
 import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
 import type { ViewState } from "@personalidol/views/src/ViewState.type";
 
+import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityView } from "./EntityView.interface";
+import type { GeometryWithBrushesEntity } from "./GeometryWithBrushesEntity.type";
 import type { UserSettings } from "./UserSettings.type";
 
 const _geometryOffset = new Vector3();
 
-export function WorldspawnGeometryView(
+export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushesEntity>(
   logger: Logger,
   userSettings: UserSettings,
   scene: Scene,
-  entity: EntityWorldspawn,
+  entity: E,
   worldspawnTexture: ITexture,
   matrixAutoUpdate: boolean = false
-): EntityView<EntityWorldspawn> {
+): EntityView<E> {
   const id: string = generateUUID();
   const state: ViewState = Object.seal({
     isDisposed: false,
@@ -96,7 +97,9 @@ export function WorldspawnGeometryView(
     const meshStandardMaterial = new MeshStandardMaterial({
       flatShading: true,
       map: worldspawnTexture,
+      // opacity: 0.5,
       side: FrontSide,
+      // transparent: true,
     });
 
     // Texture atlas is used here, so texture sampling fragment needs to

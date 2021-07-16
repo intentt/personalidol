@@ -6,6 +6,7 @@ import type { EntityLightPoint } from "./EntityLightPoint.type";
 import type { EntityLightSpotlight } from "./EntityLightSpotlight.type";
 import type { EntityMD2Model } from "./EntityMD2Model.type";
 import type { EntityPlayer } from "./EntityPlayer.type";
+import type { EntityScriptedBrush } from "./EntityScriptedBrush.type";
 import type { EntityScriptedZone } from "./EntityScriptedZone.type";
 import type { EntitySounds } from "./EntitySounds.type";
 import type { EntitySparkParticles } from "./EntitySparkParticles.type";
@@ -22,6 +23,7 @@ export type AnyEntity =
   | EntityLightSpotlight
   | EntityMD2Model
   | EntityPlayer
+  | EntityScriptedBrush
   | EntityScriptedZone
   | EntitySounds
   | EntitySparkParticles

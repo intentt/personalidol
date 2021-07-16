@@ -14,9 +14,13 @@ export interface CameraController extends MainLoopUpdatable, Mountable, Pauseabl
   readonly position: Vector3;
   readonly state: CameraControllerState;
 
+  follow(position: Vector3): void;
+
   resetPosition(): void;
 
   resetZoom(): void;
+
+  unfollow(): void;
 
   zoomIn(scale?: number): void;
 

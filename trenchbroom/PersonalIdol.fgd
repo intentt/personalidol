@@ -107,5 +107,5 @@
 // CUSTOM BRUSHES
 // ----------------------------------------------------------------------------
 
-@SolidClass base(Scripted) = scripted_brush : "Scripted brush" []
-@SolidClass base(Zone) = scripted_zone : "Scripted zone" []
+@SolidClass base(Scripted) = scripted_brush : "Scripted Brush" []
+@SolidClass base(Zone) = scripted_zone : "Scripted Zone" []

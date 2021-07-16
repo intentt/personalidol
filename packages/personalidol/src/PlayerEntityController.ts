@@ -56,8 +56,7 @@ export function PlayerEntityController(
 
     fMount(logger, _npcEntityController);
 
-    cameraController.cameraResetPosition.copy(view.object3D.position);
-    cameraController.resetPosition();
+    cameraController.follow(view.object3D.position);
   }
 
   function pause(): void {
@@ -77,6 +76,8 @@ export function PlayerEntityController(
     state.isMounted = false;
 
     fUnmount(logger, _npcEntityController);
+
+    cameraController.unfollow();
   }
 
   function unpause(): void {
@@ -101,9 +102,6 @@ export function PlayerEntityController(
 
     _npcEntityController.rigidBody.setLinearVelocity(movementVector);
     // _npcEntityController.rigidBody.applyCentralImpulse(movementVector);
-
-    cameraController.cameraResetPosition.copy(view.object3D.position);
-    cameraController.resetPosition();
 
     _npcEntityController.update(delta, elapsedTime, tickTimerState);
   }

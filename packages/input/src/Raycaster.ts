@@ -14,7 +14,7 @@ import type { Raycaster as IRaycaster } from "./Raycaster.interface";
 import type { RaycasterState } from "./RaycasterState.type";
 
 export function Raycaster(
-  camerController: CameraController,
+  cameraController: CameraController,
   dimensionsState: Uint32Array,
   mouseState: Int32Array,
   touchState: Int32Array
@@ -52,7 +52,7 @@ export function Raycaster(
   function _updateRaycasterCamera(): void {
     _vector2.x = getPrimaryPointerVectorX(dimensionsState, mouseState, touchState);
     _vector2.y = getPrimaryPointerVectorY(dimensionsState, mouseState, touchState);
-    _threeRaycaster.setFromCamera(_vector2, camerController.camera);
+    _threeRaycaster.setFromCamera(_vector2, cameraController.camera);
   }
 
   function reset(): void {

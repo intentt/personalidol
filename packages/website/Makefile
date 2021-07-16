@@ -66,4 +66,8 @@ test.watch:
 
 .PHONY: tsc
 tsc:
-	yarn run tsc --noEmit --jsx react
+	yarn run tsc --noEmit
+
+.PHONY: tsc.watch
+tsc.watch:
+	yarn run tsc --noEmit --watch

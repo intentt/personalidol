@@ -20,6 +20,7 @@ import type { EntityLightPoint } from "./EntityLightPoint.type";
 import type { EntityLightSpotlight } from "./EntityLightSpotlight.type";
 import type { EntityMD2Model } from "./EntityMD2Model.type";
 import type { EntityPlayer } from "./EntityPlayer.type";
+import type { EntityScriptedBrush } from "./EntityScriptedBrush.type";
 import type { EntityScriptedZone } from "./EntityScriptedZone.type";
 import type { EntitySounds } from "./EntitySounds.type";
 import type { EntitySparkParticles } from "./EntitySparkParticles.type";
@@ -139,6 +140,15 @@ export function* buildEntities(
           origin: _getEntityOrigin(filename, entity),
           properties: entity.properties,
           transferables: _transferablesEmpty,
+        };
+        break;
+      case "scripted_brush":
+        yield <EntityScriptedBrush>{
+          brushes: entity.brushes,
+          classname: entityClassName,
+          id: generateUUID(),
+          properties: entity.properties,
+          ...buildGeometryAttributes(entity.brushes, resolveTextureDimensions, true, null),
         };
         break;
       case "scripted_zone":

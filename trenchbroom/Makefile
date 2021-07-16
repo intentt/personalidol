@@ -7,5 +7,5 @@
 ~/.TrenchBroom/games/PersonalIdol/PersonalIdol.fgd: ~/.TrenchBroom/games/PersonalIdol ./PersonalIdol.fgd
 	install ./PersonalIdol.fgd ~/.TrenchBroom/games/PersonalIdol/PersonalIdol.fgd
 
-.PHONY: trenchbroom
-trenchbroom: ~/.TrenchBroom/games/PersonalIdol/GameConfig.cfg ~/.TrenchBroom/games/PersonalIdol/PersonalIdol.fgd
+.PHONY: install
+install: ~/.TrenchBroom/games/PersonalIdol/GameConfig.cfg ~/.TrenchBroom/games/PersonalIdol/PersonalIdol.fgd

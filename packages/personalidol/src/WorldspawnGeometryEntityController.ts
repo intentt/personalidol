@@ -6,16 +6,17 @@ import type { MessageSimulantDispose } from "@personalidol/dynamics/src/MessageS
 import type { MessageSimulantRegister } from "@personalidol/dynamics/src/MessageSimulantRegister.type";
 import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
 
+import type { AnyEntity } from "./AnyEntity.type";
+import type { GeometryWithBrushesEntity } from "./GeometryWithBrushesEntity.type";
 import type { EntityController } from "./EntityController.interface";
 import type { EntityControllerState } from "./EntityControllerState.type";
 import type { EntityView } from "./EntityView.interface";
-import type { EntityWorldspawn } from "./EntityWorldspawn.type";
 import type { SimulantsLookup } from "./SimulantsLookup.type";
 
-export function WorldspawnGeometryEntityController(
-  view: EntityView<EntityWorldspawn>,
+export function WorldspawnGeometryEntityController<E extends AnyEntity & GeometryWithBrushesEntity>(
+  view: EntityView<E>,
   dynamicsMessagePort: MessagePort
-): EntityController<EntityWorldspawn> {
+): EntityController<E> {
   const state: EntityControllerState = Object.seal({
     isDisposed: false,
     isMounted: false,

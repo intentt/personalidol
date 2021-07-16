@@ -48,8 +48,17 @@ export function CameraController(
   const _cameraResetPosition: IVector3 = new Vector3();
 
   let _currentCamera: OrthographicCamera | PerspectiveCamera = _perspectiveCamera;
+  let _following: null | IVector3 = null;
   let _isCameraChanged: boolean = false;
   let _orthographicCameraFrustumSize: number = userSettings.cameraZoomAmount;
+
+  function follow(position: IVector3): void {
+    if (_following) {
+      throw new Error("CameraController is already following an object.");
+    }
+
+    _following = position;
+  }
 
   function mount(): void {
     state.isMounted = true;
@@ -68,6 +77,14 @@ export function CameraController(
   function resetZoom(): void {
     userSettings.cameraZoomAmount = CameraParameters.ZOOM_DEFAULT;
     userSettings.version += 1;
+  }
+
+  function unfollow(): void {
+    if (!_following) {
+      throw new Error("CameraController is not following any object.");
+    }
+
+    _following = null;
   }
 
   function unmount(): void {
@@ -98,6 +115,10 @@ export function CameraController(
 
     updateOrthographicCameraAspect(dimensionsState, _orthographicCamera, _orthographicCameraFrustumSize);
     updatePerspectiveCameraAspect(dimensionsState, _perspectiveCamera);
+
+    if (_following) {
+      _cameraPosition.copy(_following);
+    }
 
     _currentCamera.position.x = _cameraPosition.x + userSettings.cameraZoomAmount;
     _currentCamera.position.y = _cameraPosition.y + 0.75 * userSettings.cameraZoomAmount;
@@ -134,10 +155,12 @@ export function CameraController(
       return _currentCamera;
     },
 
+    follow: follow,
     mount: mount,
     pause: pause,
     resetPosition: resetPosition,
     resetZoom: resetZoom,
+    unfollow: unfollow,
     unmount: unmount,
     unpause: unpause,
     update: update,
