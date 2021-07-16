@@ -116,8 +116,8 @@ function _createUV(
       ];
     case isAlmostEqual(normal.x, normal.y) && normal.z < normal.x:
       return [
-        _textureWrapU(halfSpace, textureDimensions, point.y),
-        _textureWrapV(halfSpace, textureDimensions, point.z),
+        _textureWrapU(halfSpace, textureDimensions, point.x),
+        _textureWrapV(halfSpace, textureDimensions, point.y),
       ];
     case isAlmostEqual(normal.x, normal.y) && normal.z > normal.x:
       return [

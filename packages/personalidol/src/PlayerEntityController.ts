@@ -93,7 +93,11 @@ export function PlayerEntityController(
       userInputTouchController.cameraTransitionRequest
     );
 
-    const movementVector = transitionVector.clone().applyAxisAngle(new Vector3(0, 1, 0), Math.PI / 11).normalize().multiplyScalar(300);
+    const movementVector = transitionVector
+      .clone()
+      .applyAxisAngle(new Vector3(0, 1, 0), Math.PI / 11)
+      .normalize()
+      .multiplyScalar(300);
 
     _npcEntityController.rigidBody.setLinearVelocity(movementVector);
     // _npcEntityController.rigidBody.applyCentralImpulse(movementVector);
