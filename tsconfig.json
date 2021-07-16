@@ -12,6 +12,7 @@
     "importHelpers": true,
     "isolatedModules": true,
     "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitReturns": true,

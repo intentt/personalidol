@@ -8,20 +8,20 @@
     "@personalidol/dom": "^0.0.6",
     "@personalidol/framework": "^0.0.6",
     "@personalidol/math": "^0.0.6",
-    "i18next": "^20.3.2",
+    "i18next": "^20.3.3",
     "loglevel": "^1.7.1",
-    "preact": "^10.5.13",
-    "three": "^0.129.0"
+    "preact": "^10.5.14",
+    "three": "^0.130.1"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "@types/three": "^0.129.1",
-    "esbuild": "^0.12.11",
+    "@types/jest": "^26.0.24",
+    "@types/three": "^0.130.0",
+    "esbuild": "^0.12.15",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.3",
     "tslib": "^2.3.0",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.5"
   },
   "homepage": "https://github.com/mcharytoniuk/personalidol#readme",
   "license": "GPL-3.0",
