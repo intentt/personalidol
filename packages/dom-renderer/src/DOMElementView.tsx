@@ -126,6 +126,6 @@ export class DOMElementView<C extends DOMElementViewContext> extends HTMLElement
     this.lastRenderedLanguage = this.i18next.language;
     this.needsRender = false;
 
-    render(h(Fragment, this._styler.render(), this.render(delta, elapsedTime, tickTimerState)), this.shadow);
+    render(h(Fragment, null, this._styler.render(), this.render(delta, elapsedTime, tickTimerState)), this.shadow);
   }
 }
