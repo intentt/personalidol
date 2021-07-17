@@ -2,7 +2,6 @@ import { Raycaster } from "three/src/core/Raycaster";
 import { Vector2 } from "three/src/math/Vector2";
 
 import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { isMesh } from "@personalidol/framework/src/isMesh";
 import { name } from "@personalidol/framework/src/name";
 
 import type { Logger } from "loglevel";
@@ -58,17 +57,9 @@ export function StructureCeilingEntityController(
   }
 
   function update(delta: number, elapsedTime: number, tickTimerState: TickTimerState): void {
-    if (!isMesh(view.object3D) || Array.isArray(view.object3D.material)) {
-      return;
-    }
-
     _raycaster.setFromCamera(_raycasterVector, cameraController.camera);
 
-    const _intersections = _raycaster.intersectObject(view.raycasterObject3D);
-    const _isIntersecting = _intersections.length > 0;
-
-    view.object3D.material.transparent = _isIntersecting;
-    view.object3D.material.opacity = _isIntersecting ? 0.3 : 1;
+    view.state.isObscuring = _raycaster.intersectObject(view.raycasterObject3D).length > 0;
   }
 
   return Object.freeze({

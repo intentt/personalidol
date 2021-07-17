@@ -129,6 +129,7 @@ export function MD2ModelView(
     animation: "stand",
     isDisposed: false,
     isMounted: false,
+    isObscuring: false,
     isPaused: false,
     isPreloaded: false,
     isPreloading: false,

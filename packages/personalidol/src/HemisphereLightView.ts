@@ -8,10 +8,9 @@ import { BackgroundLightUserSettingsManager } from "./BackgroundLightUserSetting
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { ViewState } from "@personalidol/views/src/ViewState.type";
-
 import type { EntityLightHemisphere } from "./EntityLightHemisphere.type";
 import type { EntityView } from "./EntityView.interface";
+import type { EntityViewState } from "./EntityViewState.type";
 import type { UserSettings } from "./UserSettings.type";
 
 export function HemisphereLightView(
@@ -20,9 +19,10 @@ export function HemisphereLightView(
   scene: Scene,
   entity: EntityLightHemisphere
 ): EntityView<EntityLightHemisphere> {
-  const state: ViewState = Object.seal({
+  const state: EntityViewState = Object.seal({
     isDisposed: false,
     isMounted: false,
+    isObscuring: false,
     isPaused: false,
     isPreloaded: false,
     isPreloading: false,

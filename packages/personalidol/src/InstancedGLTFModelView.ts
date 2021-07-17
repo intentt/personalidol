@@ -8,10 +8,10 @@ import type { Object3D as IObject3D } from "three/src/core/Object3D";
 import type { Scene } from "three/src/scenes/Scene";
 
 import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { ViewState } from "@personalidol/views/src/ViewState.type";
 
 import type { EntityGLTFModel } from "./EntityGLTFModel.type";
 import type { EntityView } from "./EntityView.interface";
+import type { EntityViewState } from "./EntityViewState.type";
 import type { InstancedGLTFModelViewManager } from "./InstancedGLTFModelViewManager.interface";
 import type { InstancedMeshHandle } from "./InstancedMeshHandle.interface";
 import type { UserSettings } from "./UserSettings.type";
@@ -23,9 +23,10 @@ export function InstancedGLTFModelView(
   entity: EntityGLTFModel,
   instancedGLTFModelViewManager: InstancedGLTFModelViewManager
 ): EntityView<EntityGLTFModel> {
-  const state: ViewState = Object.seal({
+  const state: EntityViewState = Object.seal({
     isDisposed: false,
     isMounted: false,
+    isObscuring: false,
     isPaused: false,
     isPreloaded: false,
     isPreloading: false,

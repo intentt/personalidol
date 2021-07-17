@@ -10,10 +10,9 @@ import { ShadowLightUserSettingsManager } from "./ShadowLightUserSettingsManager
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { ViewState } from "@personalidol/views/src/ViewState.type";
-
 import type { EntityLightPoint } from "./EntityLightPoint.type";
 import type { EntityView } from "./EntityView.interface";
+import type { EntityViewState } from "./EntityViewState.type";
 import type { UserSettings } from "./UserSettings.type";
 
 export function PointLightView(
@@ -22,9 +21,10 @@ export function PointLightView(
   scene: Scene,
   entity: EntityLightPoint
 ): EntityView<EntityLightPoint> {
-  const state: ViewState = Object.seal({
+  const state: EntityViewState = Object.seal({
     isDisposed: false,
     isMounted: false,
+    isObscuring: false,
     isPaused: false,
     isPreloaded: false,
     isPreloading: false,

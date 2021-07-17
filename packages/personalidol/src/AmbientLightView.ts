@@ -7,10 +7,9 @@ import { preload as fPreload } from "@personalidol/framework/src/preload";
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { ViewState } from "@personalidol/views/src/ViewState.type";
-
 import type { EntityLightAmbient } from "./EntityLightAmbient.type";
 import type { EntityView } from "./EntityView.interface";
+import type { EntityViewState } from "./EntityViewState.type";
 import type { UserSettings } from "./UserSettings.type";
 
 export function AmbientLightView(
@@ -19,9 +18,10 @@ export function AmbientLightView(
   scene: Scene,
   entity: EntityLightAmbient
 ): EntityView<EntityLightAmbient> {
-  const state: ViewState = Object.seal({
+  const state: EntityViewState = Object.seal({
     isDisposed: false,
     isMounted: false,
+    isObscuring: false,
     isPaused: false,
     isPreloaded: false,
     isPreloading: false,

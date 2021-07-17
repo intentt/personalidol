@@ -1,6 +1,9 @@
 import { BufferAttribute } from "three/src/core/BufferAttribute";
 import { BufferGeometry } from "three/src/core/BufferGeometry";
+import { BoxGeometry } from "three/src/geometries/BoxGeometry";
 import { FrontSide } from "three/src/constants";
+import { Group } from "three/src/objects/Group";
+import { MeshBasicMaterial } from "three/src/materials/MeshBasicMaterial";
 import { MeshStandardMaterial } from "three/src/materials/MeshStandardMaterial";
 import { Vector3 } from "three/src/math/Vector3";
 
@@ -17,6 +20,7 @@ import { unmountAll } from "@personalidol/framework/src/unmountAll";
 import { MeshUserSettingsManager } from "./MeshUserSettingsManager";
 
 import type { Box3 } from "three/src/math/Box3";
+import type { Group as IGroup } from "three/src/objects/Group";
 import type { Logger } from "loglevel";
 import type { Mesh as IMesh } from "three/src/objects/Mesh";
 import type { Scene } from "three/src/scenes/Scene";
@@ -24,11 +28,12 @@ import type { Texture as ITexture } from "three/src/textures/Texture";
 
 import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
 import type { MountableCallback } from "@personalidol/framework/src/MountableCallback.type";
+import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
 import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
-import type { ViewState } from "@personalidol/views/src/ViewState.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityView } from "./EntityView.interface";
+import type { EntityViewState } from "./EntityViewState.type";
 import type { GeometryWithBrushesEntity } from "./GeometryWithBrushesEntity.type";
 import type { UserSettings } from "./UserSettings.type";
 
@@ -43,9 +48,10 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
   matrixAutoUpdate: boolean = false
 ): EntityView<E> {
   const id: string = generateUUID();
-  const state: ViewState = Object.seal({
+  const state: EntityViewState = Object.seal({
     isDisposed: false,
     isMounted: false,
+    isObscuring: false,
     isPaused: false,
     isPreloaded: false,
     isPreloading: false,
@@ -56,8 +62,10 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
 
   const _disposables: Set<DisposableCallback> = new Set();
   const _mesh: IMesh = createEmptyMesh();
+  const _meshContainer: IGroup = new Group();
   const _meshUserSettingsManager = MeshUserSettingsManager(logger, userSettings, _mesh);
   const _mountables: Set<MountableCallback> = new Set();
+  const _raycastMesh: IMesh = createEmptyMesh();
   const _unmountables: Set<UnmountableCallback> = new Set();
 
   function dispose(): void {
@@ -97,9 +105,8 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
     const meshStandardMaterial = new MeshStandardMaterial({
       flatShading: true,
       map: worldspawnTexture,
-      // opacity: 0.5,
+      opacity: 0.2,
       side: FrontSide,
-      // transparent: true,
     });
 
     // Texture atlas is used here, so texture sampling fragment needs to
@@ -129,8 +136,28 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
 
     bufferGeometry.translate(-1 * _geometryOffset.x, -1 * _geometryOffset.y, -1 * _geometryOffset.z);
 
-    _mesh.position.set(_geometryOffset.x, _geometryOffset.y, _geometryOffset.z);
     _mesh.matrixAutoUpdate = matrixAutoUpdate;
+
+    // Raycaster mesh
+
+    const _raycastGeometry = new BoxGeometry(
+      Math.abs(geometryBoundingBox.min.x - geometryBoundingBox.max.x),
+      Math.abs(geometryBoundingBox.min.y - geometryBoundingBox.max.y),
+      Math.abs(geometryBoundingBox.min.z - geometryBoundingBox.max.z)
+    );
+
+    _disposables.add(disposableGeneric(_raycastGeometry));
+
+    const _raycastMaterial = new MeshBasicMaterial();
+
+    _disposables.add(disposableMaterial(_raycastMaterial));
+
+    _raycastMesh.geometry = _raycastGeometry;
+    _raycastMesh.material = _raycastMaterial;
+    _raycastMesh.visible = false;
+    _raycastMesh.updateMorphTargets();
+
+    _meshContainer.add(_raycastMesh);
 
     // Apply user settings before updating mesh matrix.
     fPreload(logger, _meshUserSettingsManager);
@@ -140,12 +167,17 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
       _mesh.updateMatrix();
     }
 
+    // Mesh container
+
+    _meshContainer.position.set(_geometryOffset.x, _geometryOffset.y, _geometryOffset.z);
+    _meshContainer.add(_mesh);
+
     _mountables.add(function () {
-      scene.add(_mesh);
+      scene.add(_meshContainer);
     });
 
     _unmountables.add(function () {
-      scene.remove(_mesh);
+      scene.remove(_meshContainer);
     });
 
     state.isPreloading = false;
@@ -162,6 +194,16 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
     state.isPaused = false;
   }
 
+  function update(delta: number, elapsedTime: number, tickTimerState: TickTimerState): void {
+    _meshUserSettingsManager.update(delta, elapsedTime, tickTimerState);
+
+    if (Array.isArray(_mesh.material)) {
+      throw new Error("WorldspawnGeometryView unexpectedly has multimaterial geometry.");
+    }
+
+    _mesh.material.transparent = state.isObscuring;
+  }
+
   return Object.freeze({
     entity: entity,
     id: id,
@@ -173,8 +215,8 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
     isRaycastable: true,
     isView: true,
     name: `WorldspawnGeometryView`,
-    object3D: _mesh,
-    raycasterObject3D: _mesh,
+    object3D: _meshContainer,
+    raycasterObject3D: _raycastMesh,
     state: state,
 
     dispose: dispose,
@@ -183,6 +225,6 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
     preload: preload,
     unmount: unmount,
     unpause: unpause,
-    update: _meshUserSettingsManager.update,
+    update: update,
   });
 }

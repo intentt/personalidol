@@ -6,18 +6,18 @@ import { noop } from "@personalidol/framework/src/noop";
 import type { Object3D as IObject3D } from "three/src/core/Object3D";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { ViewState } from "@personalidol/views/src/ViewState.type";
-
 import type { EntityTarget } from "./EntityTarget.type";
 import type { EntityView } from "./EntityView.interface";
+import type { EntityViewState } from "./EntityViewState.type";
 
 // "target" is an abstract entity. At this point it won't be used with brushes,
 // so the view is barebone.
 
 export function TargetView(scene: Scene, entity: EntityTarget): EntityView<EntityTarget> {
-  const state: ViewState = Object.seal({
+  const state: EntityViewState = Object.seal({
     isDisposed: false,
     isMounted: false,
+    isObscuring: false,
     isPaused: false,
     isPreloaded: false,
     isPreloading: false,

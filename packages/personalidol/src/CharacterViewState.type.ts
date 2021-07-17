@@ -1,5 +1,5 @@
-import type { ViewState } from "@personalidol/views/src/ViewState.type";
+import type { EntityViewState } from "./EntityViewState.type";
 
-export type CharacterViewState = ViewState & {
+export type CharacterViewState = EntityViewState & {
   animation: "jump" | "run" | "stand";
 };
