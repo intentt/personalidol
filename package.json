@@ -1,7 +1,11 @@
 {
+  "name": "personalidol",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
-  "name": "personalidol"
+  "resolutions": {
+    "glob-parent": "^5.1.2",
+    "trim-newlines": "^3.0.1"
+  }
 }
