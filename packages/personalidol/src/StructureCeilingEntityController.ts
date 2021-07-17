@@ -4,6 +4,7 @@ import { Vector2 } from "three/src/math/Vector2";
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { name } from "@personalidol/framework/src/name";
 
+import type { Intersection } from "three/src/core/Raycaster";
 import type { Logger } from "loglevel";
 
 import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
@@ -30,6 +31,7 @@ export function StructureCeilingEntityController(
 
   const _raycaster = new Raycaster();
   const _raycasterVector = new Vector2(0, 0);
+  const _intersects: Array<Intersection> = [];
 
   function dispose(): void {
     state.isDisposed = true;
@@ -57,9 +59,10 @@ export function StructureCeilingEntityController(
   }
 
   function update(delta: number, elapsedTime: number, tickTimerState: TickTimerState): void {
+    _intersects.length = 0;
     _raycaster.setFromCamera(_raycasterVector, cameraController.camera);
 
-    view.state.isObscuring = _raycaster.intersectObject(view.raycasterObject3D).length > 0;
+    view.state.isObscuring = _raycaster.intersectObject(view.raycasterObject3D, false, _intersects).length > 0;
   }
 
   return Object.freeze({
