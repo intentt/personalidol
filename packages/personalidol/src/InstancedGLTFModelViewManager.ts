@@ -118,7 +118,7 @@ export function InstancedGLTFModelViewManager(
 
     const material = new MeshStandardMaterial({
       color: 0xcccccc,
-      flatShading: true,
+      flatShading: false,
       map: await texturePromise,
       morphTargets: false,
     });

@@ -13,6 +13,7 @@ import { WorldspawnGeometryEntityController } from "./WorldspawnGeometryEntityCo
 import type { Logger } from "loglevel";
 
 import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
+import type { Evaluator } from "@personalidol/expression-language/src/Evaluator.interface";
 import type { UserInputController } from "@personalidol/input/src/UserInputController.interface";
 import type { UserInputMouseController } from "@personalidol/input/src/UserInputMouseController.interface";
 
@@ -31,6 +32,7 @@ import type { UIState } from "./UIState.type";
 export function EntityControllerFactory(
   logger: Logger,
   cameraController: CameraController,
+  evaluator: Evaluator,
   gameState: GameState,
   uiState: UIState,
   dynamicsMessagePort: MessagePort,
@@ -39,12 +41,22 @@ export function EntityControllerFactory(
   userInputMouseController: UserInputMouseController,
   userInputTouchController: UserInputController
 ): IEntityControllerFactory {
+  function _evaluateControllerList(expression: string): Array<string> {
+    const controllers = evaluator.evaluateSync(expression);
+
+    if (!Array.isArray(controllers)) {
+      throw new Error(`Controllers list does not evaluate to array: "${expression}"`);
+    }
+
+    return controllers;
+  }
+
   function* create<E extends AnyEntity>(view: EntityView<E>): Generator<IEntityController<E>> {
     if (!isEntityWithController(view.entity)) {
       throw new Error(`View do not use a controller: "${name(view)}"`);
     }
 
-    const controllers = view.entity.properties.controller.split(";");
+    const controllers = _evaluateControllerList(view.entity.properties.controller);
 
     for (let controller of controllers) {
       switch (controller) {

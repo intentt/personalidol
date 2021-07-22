@@ -163,6 +163,7 @@ export function LocationMapScene(
   const _entityControllerFactory: IEntityControllerFactory = EntityControllerFactory(
     logger,
     _cameraController,
+    evaluator,
     gameState,
     uiState,
     dynamicsMessagePort,

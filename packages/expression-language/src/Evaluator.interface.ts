@@ -1,3 +1,5 @@
 export interface Evaluator {
-  evaluate(expression: string): Promise<boolean | number | string>;
+  evaluate<T>(expression: string): Promise<T>;
+
+  evaluateSync<T>(expression: string): T;
 }
