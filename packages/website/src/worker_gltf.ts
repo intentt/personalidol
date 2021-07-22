@@ -11,6 +11,7 @@ import { createRPCLookupTable } from "@personalidol/framework/src/createRPCLooku
 import { createTextureReceiverMessagesRouter } from "@personalidol/texture-loader/src/createTextureReceiverMessagesRouter";
 import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
 import { GLTFLoader } from "@personalidol/three-modules/src/loaders/GLTFLoader";
+import { findMesh } from "@personalidol/framework/src/findMesh";
 import { isMesh } from "@personalidol/framework/src/isMesh";
 import { Progress } from "@personalidol/framework/src/Progress";
 import { reuseResponse } from "@personalidol/framework/src/reuseResponse";
@@ -31,6 +32,7 @@ import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
 declare var self: DedicatedWorkerGlobalScope;
 
 type ModelLoadRequest = RPCMessage & {
+  model_filename: string;
   model_name: string;
   model_scale: number;
 };
@@ -49,15 +51,15 @@ const loadingUsage: ReusedResponsesUsage = createReusedResponsesUsage();
 let _gltfLoader: null | IGLTFLoader = null;
 let _progressMessagePort: null | MessagePort = null;
 
-function _extractGLTFGeometryAttributes(gltf: GLTF, modelScale: number): GeometryAttributes {
+function _extractGLTFGeometryAttributes(url: string, gltf: GLTF, modelScale: number): GeometryAttributes {
   if (gltf.scene.children.length !== 1) {
     throw new Error("GLTF scene needs to contain exactly one child.");
   }
 
-  const mesh: any = gltf.scene.children[0];
+  const mesh: any = findMesh(gltf.scene);
 
   if (!isMesh(mesh)) {
-    throw new Error("Expected first GLTF model child to be a mesh.");
+    throw new Error("Unable to locate mesh in the GLTF model.");
   }
 
   // Materials are not needed here.
@@ -75,8 +77,7 @@ function _extractGLTFGeometryAttributes(gltf: GLTF, modelScale: number): Geometr
   const position: Float32Array = mesh.geometry.attributes.position.array as Float32Array;
   const uv: Float32Array = mesh.geometry.attributes.uv.array as Float32Array;
 
-  const transferables: Array<ArrayBuffer> = [normal.buffer, position.buffer, uv.buffer];
-
+  const transferables: Array<ArrayBuffer> = normal.buffer === position.buffer ? [position.buffer, uv.buffer] : [normal.buffer, position.buffer, uv.buffer];
   if (index) {
     transferables.push(index.buffer);
   }
@@ -108,13 +109,13 @@ function _gltfLoadWithProgress(url: string, modelScale: number): Promise<Geometr
         progress.progress(evt.loaded, evt.total);
       })
       .then(function (gltf: GLTF) {
-        return _extractGLTFGeometryAttributes(gltf, modelScale);
+        return _extractGLTFGeometryAttributes(url, gltf, modelScale);
       })
   );
 }
 
-async function _loadGeometry(messagePort: MessagePort, rpc: string, modelName: string, modelScale: number): Promise<void> {
-  const modelUrl = `${__ASSETS_BASE_PATH}/models/model-glb-${modelName}/model.glb?${__CACHE_BUST}`;
+async function _loadGeometry(messagePort: MessagePort, rpc: string, modelFilename: string, modelName: string, modelScale: number): Promise<void> {
+  const modelUrl = `${__ASSETS_BASE_PATH}/models/model-glb-${modelName}/${modelFilename}?${__CACHE_BUST}`;
   const geometry: ReusedResponse<GeometryAttributes> = await reuseResponse(loadingCache, loadingUsage, modelUrl, modelUrl, function (url: string) {
     return _gltfLoadWithProgress(url, modelScale);
   });
@@ -138,8 +139,8 @@ async function _loadGeometry(messagePort: MessagePort, rpc: string, modelName: s
 }
 
 const gltfMessagesRouter = {
-  async load(messagePort: MessagePort, { model_name, model_scale, rpc }: ModelLoadRequest) {
-    await _loadGeometry(messagePort, rpc, model_name, model_scale);
+  async load(messagePort: MessagePort, { model_filename, model_name, model_scale, rpc }: ModelLoadRequest) {
+    await _loadGeometry(messagePort, rpc, model_filename, model_name, model_scale);
   },
 };
 

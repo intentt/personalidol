@@ -1,7 +1,7 @@
 import type { Mesh as IMesh } from "three/src/objects/Mesh";
 
 export function isMesh(item: any): item is IMesh {
-  if ("object" !== typeof item) {
+  if ("object" !== typeof item || !item) {
     return false;
   }
 

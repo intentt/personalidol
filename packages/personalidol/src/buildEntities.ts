@@ -113,6 +113,7 @@ export function* buildEntities(
           angle: _getEntityAngle(filename, entity),
           classname: entityClassName,
           id: generateUUID(),
+          model_filename: entity.properties.model_filename || "model.glb",
           model_name: entity.properties.model_name,
           model_texture: entity.properties.model_texture,
           origin: _getEntityOrigin(filename, entity),

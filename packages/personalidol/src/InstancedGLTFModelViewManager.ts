@@ -174,6 +174,7 @@ export function InstancedGLTFModelViewManager(
       load: GeometryAttributes;
     } = await sendRPCMessage(rpcLookupTable, gltfMessagePort, {
       load: {
+        model_filename: entity.model_filename,
         model_name: entity.model_name,
         model_scale: entity.scale,
         rpc: generateUUID(),
