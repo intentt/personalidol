@@ -5,7 +5,10 @@ import type { PauseableState } from "@personalidol/framework/src/PauseableState.
 import type { PreloadableState } from "@personalidol/framework/src/PreloadableState.type";
 import type { RaycastableState } from "@personalidol/input/src/RaycastableState.type";
 
+import type { InteractableState } from "./InteractableState.type";
+
 export type ViewState = DisposableState &
+  InteractableState &
   MainLoopUpdatableState &
   MountableState &
   PauseableState &

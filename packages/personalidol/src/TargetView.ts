@@ -3,6 +3,8 @@ import { Object3D } from "three/src/core/Object3D";
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { noop } from "@personalidol/framework/src/noop";
 
+import { createEntityViewState } from "./createEntityViewState";
+
 import type { Object3D as IObject3D } from "three/src/core/Object3D";
 import type { Scene } from "three/src/scenes/Scene";
 
@@ -14,17 +16,7 @@ import type { EntityViewState } from "./EntityViewState.type";
 // so the view is barebone.
 
 export function TargetView(scene: Scene, entity: EntityTarget): EntityView<EntityTarget> {
-  const state: EntityViewState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isObscuring: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: false,
-    needsUpdates: false,
-  });
+  const state: EntityViewState = createEntityViewState();
 
   const base: IObject3D = new Object3D();
 
@@ -62,9 +54,11 @@ export function TargetView(scene: Scene, entity: EntityTarget): EntityView<Entit
   return Object.freeze({
     entity: entity,
     id: generateUUID(),
+    interactableObject3D: base,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: false,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

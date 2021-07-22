@@ -50,10 +50,12 @@ export function PlayerView(
   return Object.freeze({
     entity: entity,
     id: generateUUID(),
+    interactableObject3D: _playerModel.interactableObject3D,
     isCharacterView: true,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: false,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

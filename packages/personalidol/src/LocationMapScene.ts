@@ -166,6 +166,7 @@ export function LocationMapScene(
     evaluator,
     gameState,
     uiState,
+    domMessagePort,
     dynamicsMessagePort,
     _userInputEventBusController,
     _userInputKeyboardController,

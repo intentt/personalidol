@@ -4,6 +4,7 @@ import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { preload as fPreload } from "@personalidol/framework/src/preload";
 
 import { BackgroundLightUserSettingsManager } from "./BackgroundLightUserSettingsManager";
+import { createEntityViewState } from "./createEntityViewState";
 
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
@@ -19,15 +20,7 @@ export function HemisphereLightView(
   scene: Scene,
   entity: EntityLightHemisphere
 ): EntityView<EntityLightHemisphere> {
-  const state: EntityViewState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isObscuring: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: false,
+  const state: EntityViewState = createEntityViewState({
     needsUpdates: true,
   });
 
@@ -71,9 +64,11 @@ export function HemisphereLightView(
   return Object.freeze({
     entity: entity,
     id: generateUUID(),
+    interactableObject3D: _hemisphereLight,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: false,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

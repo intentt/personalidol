@@ -4,6 +4,8 @@ import { BackgroundLightUserSettingsManager } from "./BackgroundLightUserSetting
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { preload as fPreload } from "@personalidol/framework/src/preload";
 
+import { createEntityViewState } from "./createEntityViewState";
+
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
@@ -18,15 +20,7 @@ export function AmbientLightView(
   scene: Scene,
   entity: EntityLightAmbient
 ): EntityView<EntityLightAmbient> {
-  const state: EntityViewState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isObscuring: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: false,
+  const state: EntityViewState = createEntityViewState({
     needsUpdates: true,
   });
 
@@ -69,9 +63,11 @@ export function AmbientLightView(
   return Object.freeze({
     entity: entity,
     id: generateUUID(),
+    interactableObject3D: _ambientLight,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: false,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

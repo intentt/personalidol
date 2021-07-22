@@ -6,6 +6,7 @@ import { mountAll } from "@personalidol/framework/src/mountAll";
 import { preload as fPreload } from "@personalidol/framework/src/preload";
 import { unmountAll } from "@personalidol/framework/src/unmountAll";
 
+import { createEntityViewState } from "./createEntityViewState";
 import { useObjectLabel } from "./useObjectLabel";
 
 import type { Group as IGroup } from "three/src/objects/Group";
@@ -32,15 +33,7 @@ export function InstancedGLTFModelView(
   domMessagePort: MessagePort,
   instancedGLTFModelViewManager: InstancedGLTFModelViewManager
 ): EntityView<EntityGLTFModel> {
-  const state: EntityViewState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isObscuring: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: false,
+  const state: EntityViewState = createEntityViewState({
     needsUpdates: true,
   });
 
@@ -115,9 +108,11 @@ export function InstancedGLTFModelView(
   return Object.freeze({
     entity: entity,
     id: generateUUID(),
+    interactableObject3D: _meshContainer,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: false,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

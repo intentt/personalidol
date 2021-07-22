@@ -14,7 +14,8 @@ import type { EntityView } from "./EntityView.interface";
 export function InteractableEntityController<T extends AnyEntity>(
   logger: Logger,
   view: EntityView<T>,
-  cameraController: CameraController
+  cameraController: CameraController,
+  domMessagePort: MessagePort
 ): EntityController<T> {
   const state: EntityControllerState = Object.seal({
     isDisposed: false,

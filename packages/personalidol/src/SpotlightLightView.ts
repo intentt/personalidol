@@ -6,6 +6,7 @@ import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { onlyOne } from "@personalidol/framework/src/onlyOne";
 import { preload as fPreload } from "@personalidol/framework/src/preload";
 
+import { createEntityViewState } from "./createEntityViewState";
 import { ShadowLightUserSettingsManager } from "./ShadowLightUserSettingsManager";
 
 import type { Logger } from "loglevel";
@@ -25,15 +26,7 @@ export function SpotlightLightView(
   entity: EntityLightSpotlight,
   targetedViews: Set<View>
 ): EntityView<EntityLightSpotlight> {
-  const state: EntityViewState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isObscuring: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: false,
+  const state: EntityViewState = createEntityViewState({
     needsUpdates: true,
   });
 
@@ -89,9 +82,11 @@ export function SpotlightLightView(
   return Object.freeze({
     entity: entity,
     id: generateUUID(),
+    interactableObject3D: _spotLight,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: true,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

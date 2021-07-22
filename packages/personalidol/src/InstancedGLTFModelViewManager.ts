@@ -3,6 +3,7 @@ import { BufferGeometry } from "three/src/core/BufferGeometry";
 import { InstancedMesh } from "three/src/objects/InstancedMesh";
 import { MeshStandardMaterial } from "three/src/materials/MeshStandardMaterial";
 
+import { createViewState } from "@personalidol/views/src/createViewState";
 import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
 import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
 import { disposeAll } from "@personalidol/framework/src/disposeAll";
@@ -58,14 +59,7 @@ export function InstancedGLTFModelViewManager(
     id: generateUUID(),
     name: "InstancedGLTFModelViewManager",
   });
-  const state: ViewState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: false,
+  const state: ViewState = createViewState({
     needsUpdates: true,
   });
 
@@ -309,8 +303,10 @@ export function InstancedGLTFModelViewManager(
 
   return Object.freeze({
     id: nameable.id,
+    interactableObject3D: scene,
     isDisposable: true,
     isInstancedGLTFModelViewManager: true,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

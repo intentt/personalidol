@@ -36,6 +36,7 @@ export function EntityControllerFactory(
   evaluator: Evaluator,
   gameState: GameState,
   uiState: UIState,
+  domMessagePort: MessagePort,
   dynamicsMessagePort: MessagePort,
   userInputEventBusController: UserInputController,
   userInputKeyboardController: UserInputController,
@@ -71,7 +72,7 @@ export function EntityControllerFactory(
           yield StructureCeilingEntityController(logger, view, cameraController) as IEntityController<E>;
           break;
         case "interactable":
-          yield InteractableEntityController(logger, view, cameraController) as IEntityController<E>;
+          yield InteractableEntityController(logger, view, cameraController, domMessagePort) as IEntityController<E>;
           break;
         case "map-transition":
           if (!isEntityViewOfClass<EntityScriptedZone>(view, "scripted_zone")) {

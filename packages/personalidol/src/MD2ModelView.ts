@@ -22,6 +22,7 @@ import { requestTexture } from "@personalidol/texture-loader/src/requestTexture"
 import { sendRPCMessage } from "@personalidol/framework/src/sendRPCMessage";
 import { unmountAll } from "@personalidol/framework/src/unmountAll";
 
+import { createEntityViewState } from "./createEntityViewState";
 import { MeshUserSettingsManager } from "./MeshUserSettingsManager";
 import { useObjectLabel } from "./useObjectLabel";
 
@@ -125,18 +126,18 @@ export function MD2ModelView(
 ): CharacterView<EntityMD2Model> {
   const id: string = generateUUID();
   const name: string = `MD2ModelView("${entity.model_name}", ${entity.skin})`;
-  const state: CharacterViewState = Object.seal({
-    animation: "stand",
-    isDisposed: false,
-    isMounted: false,
-    isObscuring: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: true,
-    needsUpdates: true,
-  });
+  const state: CharacterViewState = Object.seal(
+    Object.assign(
+      {},
+      createEntityViewState({
+        needsRaycast: true,
+        needsUpdates: true,
+      }),
+      {
+        animation: "stand" as "stand",
+      }
+    )
+  );
 
   _globalAnimationOffset += 0.3;
 
@@ -373,10 +374,12 @@ export function MD2ModelView(
   return Object.freeze({
     entity: entity,
     id: id,
+    interactableObject3D: _meshContainer,
     isCharacterView: true,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: false,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

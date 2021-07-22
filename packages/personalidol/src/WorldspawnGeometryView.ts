@@ -17,6 +17,7 @@ import { mountAll } from "@personalidol/framework/src/mountAll";
 import { preload as fPreload } from "@personalidol/framework/src/preload";
 import { unmountAll } from "@personalidol/framework/src/unmountAll";
 
+import { createEntityViewState } from "./createEntityViewState";
 import { MeshUserSettingsManager } from "./MeshUserSettingsManager";
 
 import type { Box3 } from "three/src/math/Box3";
@@ -48,15 +49,7 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
   matrixAutoUpdate: boolean = false
 ): EntityView<E> {
   const id: string = generateUUID();
-  const state: EntityViewState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isObscuring: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: false,
+  const state: EntityViewState = createEntityViewState({
     needsUpdates: true,
   });
 
@@ -207,9 +200,11 @@ export function WorldspawnGeometryView<E extends AnyEntity & GeometryWithBrushes
   return Object.freeze({
     entity: entity,
     id: id,
+    interactableObject3D: _raycastMesh,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: false,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,

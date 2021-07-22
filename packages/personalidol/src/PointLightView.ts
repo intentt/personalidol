@@ -5,6 +5,7 @@ import { disposeWebGLRenderTarget } from "@personalidol/framework/src/disposeWeb
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { preload as fPreload } from "@personalidol/framework/src/preload";
 
+import { createEntityViewState } from "./createEntityViewState";
 import { ShadowLightUserSettingsManager } from "./ShadowLightUserSettingsManager";
 
 import type { Logger } from "loglevel";
@@ -21,15 +22,7 @@ export function PointLightView(
   scene: Scene,
   entity: EntityLightPoint
 ): EntityView<EntityLightPoint> {
-  const state: EntityViewState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isObscuring: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
-    isRayIntersecting: false,
-    needsRaycast: false,
+  const state: EntityViewState = createEntityViewState({
     needsUpdates: true,
   });
 
@@ -77,9 +70,11 @@ export function PointLightView(
   return Object.freeze({
     entity: entity,
     id: generateUUID(),
+    interactableObject3D: _pointLight,
     isDisposable: true,
     isEntityView: true,
     isExpectingTargets: false,
+    isInteractable: true,
     isMountable: true,
     isPreloadable: true,
     isRaycastable: true,
