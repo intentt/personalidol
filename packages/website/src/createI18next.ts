@@ -20,7 +20,7 @@ export function createI18next(logger: Logger, progressMessagePort: MessagePort):
         lng: "en",
         ns: ["ui"],
         defaultNS: "__NOT_USED",
-        supportedLngs: ["en", "pl"],
+        supportedLngs: ["en", "pl", "ru"],
 
         backend: {
           loadPath: `${__LOCALES_LOAD_PATH}?${__CACHE_BUST}`,

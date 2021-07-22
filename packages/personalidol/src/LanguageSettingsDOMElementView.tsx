@@ -135,6 +135,13 @@ export class LanguageSettingsDOMElementView extends DOMElementView<DOMElementVie
         >
           Polski
         </pi-main-menu-button>
+        <pi-main-menu-button
+          active={"ru" === this.i18next.language}
+          disabled={this._isLanguageChangePending}
+          onClick={this.onLanguageChange("ru")}
+        >
+          Русский
+        </pi-main-menu-button>
       </pi-settings-backdrop>
     );
   }

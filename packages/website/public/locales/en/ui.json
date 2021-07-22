@@ -33,7 +33,7 @@
   "user_settings_quality_medium": "medium",
   "user_settings_quality_high": "high",
   "user_settings_rendering_resolution": "Rendering Resolution",
-  "user_settings_rendering_resolution_description": "You can reduce the rendering pixel ratio to decrease the rendering resolution, which makes everyting more blurry, but increases the performance.\n",
+  "user_settings_rendering_resolution_description": "You can reduce the rendering pixel ratio to decrease the rendering resolution, which makes everything more blurry, but increases the performance.\n",
   "user_settings_required_reload_to_take_effect": "Required game reload to take effect.",
   "user_settings_shadow_map_size": "Shadow Map Size",
   "user_settings_shadow_map_size_description": "Bigger values improve shadows quality, but affect performance and memory usage.\n",

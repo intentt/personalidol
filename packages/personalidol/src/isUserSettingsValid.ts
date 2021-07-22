@@ -33,6 +33,7 @@ export function isUserSettingsValid(userSettings: any): userSettings is UserSett
   switch (userSettings.language) {
     case "en":
     case "pl":
+    case "ru":
       break;
     default:
       return false;
