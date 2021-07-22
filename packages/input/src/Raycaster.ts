@@ -8,6 +8,7 @@ import type { Raycaster as ITHREERaycaster } from "three/src/core/Raycaster";
 import type { Vector2 as IVector2 } from "three/src/math/Vector2";
 
 import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
+import type { Object3D } from "three/src/core/Object3D";
 
 import type { Raycastable } from "./Raycastable.interface";
 import type { Raycaster as IRaycaster } from "./Raycaster.interface";
@@ -20,29 +21,17 @@ export function Raycaster(
   touchState: Int32Array
 ): IRaycaster {
   const state: RaycasterState = Object.seal({
-    intersections: new Set(),
     hasIntersections: false,
     needsUpdates: true,
   });
   const raycastables: Set<Raycastable> = new Set();
 
+  const _raycastableObjects: Array<Object3D> = [];
   const _threeRaycaster: ITHREERaycaster = new THREERaycaster();
   const _vector2: IVector2 = new Vector2();
 
   function _clearIntersections(): void {
     state.hasIntersections = false;
-    state.intersections.clear();
-  }
-
-  function _raycast(raycastable: Raycastable): void {
-    raycastable.state.isRayIntersecting =
-      _threeRaycaster.intersectObject(raycastable.raycasterObject3D, false).length > 0;
-
-    if (raycastable.state.isRayIntersecting) {
-      state.intersections.add(raycastable);
-    }
-
-    state.hasIntersections = state.intersections.size > 0;
   }
 
   function _resetRaycastable(raycastable: Raycastable): void {
@@ -63,7 +52,25 @@ export function Raycaster(
   function update(): void {
     _updateRaycasterCamera();
     _clearIntersections();
-    raycastables.forEach(_raycast);
+
+    _raycastableObjects.length = 0;
+
+    for (let raycastable of raycastables) {
+      _resetRaycastable(raycastable);
+      _raycastableObjects.push(raycastable.raycasterObject3D);
+    }
+
+    const intersections = _threeRaycaster.intersectObjects(_raycastableObjects, false);
+
+    if (intersections.length < 1) {
+      return;
+    }
+
+    state.hasIntersections = true;
+
+    for (let raycastable of raycastables) {
+      raycastable.state.isRayIntersecting = raycastable.raycasterObject3D === intersections[0].object;
+    }
   }
 
   return Object.freeze({
