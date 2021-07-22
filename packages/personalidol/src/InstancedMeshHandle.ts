@@ -13,7 +13,7 @@ export function InstancedMeshHandle(
   userSettings: UserSettings,
   mesh: InstancedMesh,
   index: number,
-  reference: Object3D
+  container: Object3D
 ): IInstancedMeshHandle {
   const state: InstancedMeshHandleState = Object.seal({
     isPreloaded: false,
@@ -22,9 +22,9 @@ export function InstancedMeshHandle(
   });
 
   function _updateMatrix(): void {
-    reference.updateMatrix();
+    container.updateMatrix();
 
-    mesh.setMatrixAt(index, reference.matrix);
+    mesh.setMatrixAt(index, container.matrix);
     mesh.instanceMatrix.needsUpdate = true;
   }
 
@@ -42,7 +42,7 @@ export function InstancedMeshHandle(
     isInstancedMeshHandle: true,
     isPreloadable: true,
     name: "InstancedMeshHandle",
-    object3D: reference,
+    object3D: container,
     state: state,
 
     preload: preload,

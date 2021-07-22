@@ -192,7 +192,7 @@ export function InstancedGLTFModelViewManager(
     return texture;
   }
 
-  async function createEntiyMeshHandle(entity: EntityGLTFModel, reference: Object3D): Promise<IInstancedMeshHandle> {
+  async function createEntiyMeshHandle(entity: EntityGLTFModel, container: Object3D): Promise<IInstancedMeshHandle> {
     if (!_expectedEntities.has(entity)) {
       throw new Error(
         `Entity is not expected for instancing: "Entity("${entity.classname}", "${entity.model_name}", "${entity.model_texture}")`
@@ -219,7 +219,7 @@ export function InstancedGLTFModelViewManager(
 
     _instancedMeshCurrentIndex.set(instancedMesh, index + 1);
 
-    return InstancedMeshHandle(logger, userSettings, instancedMesh, index, reference);
+    return InstancedMeshHandle(logger, userSettings, instancedMesh, index, container);
   }
 
   function dispose(): void {

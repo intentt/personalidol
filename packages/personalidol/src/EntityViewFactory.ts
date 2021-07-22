@@ -76,7 +76,7 @@ export function EntityViewFactory(
     model_gltf(entity: EntityGLTFModel): EntityView<EntityGLTFModel> {
       instancedGLTFModelViewManager.expectEntity(entity);
 
-      return InstancedGLTFModelView(logger, userSettings, scene, entity, instancedGLTFModelViewManager);
+      return InstancedGLTFModelView(logger, userSettings, scene, entity, domMessagePort, instancedGLTFModelViewManager);
     },
 
     model_md2(entity: EntityMD2Model): EntityView<EntityMD2Model> {

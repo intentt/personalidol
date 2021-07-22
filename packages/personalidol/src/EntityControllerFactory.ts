@@ -1,5 +1,6 @@
 import { name } from "@personalidol/framework/src/name";
 
+import { InteractableEntityController } from "./InteractableEntityController";
 import { isCharacterView } from "./isCharacterView";
 import { isEntityViewOfClass } from "./isEntityViewOfClass";
 import { isEntityWithController } from "./isEntityWithController";
@@ -68,6 +69,9 @@ export function EntityControllerFactory(
           }
 
           yield StructureCeilingEntityController(logger, view, cameraController) as IEntityController<E>;
+          break;
+        case "interactable":
+          yield InteractableEntityController(logger, view, cameraController) as IEntityController<E>;
           break;
         case "map-transition":
           if (!isEntityViewOfClass<EntityScriptedZone>(view, "scripted_zone")) {
