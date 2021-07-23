@@ -2,6 +2,7 @@ import { createRouter } from "@personalidol/framework/src/createRouter";
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { name } from "@personalidol/framework/src/name";
 
+import { createEntityControllerState } from "./createEntityControllerState";
 import { isEntityOfClass } from "./isEntityOfClass";
 
 import type { MessageSimulantDispose } from "@personalidol/dynamics/src/MessageSimulantDispose.type";
@@ -22,12 +23,7 @@ export function MapTransitionEntityController(
   gameState: GameState,
   dynamicsMessagePort: MessagePort
 ): EntityController<EntityScriptedZone> {
-  const state: EntityControllerState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
+  const state: EntityControllerState = createEntityControllerState({
     needsUpdates: true,
   });
 

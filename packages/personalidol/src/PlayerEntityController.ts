@@ -10,6 +10,7 @@ import { preload as fPreload } from "@personalidol/framework/src/preload";
 import { unmount as fUnmount } from "@personalidol/framework/src/unmount";
 import { unpause as fUnpause } from "@personalidol/framework/src/unpause";
 
+import { createEntityControllerState } from "./createEntityControllerState";
 import { NPCEntityController } from "./NPCEntityController";
 
 import type { Logger } from "loglevel";
@@ -34,12 +35,7 @@ export function PlayerEntityController(
   userInputTouchController: UserInputController,
   dynamicsMessagePort: MessagePort
 ): PlayerEntityController {
-  const state: EntityControllerState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isPaused: false,
-    isPreloading: false,
-    isPreloaded: false,
+  const state: EntityControllerState = createEntityControllerState({
     needsUpdates: true,
   });
 

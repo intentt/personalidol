@@ -1,9 +1,12 @@
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { name } from "@personalidol/framework/src/name";
 
+import { createEntityControllerState } from "./createEntityControllerState";
+
 import type { Logger } from "loglevel";
 
 import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
+import type { InteractableBag } from "@personalidol/views/src/InteractableBag.interface";
 import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
@@ -15,14 +18,10 @@ export function InteractableEntityController<T extends AnyEntity>(
   logger: Logger,
   view: EntityView<T>,
   cameraController: CameraController,
+  interactableBag: InteractableBag,
   domMessagePort: MessagePort
 ): EntityController<T> {
-  const state: EntityControllerState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
+  const state: EntityControllerState = createEntityControllerState({
     needsUpdates: true,
   });
 
@@ -32,6 +31,8 @@ export function InteractableEntityController<T extends AnyEntity>(
 
   function mount(): void {
     state.isMounted = true;
+
+    interactableBag.interactables.add(view);
   }
 
   function pause(): void {
@@ -45,6 +46,8 @@ export function InteractableEntityController<T extends AnyEntity>(
 
   function unmount(): void {
     state.isMounted = false;
+
+    interactableBag.interactables.delete(view);
   }
 
   function unpause(): void {

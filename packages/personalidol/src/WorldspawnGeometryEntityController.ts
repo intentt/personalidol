@@ -2,6 +2,8 @@ import { createRouter } from "@personalidol/framework/src/createRouter";
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { name } from "@personalidol/framework/src/name";
 
+import { createEntityControllerState } from "./createEntityControllerState";
+
 import type { MessageSimulantDispose } from "@personalidol/dynamics/src/MessageSimulantDispose.type";
 import type { MessageSimulantRegister } from "@personalidol/dynamics/src/MessageSimulantRegister.type";
 import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
@@ -17,12 +19,7 @@ export function WorldspawnGeometryEntityController<E extends AnyEntity & Geometr
   view: EntityView<E>,
   dynamicsMessagePort: MessagePort
 ): EntityController<E> {
-  const state: EntityControllerState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isPaused: false,
-    isPreloaded: false,
-    isPreloading: false,
+  const state: EntityControllerState = createEntityControllerState({
     needsUpdates: true,
   });
 

@@ -12,6 +12,7 @@ import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { getI18NextKeyNamespace } from "@personalidol/i18n/src/getI18NextKeyNamespace";
 import { handleRPCResponse } from "@personalidol/framework/src/handleRPCResponse";
 import { imageDataBufferResponseToTexture } from "@personalidol/texture-loader/src/imageDataBufferResponseToTexture";
+import { InteractableBag } from "@personalidol/views/src/InteractableBag";
 import { mount as fMount } from "@personalidol/framework/src/mount";
 import { pause as fPause } from "@personalidol/framework/src/pause";
 import { preload as fPreload } from "@personalidol/framework/src/preload";
@@ -45,6 +46,7 @@ import type { DisposableCallback } from "@personalidol/framework/src/DisposableC
 import type { EffectComposer } from "@personalidol/three-modules/src/postprocessing/EffectComposer.interface";
 import type { Evaluator } from "@personalidol/expression-language/src/Evaluator.interface";
 import type { EventBus } from "@personalidol/framework/src/EventBus.interface";
+import type { InteractableBag as IInteractableBag } from "@personalidol/views/src/InteractableBag.interface";
 import type { Raycaster as IRaycaster } from "@personalidol/input/src/Raycaster.interface";
 import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
 import type { SceneState } from "@personalidol/framework/src/SceneState.type";
@@ -145,6 +147,8 @@ export function LocationMapScene(
     dimensionsState,
     touchState
   );
+
+  const _interactableBag: IInteractableBag = InteractableBag(logger);
   const _renderPass = new RenderPass(_scene, _cameraController.camera);
   const _viewBag: IViewBag = ViewBag(logger);
 
@@ -163,6 +167,8 @@ export function LocationMapScene(
   const _entityControllerFactory: IEntityControllerFactory = EntityControllerFactory(
     logger,
     _cameraController,
+    _interactableBag,
+    _viewBag,
     evaluator,
     gameState,
     uiState,

@@ -5,6 +5,8 @@ import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { name } from "@personalidol/framework/src/name";
 import { RigidBodyRemoteHandle } from "@personalidol/dynamics/src/RigidBodyRemoteHandle";
 
+import { createEntityControllerState } from "./createEntityControllerState";
+
 import type { Logger } from "loglevel";
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
@@ -24,12 +26,7 @@ export function NPCEntityController<E extends NPCEntity>(
   view: CharacterView<E>,
   dynamicsMessagePort: MessagePort
 ): NPCEntityController<E> {
-  const state: EntityControllerState = Object.seal({
-    isDisposed: false,
-    isMounted: false,
-    isPaused: false,
-    isPreloading: false,
-    isPreloaded: false,
+  const state: EntityControllerState = createEntityControllerState({
     needsUpdates: true,
   });
 

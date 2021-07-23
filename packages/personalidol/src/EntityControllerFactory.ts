@@ -1,6 +1,7 @@
 import { name } from "@personalidol/framework/src/name";
 
 import { InteractableEntityController } from "./InteractableEntityController";
+import { InteractorEntityController } from "./InteractorEntityController";
 import { isCharacterView } from "./isCharacterView";
 import { isEntityViewOfClass } from "./isEntityViewOfClass";
 import { isEntityWithController } from "./isEntityWithController";
@@ -15,8 +16,10 @@ import type { Logger } from "loglevel";
 
 import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
 import type { Evaluator } from "@personalidol/expression-language/src/Evaluator.interface";
+import type { InteractableBag } from "@personalidol/views/src/InteractableBag.interface";
 import type { UserInputController } from "@personalidol/input/src/UserInputController.interface";
 import type { UserInputMouseController } from "@personalidol/input/src/UserInputMouseController.interface";
+import type { ViewBag } from "@personalidol/views/src/ViewBag.interface";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityController as IEntityController } from "./EntityController.interface";
@@ -33,6 +36,8 @@ import type { UIState } from "./UIState.type";
 export function EntityControllerFactory(
   logger: Logger,
   cameraController: CameraController,
+  interactableBag: InteractableBag,
+  viewBag: ViewBag,
   evaluator: Evaluator,
   gameState: GameState,
   uiState: UIState,
@@ -72,7 +77,22 @@ export function EntityControllerFactory(
           yield StructureCeilingEntityController(logger, view, cameraController) as IEntityController<E>;
           break;
         case "interactable":
-          yield InteractableEntityController(logger, view, cameraController, domMessagePort) as IEntityController<E>;
+          yield InteractableEntityController(
+            logger,
+            view,
+            cameraController,
+            interactableBag,
+            domMessagePort
+          ) as IEntityController<E>;
+          break;
+        case "interactor":
+          yield InteractorEntityController(
+            logger,
+            view,
+            cameraController,
+            interactableBag,
+            domMessagePort
+          ) as IEntityController<E>;
           break;
         case "map-transition":
           if (!isEntityViewOfClass<EntityScriptedZone>(view, "scripted_zone")) {
