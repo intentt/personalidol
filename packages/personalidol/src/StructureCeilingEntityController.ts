@@ -8,6 +8,8 @@ import { createEntityControllerState } from "./createEntityControllerState";
 
 import type { Intersection } from "three/src/core/Raycaster";
 import type { Logger } from "loglevel";
+import type { Raycaster as IRaycaster } from "three/src/core/Raycaster";
+import type { Vector2 as IVector2 } from "three/src/math/Vector2";
 
 import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
 import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
@@ -26,8 +28,8 @@ export function StructureCeilingEntityController(
     needsUpdates: true,
   });
 
-  const _raycaster = new Raycaster();
-  const _raycasterVector = new Vector2(0, 0);
+  const _raycaster: IRaycaster = new Raycaster();
+  const _raycasterVector: IVector2 = new Vector2(0, 0);
   const _intersects: Array<Intersection> = [];
 
   function dispose(): void {

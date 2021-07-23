@@ -9,6 +9,7 @@ import { MeshBasicMaterial } from "three/src/materials/MeshBasicMaterial";
 import { Vector3 } from "three/src/math/Vector3";
 
 import { createEmptyMesh } from "@personalidol/framework/src/createEmptyMesh";
+import { CSS2DObject } from "@personalidol/three-css2d-renderer/src/CSS2DObject";
 import { damp } from "@personalidol/math/src/damp";
 import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
 import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
@@ -47,6 +48,7 @@ import type { UnmountableCallback } from "@personalidol/framework/src/Unmountabl
 import type { UserSettingsManager } from "@personalidol/framework/src/UserSettingsManager.interface";
 
 import type { CharacterView } from "./CharacterView.interface";
+import type { DOMElementsLookup } from "./DOMElementsLookup.type";
 import type { CharacterViewState } from "./CharacterViewState.type";
 import type { EntityMD2Model } from "./EntityMD2Model.type";
 import type { UserSettings } from "./UserSettings.type";
@@ -130,6 +132,7 @@ export function MD2ModelView(
     Object.assign(
       {},
       createEntityViewState({
+        needsInteractions: true,
         needsRaycast: true,
         needsUpdates: true,
       }),
@@ -150,7 +153,12 @@ export function MD2ModelView(
   const _mountables: Set<MountableCallback> = new Set();
   const _unmountables: Set<UnmountableCallback> = new Set();
 
+  const _interactions2DObject = new CSS2DObject<DOMElementsLookup>(domMessagePort, "pi-object-interactions", {
+    version: 0,
+  });
+
   let _mesh: null | IMorphBlendMesh = null;
+  let _meshLookAt: IVector3 = new Vector3();
   let _meshUserSettingsManager: null | UserSettingsManager = null;
   let _morphBlendMeshMixer: null | IMorphBlendMeshMixer = null;
   let _transitionTarget: IVector3 = new Vector3();
@@ -273,6 +281,16 @@ export function MD2ModelView(
 
     useObjectLabel(domMessagePort, _labelContainer, entity, _mountables, _unmountables, _disposables);
 
+    // Object interactions
+
+    _mountables.add(function () {
+      _meshContainer.add(_interactions2DObject);
+    });
+
+    _unmountables.add(function () {
+      _meshContainer.remove(_interactions2DObject);
+    });
+
     // Animations
 
     _disposables.add(function () {
@@ -320,12 +338,8 @@ export function MD2ModelView(
     }
 
     _transitionTarget.copy(_meshContainer.position).add(vec);
-    // _meshContainer.lookAt(_transitionTarget);
-
-    // _meshContainer.rotation.set(0, entity.angle, 0);
-    _meshContainer.lookAt(new Vector3(_transitionTarget.x, _meshContainer.position.y, _transitionTarget.z));
-
-    // _meshContainer.position.copy(_transitionTarget);
+    _meshLookAt.set(_transitionTarget.x, _meshContainer.position.y, _transitionTarget.z);
+    _meshContainer.lookAt(_meshLookAt);
   }
 
   function transitionTo(vec: IVector3): void {
@@ -347,16 +361,27 @@ export function MD2ModelView(
       _meshUserSettingsManager.update(delta, elapsedTime, tickTimerState);
     }
 
-    if (state.isPaused || !state.isRayIntersecting) {
+    if (state.isPaused || !(state.isInteracting || state.isRayIntersecting)) {
       _materialColor.set(0xffffff);
     }
+
+    _interactions2DObject.visible = false;
 
     if (state.isPaused) {
       return;
     }
 
+    if (state.isInteracting) {
+      _materialColor.set(0x00ff00);
+      _interactions2DObject.visible = true;
+    }
+
     if (state.isRayIntersecting) {
       _materialColor.set(0xff0000);
+    }
+
+    if (state.isInteracting && state.isRayIntersecting) {
+      _materialColor.set(0xffff00);
     }
 
     if (!_morphBlendMeshMixer) {

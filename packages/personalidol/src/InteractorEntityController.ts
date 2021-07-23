@@ -1,9 +1,12 @@
+import { Vector3 } from "three/src/math/Vector3";
+
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { name } from "@personalidol/framework/src/name";
 
 import { createEntityControllerState } from "./createEntityControllerState";
 
 import type { Logger } from "loglevel";
+import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
 import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
 import type { InteractableBag } from "@personalidol/views/src/InteractableBag.interface";
@@ -24,6 +27,8 @@ export function InteractorEntityController<T extends AnyEntity>(
   const state: EntityControllerState = createEntityControllerState({
     needsUpdates: true,
   });
+
+  const _distanceVector: IVector3 = new Vector3();
 
   function dispose(): void {
     state.isDisposed = true;
@@ -50,7 +55,19 @@ export function InteractorEntityController<T extends AnyEntity>(
     state.isPaused = false;
   }
 
-  function update(delta: number, elapsedTime: number, tickTimerState: TickTimerState): void {}
+  function update(delta: number, elapsedTime: number, tickTimerState: TickTimerState): void {
+    for (let interactable of interactableBag.interactables) {
+      if (!interactable.state.needsInteractions) {
+        interactable.state.isInteracting = false;
+
+        continue;
+      }
+
+      _distanceVector.subVectors(interactable.interactableObject3D.position, view.object3D.position);
+
+      interactable.state.isInteracting = _distanceVector.lengthSq() < 80 * 80;
+    }
+  }
 
   return Object.freeze({
     id: generateUUID(),
