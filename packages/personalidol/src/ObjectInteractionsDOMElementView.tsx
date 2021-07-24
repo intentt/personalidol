@@ -5,6 +5,8 @@ import { CSS2DObjectStateIndices } from "@personalidol/three-css2d-renderer/src/
 import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
 import { isSharedArrayBuffer } from "@personalidol/framework/src/isSharedArrayBuffer";
 
+import { DOMZIndex } from "./DOMZIndex.enum";
+
 import type { DOMElementProps } from "@personalidol/dom-renderer/src/DOMElementProps.type";
 import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
 
@@ -23,20 +25,43 @@ const _css = `
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     backface-visibility: hidden;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #eee;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #111;
     cursor: pointer;
     display: grid;
     font-family: Karla, sans-serif;
     font-size: 1rem;
-    grid-row-gap: 0.5rem;
     left: 0;
+    list-style-type: none;
     margin: 0;
     min-width: 100px;
-    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    padding: 0;
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
     position: absolute;
     top: 0;
     will-change: opacity, transform, z-index;
+  }
+
+  #interactions:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right:10px solid rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateX(-100%) translateY(-50%);
+  }
+
+  .interaction {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .interaction:hover {
+    background-color: white;
   }
 `;
 
@@ -91,18 +116,20 @@ export class ObjectInteractionsDOMElementView extends DOMElementView<DOMElementV
           id="interactions"
           style={{
             transform: `
-              translate3D(50px, 0, 0)
+              translate3D(50px, -50%, 0)
               translate3D(
                 ${this._rendererState[CSS2DObjectStateIndices.TRANSLATE_X].toFixed(1)}px,
                 ${this._rendererState[CSS2DObjectStateIndices.TRANSLATE_Y].toFixed(1)}px,
                 0
               )
+              rotateX(15deg)
+              rotateY(25deg)
             `,
-            "z-index": this._rendererState[CSS2DObjectStateIndices.Z_INDEX],
+            "z-index": DOMZIndex.InGameObjectLabel,
           }}
         >
-          <li>Talk</li>
-          <li>Barter</li>
+          <li class="interaction">{this.t("interactions:talk")}</li>
+          <li class="interaction">{this.t("interactions:barter")}</li>
         </ol>
       </Fragment>
     );

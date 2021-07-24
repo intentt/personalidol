@@ -18,7 +18,7 @@ export function createI18next(logger: Logger, progressMessagePort: MessagePort):
         debug: "debug" === __LOG_LEVEL,
         fallbackLng: "en",
         lng: "en",
-        ns: ["ui"],
+        ns: ["interactions", "ui"],
         defaultNS: "__NOT_USED",
         supportedLngs: ["en", "pl", "ru"],
 

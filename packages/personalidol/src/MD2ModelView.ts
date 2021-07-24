@@ -361,9 +361,9 @@ export function MD2ModelView(
       _meshUserSettingsManager.update(delta, elapsedTime, tickTimerState);
     }
 
-    if (state.isPaused || !(state.isInteracting || state.isRayIntersecting)) {
-      _materialColor.set(0xffffff);
-    }
+    // if (state.isPaused || !(state.isInteracting || state.isRayIntersecting)) {
+    //   _materialColor.set(0xffffff);
+    // }
 
     _interactions2DObject.visible = false;
 
@@ -372,17 +372,17 @@ export function MD2ModelView(
     }
 
     if (state.isInteracting) {
-      _materialColor.set(0x00ff00);
+      // _materialColor.set(0x00ff00);
       _interactions2DObject.visible = true;
     }
 
-    if (state.isRayIntersecting) {
-      _materialColor.set(0xff0000);
-    }
+    // if (state.isRayIntersecting) {
+    //   _materialColor.set(0xff0000);
+    // }
 
-    if (state.isInteracting && state.isRayIntersecting) {
-      _materialColor.set(0xffff00);
-    }
+    // if (state.isInteracting && state.isRayIntersecting) {
+    //   _materialColor.set(0xffff00);
+    // }
 
     if (!_morphBlendMeshMixer) {
       return;
