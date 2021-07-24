@@ -133,7 +133,6 @@ export function MD2ModelView(
       {},
       createEntityViewState({
         needsInteractions: true,
-        needsRaycast: true,
         needsUpdates: true,
       }),
       {

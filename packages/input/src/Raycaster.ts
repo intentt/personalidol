@@ -50,6 +50,10 @@ export function Raycaster(
   }
 
   function update(): void {
+    if (raycastables.size < 1) {
+      return;
+    }
+
     _updateRaycasterCamera();
     _clearIntersections();
 
