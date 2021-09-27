@@ -12,6 +12,7 @@ import type { TextureDimensionsResolver } from "@personalidol/quakemaps/src/Text
 import type { Vector3Simple } from "@personalidol/quakemaps/src/Vector3Simple.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
+import type { EntityFBXModel } from "./EntityFBXModel.type";
 import type { EntityFuncGroup } from "./EntityFuncGroup.type";
 import type { EntityGLTFModel } from "./EntityGLTFModel.type";
 import type { EntityLightAmbient } from "./EntityLightAmbient.type";
@@ -105,6 +106,20 @@ export function* buildEntities(
           origin: _getEntityOrigin(filename, entity),
           properties: entity.properties,
           quality_map: Number(entity.properties.quality_map),
+          transferables: _transferablesEmpty,
+        };
+        break;
+      case "model_fbx":
+        yield <EntityFBXModel>{
+          angle: _getEntityAngle(filename, entity),
+          classname: entityClassName,
+          id: generateUUID(),
+          model_filename: entity.properties.model_filename || "model.fbx",
+          model_name: entity.properties.model_name,
+          model_texture: entity.properties.model_texture ?? null,
+          origin: _getEntityOrigin(filename, entity),
+          properties: entity.properties,
+          scale: Number(entity.properties.scale),
           transferables: _transferablesEmpty,
         };
         break;

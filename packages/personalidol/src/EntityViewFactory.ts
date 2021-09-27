@@ -1,4 +1,5 @@
 import { AmbientLightView } from "./AmbientLightView";
+import { FBXModelView } from "./FBXModelView";
 import { HemisphereLightView } from "./HemisphereLightView";
 import { InstancedGLTFModelView } from "./InstancedGLTFModelView";
 import { MD2ModelView } from "./MD2ModelView";
@@ -16,6 +17,7 @@ import type { Texture as ITexture } from "three/src/textures/Texture";
 import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
+import type { EntityFBXModel } from "./EntityFBXModel.type";
 import type { EntityFuncGroup } from "./EntityFuncGroup.type";
 import type { EntityGLTFModel } from "./EntityGLTFModel.type";
 import type { EntityLightAmbient } from "./EntityLightAmbient.type";
@@ -71,6 +73,10 @@ export function EntityViewFactory(
       targetedViews: Set<EntityView<AnyEntity>>
     ): EntityView<EntityLightSpotlight> {
       return SpotlightLightView(logger, userSettings, scene, entity, targetedViews);
+    },
+
+    model_fbx(entity: EntityFBXModel): EntityView<EntityFBXModel> {
+      return FBXModelView(logger, userSettings, scene, entity, domMessagePort);
     },
 
     model_gltf(entity: EntityGLTFModel): EntityView<EntityGLTFModel> {

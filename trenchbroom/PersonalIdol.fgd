@@ -80,7 +80,14 @@
 [
     model_name(string) : "Model base name" : "bonfire"
     model_texture(string) : "Model texture filename relative to model directory" : "bonfire.png"
-    scale(integer) : "Model scale (1 = as defined in .GLB)" : 1
+    scale(integer) : "Model scale (1 = as defined in .glb)" : 1
+]
+
+@PointClass base(ExternalModel) = model_fbx : "External (.fbx) model loaded into map"
+[
+    model_name(string) : "Model base name" : "bonfire"
+    model_texture(string) : "Model texture filename relative to model directory" : "bonfire.png"
+    scale(integer) : "Model scale (1 = as defined in .fbx)" : 1
 ]
 
 // ----------------------------------------------------------------------------
