@@ -57,6 +57,7 @@ export async function createRenderingService(
       type: "module",
     });
 
+    // @ts-ignore OffscreenCanvas is experimental
     const offscreenCanvas = canvas.transferControlToOffscreen();
 
     // SharedArrayBuffer was disabled after Spectre / Meltdown attacks.

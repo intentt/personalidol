@@ -57,7 +57,7 @@ export function DOMUIController<L extends DOMElementsLookup, C extends DOMElemen
   });
 
   function _createDOMElementViewByRenderMessage(message: MessageDOMUIRender<L>): DOMElementView<C> {
-    const DOMElementViewConstructor: HTMLElement = customElements.get(message.element);
+    const DOMElementViewConstructor: undefined | CustomElementConstructor = customElements.get(message.element);
 
     if (!isDOMElementViewConstructor(DOMElementViewConstructor)) {
       throw new Error("Object is not a DOMElementView constructor.");

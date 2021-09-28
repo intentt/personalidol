@@ -6,6 +6,7 @@ function _test(): boolean {
     return false;
   }
 
+  // @ts-ignore OffscreenCanvas is experimental
   return "function" === typeof HTMLCanvasElement.prototype.transferControlToOffscreen;
 }
 

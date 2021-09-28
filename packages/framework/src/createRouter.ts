@@ -17,7 +17,7 @@ export function createRouter(
       try {
         routeMessages(evt, evt.data, router);
       } catch (err) {
-        onerror(err);
+        onerror(err as unknown as Error);
       }
     };
   }

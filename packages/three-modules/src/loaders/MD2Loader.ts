@@ -212,7 +212,7 @@ const normalData = [
 const _vector = new Vector3();
 
 export class MD2Loader extends Loader {
-  load(url: string, onLoad: (geometry: MD2LoaderParsedGeometry) => void, onProgress?: (event: ProgressEvent) => void, onError?: (event: ErrorEvent) => void): void {
+  load(url: string, onLoad: (geometry: MD2LoaderParsedGeometry) => void, onProgress?: (event: ProgressEvent) => void, onError?: (event: any) => void): void {
     const scope = this;
     const loader = new FileLoader(scope.manager);
 

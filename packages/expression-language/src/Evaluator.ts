@@ -12,7 +12,7 @@ export function Evaluator(context: EvaluatorContext = {}): IEvaluator {
     try {
       return jexl.evalSync(expression, context);
     } catch (e) {
-      throw new Error(`Error while parsing expression "${expression}": "${e.message}"`);
+      throw new Error(`Error while parsing expression "${expression}": "${JSON.stringify(e)}"`);
     }
   }
 

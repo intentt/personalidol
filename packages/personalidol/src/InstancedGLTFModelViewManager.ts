@@ -114,7 +114,7 @@ export function InstancedGLTFModelViewManager(
       color: 0xcccccc,
       flatShading: false,
       map: await texturePromise,
-      morphTargets: false,
+      // morphTargets: false,
     });
 
     _disposables.add(disposableMaterial(material));

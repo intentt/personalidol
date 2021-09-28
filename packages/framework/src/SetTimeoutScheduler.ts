@@ -3,7 +3,8 @@ import { generateUUID } from "@personalidol/math/src/generateUUID";
 import type { Scheduler } from "./Scheduler.interface";
 import type { SchedulerCallback } from "./SchedulerCallback.type";
 
-type TickType = ReturnType<typeof setTimeout>;
+// type TickType = ReturnType<typeof setTimeout>;
+type TickType = number;
 
 function cancelFrame(frameId: TickType): void {
   clearTimeout(frameId);

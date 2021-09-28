@@ -28,6 +28,7 @@ export function createAtlasService(
     if (isCanvasTransferControlToOffscreenSupported()) {
       logger.debug("SUPPORTED(canvas.transferControlToOffscreen) // offlad atlas service to a worker thread");
 
+      // @ts-ignore OffscreenCanvas is experimental
       const offscreenAtlas = atlasCanvas.transferControlToOffscreen();
 
       await prefetch(websiteToProgressMessagePort, "worker", workers.atlas.url);

@@ -32,7 +32,8 @@ type AtlasQueueItem = RPCMessage & {
   textureUrls: ReadonlyArray<string>;
 };
 
-type Context2D = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
+// type Context2D = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
+type Context2D = CanvasRenderingContext2D;
 
 type CreateAtlasTextureRequest = RPCMessage & {
   textureUrls: ReadonlyArray<string>;
@@ -208,7 +209,9 @@ export function AtlasService(
     const atlasSideLength: number = _getAtlasSideLength(textures.length);
     const atlasSideLengthPx: number = atlasSideLength * textureSize;
 
+    // @ts-ignore OffscreenCanvas is experimental
     canvas.height = atlasSideLengthPx;
+    // @ts-ignore OffscreenCanvas is experimental
     canvas.width = atlasSideLengthPx;
 
     // Reset canvas to pure black first to remove previous textures.

@@ -225,7 +225,7 @@ export function MD2ModelView(
           geometry.parts.skins[entity.skin]
         }?${__CACHE_BUST}`
       ),
-      morphTargets: true,
+      // morphTargets: true,
       // morphNormals: true,
     });
 

@@ -12,7 +12,8 @@ import type { ServiceBuilder as IServiceBuilder } from "@personalidol/framework/
 
 type Dependencies = {
   canvas: OffscreenCanvas;
-  context2d: OffscreenCanvasRenderingContext2D;
+  // context2d: OffscreenCanvasRenderingContext2D;
+  context2d: CanvasRenderingContext2D;
   progressMessagePort: MessagePort;
   statsMessagePort: MessagePort;
   texturesMessagePort: MessagePort;
@@ -55,6 +56,7 @@ self.onmessage = createRouter({
   atlasCanvas(canvas: OffscreenCanvas) {
     serviceBuilder.setDependency("canvas", canvas);
 
+    // @ts-ignore OffscreenCanvas is experimental
     const context2d = canvas.getContext("2d");
 
     if (!context2d) {

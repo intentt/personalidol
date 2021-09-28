@@ -30,7 +30,7 @@ export class THREETextureLoader extends Loader {
     url: string,
     onLoad?: (response: ITexture) => void,
     onProgress?: (request: ProgressEvent) => void,
-    onError?: (event: ErrorEvent) => void
+    onError?: (error: any) => void
   ): Promise<void> {
     this.manager.itemStart(url);
 
