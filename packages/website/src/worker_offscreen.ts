@@ -50,6 +50,7 @@ const partialDependencies: Partial<Dependencies> = {
   dimensionsState: undefined,
   domMessagePort: undefined,
   dynamicsMessagePort: undefined,
+  fbxMessagePort: undefined,
   fontPreloadMessagePort: undefined,
   gameMessagePort: undefined,
   gltfMessagePort: undefined,

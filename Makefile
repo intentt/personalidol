@@ -39,7 +39,7 @@ purge: clean
 
 .PHONY: release
 release: bootstrap
-	$(MAKE) -C packages/website release
+	$(MAKE) -C packages/website release.notypes
 
 .PHONY: test
 test: bootstrap

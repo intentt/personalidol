@@ -56,6 +56,9 @@ purge:
 .PHONY: release
 release: clean tsc public/index.html
 
+.PHONY: release.notypes
+release.notypes: clean public/index.html
+
 .PHONY: test
 test:
 	yarn run jest
