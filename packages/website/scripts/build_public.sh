@@ -24,7 +24,6 @@ yarn run esbuild \
     --sourcemap \
     --target=safari14 \
     --tsconfig=tsconfig.json \
-    --tree-shaking=true \
     src/createScenes.ts \
     src/index.ts \
     src/service_worker.ts \
