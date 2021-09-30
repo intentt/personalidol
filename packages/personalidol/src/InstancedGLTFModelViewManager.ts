@@ -27,7 +27,7 @@ import type { Object3D } from "three/src/core/Object3D";
 import type { Scene } from "three/src/scenes/Scene";
 
 import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { GeometryAttributes } from "@personalidol/three-modules/src/loaders/GeometryAttributes.type";
+import type { GeometryAttributes } from "@personalidol/framework/src/GeometryAttributes.type";
 import type { MountableCallback } from "@personalidol/framework/src/MountableCallback.type";
 import type { Nameable } from "@personalidol/framework/src/Nameable.interface";
 import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";

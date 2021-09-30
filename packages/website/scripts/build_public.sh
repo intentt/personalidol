@@ -4,6 +4,7 @@
 rm -rf ./public/lib/*;
 rm -f ./public/service_worker_*
 
+# --analyze \
 yarn run esbuild \
     --bundle \
     --define:__ASSETS_BASE_PATH=\"${ASSETS_BASE_PATH}\" \
@@ -21,13 +22,15 @@ yarn run esbuild \
     --outdir=./public/lib \
     --platform=browser \
     --sourcemap \
-    --target=safari13 \
+    --target=safari14 \
     --tsconfig=tsconfig.json \
+    --tree-shaking=true \
     src/createScenes.ts \
     src/index.ts \
     src/service_worker.ts \
     src/worker_atlas.ts \
     src/worker_dynamics.ts \
+    src/worker_fbx.ts \
     src/worker_gltf.ts \
     src/worker_md2.ts \
     src/worker_offscreen.ts \

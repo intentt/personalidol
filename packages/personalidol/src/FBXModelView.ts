@@ -1,12 +1,20 @@
+import { BufferAttribute } from "three/src/core/BufferAttribute";
+import { BufferGeometry } from "three/src/core/BufferGeometry";
 import { Group } from "three/src/objects/Group";
+import { Mesh } from "three/src/objects/Mesh";
+import { MeshStandardMaterial } from "three/src/materials/MeshStandardMaterial";
 
+import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
+import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
 import { disposeAll } from "@personalidol/framework/src/disposeAll";
+import { preload as fPreload } from "@personalidol/framework/src/preload";
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { mountAll } from "@personalidol/framework/src/mountAll";
-// import { preload as fPreload } from "@personalidol/framework/src/preload";
 import { unmountAll } from "@personalidol/framework/src/unmountAll";
+import { sendRPCMessage } from "@personalidol/framework/src/sendRPCMessage";
 
 import { createEntityViewState } from "./createEntityViewState";
+import { MeshUserSettingsManager } from "./MeshUserSettingsManager";
 import { useObjectLabel } from "./useObjectLabel";
 
 import type { Group as IGroup } from "three/src/objects/Group";
@@ -14,9 +22,12 @@ import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
 import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
+import type { GeometryAttributes } from "@personalidol/framework/src/GeometryAttributes.type";
 import type { MountableCallback } from "@personalidol/framework/src/MountableCallback.type";
+import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
 import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
 import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
+import type { UserSettingsManager } from "@personalidol/framework/src/UserSettingsManager.interface";
 
 import type { EntityFBXModel } from "./EntityFBXModel.type";
 import type { EntityView } from "./EntityView.interface";
@@ -28,7 +39,10 @@ export function FBXModelView(
   userSettings: UserSettings,
   scene: Scene,
   entity: EntityFBXModel,
-  domMessagePort: MessagePort
+  domMessagePort: MessagePort,
+  fbxMessagePort: MessagePort,
+  texturesMessagePort: MessagePort,
+  rpcLookupTable: RPCLookupTable
 ): EntityView<EntityFBXModel> {
   const state: EntityViewState = createEntityViewState({
     needsUpdates: true,
@@ -39,6 +53,9 @@ export function FBXModelView(
   const _meshContainer: IGroup = new Group();
   const _mountables: Set<MountableCallback> = new Set();
   const _unmountables: Set<UnmountableCallback> = new Set();
+
+  // const _fbxLoader = new FBXLoader();
+  let _meshUserSettingsManager: null | UserSettingsManager = null;
 
   function dispose(): void {
     state.isDisposed = true;
@@ -60,7 +77,60 @@ export function FBXModelView(
   async function preload(): Promise<void> {
     state.isPreloading = true;
 
+    const rpc = generateUUID();
+
+    console.log(entity, rpc);
+
+    const {
+      load: geometryAttributes,
+    }: {
+      load: GeometryAttributes;
+    } = await sendRPCMessage(rpcLookupTable, fbxMessagePort, {
+      load: {
+        model_name: entity.model_name,
+        model_scale: entity.scale,
+        rpc: rpc,
+      },
+    });
+
+    const bufferGeometry = new BufferGeometry();
+
+    bufferGeometry.setAttribute("normal", new BufferAttribute(geometryAttributes.normal, 3));
+    bufferGeometry.setAttribute("position", new BufferAttribute(geometryAttributes.position, 3));
+    bufferGeometry.setAttribute("uv", new BufferAttribute(geometryAttributes.uv, 2));
+
+    if (geometryAttributes.index) {
+      bufferGeometry.setIndex(new BufferAttribute(geometryAttributes.index, 1));
+    }
+
+    _disposables.add(disposableGeneric(bufferGeometry));
+
+    const material = new MeshStandardMaterial({
+      color: 0xcccccc,
+      flatShading: false,
+      // map: await texturePromise,
+    });
+
+    _disposables.add(disposableMaterial(material));
+
+    const _mesh = new Mesh(bufferGeometry, material);
+
+    _mesh.position.set(entity.origin.x, entity.origin.y, entity.origin.z);
+    _mesh.rotation.set(0, entity.angle, 0);
+
+    _meshUserSettingsManager = MeshUserSettingsManager(logger, userSettings, _mesh);
+
+    _mountables.add(function () {
+      scene.add(_mesh);
+    });
+
+    _unmountables.add(function () {
+      scene.remove(_mesh);
+    });
+
     useObjectLabel(domMessagePort, _labelContainer, entity, _mountables, _unmountables, _disposables);
+
+    fPreload(logger, _meshUserSettingsManager);
 
     state.isPreloading = false;
     state.isPreloaded = true;
@@ -77,7 +147,11 @@ export function FBXModelView(
     state.isPaused = false;
   }
 
-  function update(delta: number, elapsedTime: number, tickTimerState: TickTimerState): void {}
+  function update(delta: number, elapsedTime: number, tickTimerState: TickTimerState): void {
+    if (_meshUserSettingsManager) {
+      _meshUserSettingsManager.update(delta, elapsedTime, tickTimerState);
+    }
+  }
 
   return Object.freeze({
     entity: entity,

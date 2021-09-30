@@ -47,6 +47,7 @@ export function EntityViewFactory(
   rpcLookupTable: RPCLookupTable,
   scene: Scene,
   domMessagePort: MessagePort,
+  fbxMessagePort: MessagePort,
   md2MessagePort: MessagePort,
   texturesMessagePort: MessagePort
 ): IEntityViewFactory {
@@ -76,7 +77,16 @@ export function EntityViewFactory(
     },
 
     model_fbx(entity: EntityFBXModel): EntityView<EntityFBXModel> {
-      return FBXModelView(logger, userSettings, scene, entity, domMessagePort);
+      return FBXModelView(
+        logger,
+        userSettings,
+        scene,
+        entity,
+        domMessagePort,
+        fbxMessagePort,
+        texturesMessagePort,
+        rpcLookupTable
+      );
     },
 
     model_gltf(entity: EntityGLTFModel): EntityView<EntityGLTFModel> {
