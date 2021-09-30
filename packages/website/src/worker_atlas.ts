@@ -63,6 +63,7 @@ self.onmessage = createRouter({
       throw new Error(`Unable to obtain 2D context from the offscreen atlas canvas within WORKER(${self.name}).`);
     }
 
+    // @ts-ignore OffscreenCanvas is experimental
     serviceBuilder.setDependency("context2d", context2d);
   },
 

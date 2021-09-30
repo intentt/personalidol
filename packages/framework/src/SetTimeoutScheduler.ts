@@ -3,8 +3,8 @@ import { generateUUID } from "@personalidol/math/src/generateUUID";
 import type { Scheduler } from "./Scheduler.interface";
 import type { SchedulerCallback } from "./SchedulerCallback.type";
 
-// type TickType = ReturnType<typeof setTimeout>;
-type TickType = number;
+type TickType = ReturnType<typeof setTimeout>;
+// type TickType = number;
 
 function cancelFrame(frameId: TickType): void {
   clearTimeout(frameId);
@@ -12,7 +12,8 @@ function cancelFrame(frameId: TickType): void {
 
 export function SetTimeoutScheduler(timestep: number = 1000 / 60): Scheduler<TickType> {
   function requestFrame(callback: SchedulerCallback): TickType {
-    return setTimeout(callback, timestep as any);
+    // @ts-ignore timeout argument just behaves unpredicably
+    return setTimeout(callback, timestep);
   }
 
   return Object.freeze({
