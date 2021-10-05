@@ -4,9 +4,7 @@ BASE_DIRECTORY=$(realpath $PWD/../../scripts)
 MAKE=$1
 WATCH_PATTERN=$2
 WATCH_TARGET=$3
-IGNORE_DEPENDENCIES=$3
 
-. ${BASE_DIRECTORY}/_build_dependencies.sh
 . ${BASE_DIRECTORY}/_notify.sh
 
 PACKAGE_NAME=$(basename $(pwd))
@@ -18,13 +16,6 @@ LAST=""
 inotifywait -mqr -e create,delete,modify,move $WATCH_PATTERN --format "%T %w%f" --timefmt "%F %T" | while read EVENT; do
     if [ "$LAST" != "$EVENT" ]; then
         notify "Triggered" $BUILD_NAME $WATCH_TARGET
-
-        if [ ! $IGNORE_DEPENDENCIES ]; then
-            if ! build_dependencies $BUILD_NAME $PACKAGE_SCOPE $PACKAGE_NAME; then
-                notify "Failure while building dependencies" $BUILD_NAME $WATCH_TARGET
-                continue
-            fi
-        fi
 
         if $MAKE $WATCH_TARGET; then
             notify "Done" $BUILD_NAME $WATCH_TARGET

@@ -375,10 +375,8 @@ async function bootstrap() {
 
   const fbxMessageChannel = createMultiThreadMessageChannel();
   const fbxToProgressMessageChannel = createMultiThreadMessageChannel();
-  const fbxToTexturesMessageChannel = createMultiThreadMessageChannel();
 
   addProgressMessagePort(fbxToProgressMessageChannel.port1, false);
-  texturesService.registerMessagePort(fbxToTexturesMessageChannel.port1);
 
   await prefetch(websiteToProgressMessageChannel.port2, "worker", workers.fbx.url);
 
@@ -395,19 +393,16 @@ async function bootstrap() {
     {
       fbxMessagePort: fbxMessageChannel.port1,
       progressMessagePort: fbxToProgressMessageChannel.port2,
-      texturesMessagePort: fbxToTexturesMessageChannel.port2,
     },
-    [fbxMessageChannel.port1, fbxToProgressMessageChannel.port2, fbxToTexturesMessageChannel.port2]
+    [fbxMessageChannel.port1, fbxToProgressMessageChannel.port2]
   );
 
   // GLTF loader offloads model loading from the rendering thread.
 
   const gltfMessageChannel = createMultiThreadMessageChannel();
   const gltfToProgressMessageChannel = createMultiThreadMessageChannel();
-  const gltfToTexturesMessageChannel = createMultiThreadMessageChannel();
 
   addProgressMessagePort(gltfToProgressMessageChannel.port1, false);
-  texturesService.registerMessagePort(gltfToTexturesMessageChannel.port1);
 
   await prefetch(websiteToProgressMessageChannel.port2, "worker", workers.gltf.url);
 
@@ -424,37 +419,8 @@ async function bootstrap() {
     {
       gltfMessagePort: gltfMessageChannel.port1,
       progressMessagePort: gltfToProgressMessageChannel.port2,
-      texturesMessagePort: gltfToTexturesMessageChannel.port2,
     },
-    [gltfMessageChannel.port1, gltfToProgressMessageChannel.port2, gltfToTexturesMessageChannel.port2]
-  );
-
-  // MD2 worker offloads model loading from the thread whether it's the main
-  // browser thread or the offscreen canvas thread. Loading MD2 models cause
-  // rendering to stutter.
-
-  const md2MessageChannel = createMultiThreadMessageChannel();
-  const md2ToProgressMessageChannel = createMultiThreadMessageChannel();
-
-  addProgressMessagePort(md2ToProgressMessageChannel.port1, false);
-
-  await prefetch(websiteToProgressMessageChannel.port2, "worker", workers.md2.url);
-
-  const md2Worker = new Worker(workers.md2.url, {
-    credentials: "same-origin",
-    name: workers.md2.name,
-    type: "module",
-  });
-
-  const md2WorkerServiceClient = WorkerServiceClient(md2Worker, workers.md2.name);
-  await md2WorkerServiceClient.ready();
-
-  md2Worker.postMessage(
-    {
-      md2MessagePort: md2MessageChannel.port1,
-      progressMessagePort: md2ToProgressMessageChannel.port2,
-    },
-    [md2MessageChannel.port1, md2ToProgressMessageChannel.port2]
+    [gltfMessageChannel.port1, gltfToProgressMessageChannel.port2]
   );
 
   // If browser supports the offscreen canvas, then we can offload everything
@@ -488,7 +454,6 @@ async function bootstrap() {
     gameMessageChannel.port2,
     gltfMessageChannel.port2,
     internationalizationMessageChannel.port2,
-    md2MessageChannel.port2,
     progressMessageChannel.port2,
     quakeMapsMessageChannel.port2,
     statsMessageChannel.port2,

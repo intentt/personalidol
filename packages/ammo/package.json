@@ -11,15 +11,15 @@
     "fs": "file:./noop",
     "loglevel": "^1.7.1",
     "path": "file:./noop",
-    "three": "^0.132.2"
+    "three": "^0.133.1"
   },
   "devDependencies": {
     "@types/ammo.js": "github:osman-turan/ammo.js-typings#4270a20c9f992969ffbd3e989aaa0efbe10fd5c4",
     "@types/css-font-loading-module": "^0.0.6",
     "@types/jest": "^27.0.2",
-    "@types/three": "^0.132.1",
-    "esbuild": "^0.13.2",
-    "jest": "^27.2.3",
+    "@types/three": "^0.132.2",
+    "esbuild": "^0.13.3",
+    "jest": "^27.2.4",
     "prettier": "^2.4.1",
     "ts-jest": "^27.0.5",
     "tslib": "^2.3.1",

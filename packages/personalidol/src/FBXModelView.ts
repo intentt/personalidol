@@ -79,8 +79,6 @@ export function FBXModelView(
 
     const rpc = generateUUID();
 
-    console.log(entity, rpc);
-
     const {
       load: geometryAttributes,
     }: {

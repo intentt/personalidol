@@ -19,7 +19,6 @@ import type { EntityLightAmbient } from "./EntityLightAmbient.type";
 import type { EntityLightHemisphere } from "./EntityLightHemisphere.type";
 import type { EntityLightPoint } from "./EntityLightPoint.type";
 import type { EntityLightSpotlight } from "./EntityLightSpotlight.type";
-import type { EntityMD2Model } from "./EntityMD2Model.type";
 import type { EntityPlayer } from "./EntityPlayer.type";
 import type { EntityScriptedBrush } from "./EntityScriptedBrush.type";
 import type { EntityScriptedZone } from "./EntityScriptedZone.type";
@@ -134,18 +133,6 @@ export function* buildEntities(
           origin: _getEntityOrigin(filename, entity),
           properties: entity.properties,
           scale: Number(entity.properties.scale),
-          transferables: _transferablesEmpty,
-        };
-        break;
-      case "model_md2":
-        yield <EntityMD2Model>{
-          angle: _getEntityAngle(filename, entity),
-          classname: entityClassName,
-          id: generateUUID(),
-          model_name: entity.properties.model_name,
-          origin: _getEntityOrigin(filename, entity),
-          properties: entity.properties,
-          skin: Number(entity.properties.skin),
           transferables: _transferablesEmpty,
         };
         break;

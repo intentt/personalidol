@@ -76,9 +76,6 @@ const _fbxMessageRouter = createRouter({
 const _gltfMessageRouter = createRouter({
   geometry: handleRPCResponse(_rpcLookupTable),
 });
-const _md2MessageRouter = createRouter({
-  geometry: handleRPCResponse(_rpcLookupTable),
-});
 const _quakeMapsRouter = createRouter({
   map: handleRPCResponse(_rpcLookupTable),
 });
@@ -104,7 +101,6 @@ export function LocationMapScene(
   fbxMessagePort: MessagePort,
   gltfMessagePort: MessagePort,
   internationalizationMessagePort: MessagePort,
-  md2MessagePort: MessagePort,
   progressMessagePort: MessagePort,
   quakeMapsMessagePort: MessagePort,
   texturesMessagePort: MessagePort,
@@ -191,7 +187,6 @@ export function LocationMapScene(
     _scene,
     domMessagePort,
     fbxMessagePort,
-    md2MessagePort,
     texturesMessagePort
   );
 
@@ -249,7 +244,6 @@ export function LocationMapScene(
     fbxMessagePort.onmessage = _fbxMessageRouter;
     gltfMessagePort.onmessage = _gltfMessageRouter;
     internationalizationMessagePort.onmessage = _internationalizationMessageRouter;
-    md2MessagePort.onmessage = _md2MessageRouter;
     quakeMapsMessagePort.onmessage = _quakeMapsRouter;
     texturesMessagePort.onmessage = _textureReceiverMessageRouter;
 
@@ -318,7 +312,6 @@ export function LocationMapScene(
     _disposables.add(function () {
       gltfMessagePort.onmessage = null;
       internationalizationMessagePort.onmessage = null;
-      md2MessagePort.onmessage = null;
       quakeMapsMessagePort.onmessage = null;
       texturesMessagePort.onmessage = null;
     });

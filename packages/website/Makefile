@@ -47,7 +47,7 @@ prettier:
 
 .PHONY: public.watch
 public.watch:
-	NODE_ENV=development ../../scripts/watch_trigger.sh $(MAKE) "$${PWD}/../*/src $${PWD}/public/*.mustache" "release" true
+	NODE_ENV=development ../../scripts/watch_trigger.sh $(MAKE) "$${PWD}/../*/src $${PWD}/public/*.mustache" "release"
 
 .PHONY: purge
 purge:

@@ -2,7 +2,6 @@ import { AmbientLightView } from "./AmbientLightView";
 import { FBXModelView } from "./FBXModelView";
 import { HemisphereLightView } from "./HemisphereLightView";
 import { InstancedGLTFModelView } from "./InstancedGLTFModelView";
-import { MD2ModelView } from "./MD2ModelView";
 import { PlayerView } from "./PlayerView";
 import { PointLightView } from "./PointLightView";
 import { ScriptedZoneView } from "./ScriptedZoneView";
@@ -27,7 +26,6 @@ import type { EntityLightSpotlight } from "./EntityLightSpotlight.type";
 import type { EntityLookup } from "./EntityLookup.type";
 import type { EntityLookupCallback } from "./EntityLookupCallback.type";
 import type { EntityLookupTable } from "./EntityLookupTable.type";
-import type { EntityMD2Model } from "./EntityMD2Model.type";
 import type { EntityPlayer } from "./EntityPlayer.type";
 import type { EntityScriptedBrush } from "./EntityScriptedBrush.type";
 import type { EntityScriptedZone } from "./EntityScriptedZone.type";
@@ -48,7 +46,6 @@ export function EntityViewFactory(
   scene: Scene,
   domMessagePort: MessagePort,
   fbxMessagePort: MessagePort,
-  md2MessagePort: MessagePort,
   texturesMessagePort: MessagePort
 ): IEntityViewFactory {
   const entityLookupTable: EntityLookupTable = {
@@ -95,30 +92,8 @@ export function EntityViewFactory(
       return InstancedGLTFModelView(logger, userSettings, scene, entity, domMessagePort, instancedGLTFModelViewManager);
     },
 
-    model_md2(entity: EntityMD2Model): EntityView<EntityMD2Model> {
-      return MD2ModelView(
-        logger,
-        userSettings,
-        scene,
-        entity,
-        domMessagePort,
-        md2MessagePort,
-        texturesMessagePort,
-        rpcLookupTable
-      );
-    },
-
     player(entity: EntityPlayer): EntityView<EntityPlayer> {
-      return PlayerView(
-        logger,
-        userSettings,
-        scene,
-        entity,
-        domMessagePort,
-        md2MessagePort,
-        texturesMessagePort,
-        rpcLookupTable
-      );
+      return PlayerView(logger, userSettings, scene, entity, domMessagePort, texturesMessagePort, rpcLookupTable);
     },
 
     scripted_brush(entity: EntityScriptedBrush, worldspawnTexture: ITexture): EntityView<EntityScriptedBrush> {

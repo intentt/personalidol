@@ -5,7 +5,6 @@ import type { EntityLightAmbient } from "./EntityLightAmbient.type";
 import type { EntityLightHemisphere } from "./EntityLightHemisphere.type";
 import type { EntityLightPoint } from "./EntityLightPoint.type";
 import type { EntityLightSpotlight } from "./EntityLightSpotlight.type";
-import type { EntityMD2Model } from "./EntityMD2Model.type";
 import type { EntityPlayer } from "./EntityPlayer.type";
 import type { EntityScriptedBrush } from "./EntityScriptedBrush.type";
 import type { EntityScriptedZone } from "./EntityScriptedZone.type";
@@ -23,7 +22,6 @@ export type AnyEntity =
   | EntityLightHemisphere
   | EntityLightPoint
   | EntityLightSpotlight
-  | EntityMD2Model
   | EntityPlayer
   | EntityScriptedBrush
   | EntityScriptedZone

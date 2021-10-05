@@ -1,16 +1,18 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { name } from "@personalidol/framework/src/name";
+import { Object3D } from "three/src/core/Object3D";
 
-import { MD2ModelView } from "./MD2ModelView";
+import { generateUUID } from "@personalidol/math/src/generateUUID";
+
+import { createEntityViewState } from "./createEntityViewState";
 
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
+import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
 import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
 
 import type { CharacterView } from "./CharacterView.interface";
-import type { EntityMD2Model } from "./EntityMD2Model.type";
 import type { EntityPlayer } from "./EntityPlayer.type";
+import type { CharacterViewState } from "./CharacterViewState.type";
 import type { UserSettings } from "./UserSettings.type";
 
 export function PlayerView(
@@ -19,38 +21,62 @@ export function PlayerView(
   scene: Scene,
   entity: EntityPlayer,
   domMessagePort: MessagePort,
-  md2MessagePort: MessagePort,
   texturesMessagePort: MessagePort,
   rpcLookupTable: RPCLookupTable
 ): CharacterView<EntityPlayer> {
-  const _md2Entity: EntityMD2Model = Object.freeze({
-    id: generateUUID(),
-    angle: 0,
-    classname: "model_md2",
-    model_name: "necron99",
-    origin: entity.origin,
-    properties: entity.properties,
-    skin: 3,
-    transferables: [],
-  });
-
-  const _playerModel = MD2ModelView(
-    logger,
-    userSettings,
-    scene,
-    _md2Entity,
-    domMessagePort,
-    md2MessagePort,
-    texturesMessagePort,
-    rpcLookupTable
+  const state: CharacterViewState = Object.assign(
+    {},
+    createEntityViewState({
+      needsUpdates: true,
+    }),
+    {
+      animation: "stand",
+    } as const
   );
 
-  _playerModel.state.needsRaycast = false;
+  const _object3D = new Object3D();
+
+  function dispose(): void {
+    state.isDisposed = true;
+  }
+
+  function mount(): void {
+    state.isMounted = true;
+  }
+
+  function pause(): void {
+    state.isPaused = true;
+  }
+
+  function preload(): void {
+    state.isPreloading = true;
+
+    state.isPreloading = false;
+    state.isPreloaded = true;
+  }
+
+  function transitionBy(vec: IVector3): void {
+    _object3D.position.add(vec);
+  }
+
+  function transitionTo(vec: IVector3): void {
+    return transitionBy(vec.clone().sub(_object3D.position));
+  }
+
+  function unmount(): void {
+    state.isMounted = false;
+  }
+
+  function unpause(): void {
+    state.isPaused = false;
+  }
+
+  function update(): void {}
 
   return Object.freeze({
     entity: entity,
     id: generateUUID(),
-    interactableObject3D: _playerModel.interactableObject3D,
+    interactableObject3D: _object3D,
     isCharacterView: true,
     isDisposable: true,
     isEntityView: true,
@@ -60,19 +86,19 @@ export function PlayerView(
     isPreloadable: true,
     isRaycastable: true,
     isView: true,
-    name: `PlayerView(${name(_playerModel)})`,
-    object3D: _playerModel.object3D,
-    raycasterObject3D: _playerModel.raycasterObject3D,
-    state: _playerModel.state,
+    name: `PlayerView()`,
+    object3D: _object3D,
+    raycasterObject3D: _object3D,
+    state: state,
 
-    dispose: _playerModel.dispose,
-    mount: _playerModel.mount,
-    pause: _playerModel.pause,
-    preload: _playerModel.preload,
-    transitionBy: _playerModel.transitionBy,
-    transitionTo: _playerModel.transitionTo,
-    unmount: _playerModel.unmount,
-    unpause: _playerModel.unpause,
-    update: _playerModel.update,
+    dispose: dispose,
+    mount: mount,
+    pause: pause,
+    preload: preload,
+    transitionBy: transitionBy,
+    transitionTo: transitionTo,
+    unmount: unmount,
+    unpause: unpause,
+    update: update,
   });
 }

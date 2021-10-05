@@ -7,16 +7,16 @@
   "dependencies": {
     "jexl": "^2.3.0",
     "loglevel": "^1.7.1",
-    "three": "^0.132.2",
+    "three": "^0.133.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "@types/jexl": "^2.3.0",
-    "@types/three": "^0.132.1",
+    "@types/three": "^0.132.2",
     "@types/uuid": "^8.3.1",
-    "esbuild": "^0.13.2",
-    "jest": "^27.2.3",
+    "esbuild": "^0.13.3",
+    "jest": "^27.2.4",
     "prettier": "^2.4.1",
     "ts-jest": "^27.0.5",
     "tslib": "^2.3.1",

@@ -23,6 +23,7 @@ yarn run esbuild \
     --platform=browser \
     --sourcemap \
     --target=safari14 \
+    --tree-shaking=true \
     --tsconfig=tsconfig.json \
     src/createScenes.ts \
     src/index.ts \
@@ -31,7 +32,6 @@ yarn run esbuild \
     src/worker_dynamics.ts \
     src/worker_fbx.ts \
     src/worker_gltf.ts \
-    src/worker_md2.ts \
     src/worker_offscreen.ts \
     src/worker_progress.ts \
     src/worker_quakemaps.ts \

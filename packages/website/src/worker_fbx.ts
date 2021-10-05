@@ -2,28 +2,24 @@
 
 import Loglevel from "loglevel";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
-import { LoadingManager } from "three/src/loaders/LoadingManager";
 
 import { attachMultiRouter } from "@personalidol/framework/src/attachMultiRouter";
 import { createReusedResponsesCache } from "@personalidol/framework/src/createReusedResponsesCache";
 import { createReusedResponsesUsage } from "@personalidol/framework/src/createReusedResponsesUsage";
 import { createRouter } from "@personalidol/framework/src/createRouter";
-import { createRPCLookupTable } from "@personalidol/framework/src/createRPCLookupTable";
-import { createTextureReceiverMessagesRouter } from "@personalidol/texture-loader/src/createTextureReceiverMessagesRouter";
 import { extractGeometryAttributes } from "@personalidol/framework/src/extractGeometryAttributes";
 import { Progress } from "@personalidol/framework/src/Progress";
 import { reuseResponse } from "@personalidol/framework/src/reuseResponse";
-import { THREETextureLoader } from "@personalidol/texture-loader/src/THREETextureLoader";
 
 import type { Mesh } from "three/src/objects/Mesh";
 import type { Object3D as IObject3D } from "three/src/core/Object3D";
+import type { FBXLoader as IFBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
 import type { GeometryAttributes } from "@personalidol/framework/src/GeometryAttributes.type";
 import type { MessageWorkerReady } from "@personalidol/framework/src/MessageWorkerReady.type";
 import type { ReusedResponse } from "@personalidol/framework/src/ReusedResponse.type";
 import type { ReusedResponsesCache } from "@personalidol/framework/src/ReusedResponsesCache.type";
 import type { ReusedResponsesUsage } from "@personalidol/framework/src/ReusedResponsesUsage.type";
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
 import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
 
 declare var self: DedicatedWorkerGlobalScope;
@@ -34,8 +30,6 @@ type ModelLoadRequest = RPCMessage & {
 };
 
 const logger = Loglevel.getLogger(self.name);
-const _rpcLookupTable: RPCLookupTable = createRPCLookupTable();
-const _textureReceiverMessageRouter = createTextureReceiverMessagesRouter(_rpcLookupTable);
 
 logger.setLevel(__LOG_LEVEL);
 logger.debug(`WORKER_SPAWNED(${self.name})`);
@@ -44,16 +38,13 @@ const emptyTransferables: [] = [];
 const loadingCache: ReusedResponsesCache = createReusedResponsesCache();
 const loadingUsage: ReusedResponsesUsage = createReusedResponsesUsage();
 
-let _fbxLoader: null | FBXLoader = null;
+const _fbxLoader: IFBXLoader = new FBXLoader();
+
 let _progressMessagePort: null | MessagePort = null;
 
 function _fbxLoadWithProgress(url: string, modelScale: number): Promise<GeometryAttributes> {
   if (null === _progressMessagePort) {
     throw new Error(`Progress message port must be set in WORKER(${self.name}) before loading FBX model.`);
-  }
-
-  if (null === _fbxLoader) {
-    throw new Error(`FBXLoader is not ready.`);
   }
 
   const progress = Progress(_progressMessagePort, "model", url);
@@ -121,19 +112,5 @@ self.onmessage = createRouter({
     self.postMessage(<MessageWorkerReady>{
       ready: true,
     });
-  },
-
-  texturesMessagePort(port: MessagePort): void {
-    if (null !== _fbxLoader) {
-      throw new Error(`Textures message port was already received by WORKER(${self.name}).`);
-    }
-
-    port.onmessage = _textureReceiverMessageRouter;
-
-    const loadingManager = new LoadingManager();
-
-    console.log(new THREETextureLoader(logger, loadingManager, _rpcLookupTable, port));
-
-    _fbxLoader = new FBXLoader(loadingManager);
   },
 });
