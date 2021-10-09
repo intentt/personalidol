@@ -186,9 +186,9 @@ export function AtlasService(
    * +-------+-------+
    */
   async function _createTextureAtlas(request: AtlasQueueItem): Promise<Atlas> {
-    logger.debug(`ATLAS_SERVICE_TEXTURES.PRE("${request.textureUrls.join('","')}")`)
+    logger.debug(`ATLAS_SERVICE.CREATE_TEXTURE_ATLAS.PRE_TEXTURES("${request.textureUrls.join('","')}")`)
     const textures = await Promise.all(request.textureUrls.map(_requestTexture));
-    logger.debug(`ATLAS_SERVICE_TEXTURES.POST("${request.textureUrls.join('","')}")`)
+    logger.debug(`ATLAS_SERVICE.CREATE_TEXTURE_ATLAS.POST_TEXTURES("${request.textureUrls.join('","')}")`)
 
     const textureSize = textures[0].height;
     const width = textures[0].width;
@@ -301,6 +301,7 @@ export function AtlasService(
   }
 
   function _requestTexture(textureUrl: string): Promise<ImageBitmap | ImageData> {
+    logger.debug(`ATLAS_SERVICE_TEXTURES.REQUEST_TEXTURE("${textureUrl}")`)
     return requestTexture(_rpcLookupTable, texturesMessagePort, textureUrl);
   }
 
