@@ -6,6 +6,7 @@ import { DOMElementViewStyler } from "./DOMElementViewStyler";
 import { Events } from "./Events.enum";
 
 import type { i18n, TOptions } from "i18next";
+import type { Logger } from "loglevel";
 import type { VNode } from "preact";
 
 import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
@@ -30,6 +31,7 @@ export class DOMElementView<C extends DOMElementViewContext> extends HTMLElement
 
   private _context: null | C = null;
   private _domMessagePort: null | MessagePort = null;
+  private _logger: null | Logger = null;
   private _styler: IDOMElementViewStyler;
   private _i18next: null | i18n = null;
 
@@ -58,6 +60,15 @@ export class DOMElementView<C extends DOMElementViewContext> extends HTMLElement
   set i18next(i18next: i18n) {
     this.needsRender = true;
     this._i18next = i18next;
+  }
+
+  get logger(): Logger {
+    return must(this._logger, "logger is not set but it was expected to be.");
+  }
+
+  set logger(logger: Logger) {
+    this.needsRender = true;
+    this._logger = logger;
   }
 
   constructor() {

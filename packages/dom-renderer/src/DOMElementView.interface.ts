@@ -1,4 +1,5 @@
 import type { i18n, TFunction } from "i18next";
+import type { Logger } from "loglevel";
 import type { VNode } from "preact";
 
 import type { MainLoopUpdatable } from "@personalidol/framework/src/MainLoopUpdatable.interface";
@@ -13,6 +14,7 @@ export interface DOMElementView<C extends DOMElementViewContext> extends HTMLEle
   domMessagePort: MessagePort;
   i18next: i18n;
   lastRenderedLanguage: string;
+  logger: Logger;
   needsRender: boolean;
   version: number;
 

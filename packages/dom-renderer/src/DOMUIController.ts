@@ -65,7 +65,7 @@ export function DOMUIController<L extends DOMElementsLookup, C extends DOMElemen
 
     const domElementView = new DOMElementViewConstructor<C>();
 
-    domElementViewBuilder.initialize(domElementView, _internalDOMMessageChannel.port2, i18next);
+    domElementViewBuilder.initialize(domElementView, _internalDOMMessageChannel.port2, i18next, logger);
 
     return domElementView;
   }
@@ -86,7 +86,7 @@ export function DOMUIController<L extends DOMElementsLookup, C extends DOMElemen
 
         if (isDOMElementView<C>(element)) {
           logger.debug(`UPGRADE("${name}")`);
-          domElementViewBuilder.initialize(element, _internalDOMMessageChannel.port2, i18next);
+          domElementViewBuilder.initialize(element, _internalDOMMessageChannel.port2, i18next, logger);
           _registerDOMElementView(element);
           _updateRenderedElement(element);
         }
@@ -144,7 +144,7 @@ export function DOMUIController<L extends DOMElementsLookup, C extends DOMElemen
 
     // Pick up any element that was created by a view.
 
-    domElementViewBuilder.initialize(target, _internalDOMMessageChannel.port2, i18next);
+    domElementViewBuilder.initialize(target, _internalDOMMessageChannel.port2, i18next, logger);
     _registerDOMElementView(target);
     _updateRenderedElement(target);
 
@@ -241,7 +241,6 @@ export function DOMUIController<L extends DOMElementsLookup, C extends DOMElemen
       domElementView = _createDOMElementViewByRenderMessage(message);
 
       _registerDOMElementView(domElementView);
-
       _managedDOMElementViewsLookup.set(message.id, domElementView);
       uiRootElement.appendChild(domElementView);
     }

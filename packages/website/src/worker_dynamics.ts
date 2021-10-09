@@ -104,10 +104,8 @@ self.onmessage = createRouter({
 
   ready(): void {
     if (serviceBuilder.isReady()) {
-      logger.debug(`WORKER_READY(${self.name})`);
       notifyReady();
     } else {
-      logger.debug(`WORKER_NOT_READY_YET(${self.name})`);
       serviceBuilder.onready.add(notifyReady);
     }
   },

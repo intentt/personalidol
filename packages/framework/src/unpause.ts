@@ -9,7 +9,7 @@ export function unpause(logger: Logger, pauseable: Pauseable): void {
     throw new Error(`Scene is already unpaused: "${name(pauseable)}"`);
   }
 
-  logger.trace(`UNPAUSE(${name(pauseable)})`);
+  // logger.trace(`UNPAUSE(${name(pauseable)})`);
   pauseable.unpause();
 
   if (pauseable.state.isPaused) {

@@ -125,6 +125,7 @@ export class ProgressManagerStateDOMElementView extends DOMElementView<DOMElemen
   public static css: string = _css;
 
   private _expect: number = 0;
+  private _types: Array<string> = [];
   private _progressPercentage: string = "0%";
 
   set progress(progress: number) {
@@ -135,6 +136,7 @@ export class ProgressManagerStateDOMElementView extends DOMElementView<DOMElemen
     this.needsRender = true;
 
     this._expect = progressManagerState.expect;
+    this._types.length = 0;
 
     if (this._expect < 1) {
       this.progress = 0;
@@ -152,9 +154,19 @@ export class ProgressManagerStateDOMElementView extends DOMElementView<DOMElemen
       } else {
         _messageProgress = 0;
       }
+
+      if (_messageProgress < 1) {
+        this._types.push(`${message.type}("${message.uri}")`);
+      }
     }
 
     this.progress = Math.min(1, _loaded / progressManagerState.expect);
+
+    if (this._types.length < 1) {
+      return;
+    }
+
+    this.logger.debug(`PROGRESS(${this._types.join(",")})`);
   }
 
   render() {

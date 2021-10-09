@@ -1,4 +1,5 @@
 import type { i18n } from "i18next";
+import type { Logger } from "loglevel";
 
 import type { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView.interface";
 import type { DOMElementViewBuilder as IDOMElementViewBuilder } from "@personalidol/dom-renderer/src/DOMElementViewBuilder.interface";
@@ -9,11 +10,13 @@ export function DOMElementViewBuilder(context: DOMElementViewContext): IDOMEleme
   function initialize(
     domElementView: DOMElementView<DOMElementViewContext>,
     domMessagePort: MessagePort,
-    i18next: i18n
+    i18next: i18n,
+    logger: Logger
   ): void {
     domElementView.context = context;
     domElementView.domMessagePort = domMessagePort;
     domElementView.i18next = i18next;
+    domElementView.logger = logger;
   }
 
   return Object.freeze({
