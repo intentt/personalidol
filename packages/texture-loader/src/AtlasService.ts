@@ -13,6 +13,8 @@ import { isImageBitmap } from "./isImageBitmap";
 import { isImageData } from "./isImageData";
 import { requestTexture } from "./requestTexture";
 
+import type { Logger } from "loglevel";
+
 import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
 import type { ReusedResponsesCache } from "@personalidol/framework/src/ReusedResponsesCache.type";
 import type { ReusedResponsesUsage } from "@personalidol/framework/src/ReusedResponsesUsage.type";
@@ -113,6 +115,7 @@ function _onImageBitmap({ imageBitmap }: ImageBitmapResponse): ImageBitmap {
 }
 
 export function AtlasService(
+  logger: Logger,
   canvas: HTMLCanvasElement | OffscreenCanvas,
   context2D: Context2D,
   progressMessagePort: MessagePort,
@@ -183,7 +186,9 @@ export function AtlasService(
    * +-------+-------+
    */
   async function _createTextureAtlas(request: AtlasQueueItem): Promise<Atlas> {
+    logger.debug(`ATLAS_SERVICE_TEXTURES.PRE("${request.textureUrls.join('","')}")`)
     const textures = await Promise.all(request.textureUrls.map(_requestTexture));
+    logger.debug(`ATLAS_SERVICE_TEXTURES.POST("${request.textureUrls.join('","')}")`)
 
     const textureSize = textures[0].height;
     const width = textures[0].width;

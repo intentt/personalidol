@@ -74,7 +74,7 @@ export function createAtlasService(
         throw new Error("Unable to get atlas canvas 2D context.");
       }
 
-      const atlasService = AtlasService(atlasCanvas, atlasCanvasContext2D, progressMessagePort, texturesMessagePort);
+      const atlasService = AtlasService(logger, atlasCanvas, atlasCanvasContext2D, progressMessagePort, texturesMessagePort);
 
       serviceManager.services.add(atlasService);
 

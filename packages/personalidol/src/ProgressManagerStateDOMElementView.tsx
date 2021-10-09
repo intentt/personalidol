@@ -161,11 +161,6 @@ export class ProgressManagerStateDOMElementView extends DOMElementView<DOMElemen
     }
 
     this.progress = Math.min(1, _loaded / progressManagerState.expect);
-
-    if (this._types.length < 1) {
-      return;
-    }
-
     this.logger.debug(`PROGRESS(${this._types.join(",")})`);
   }
 
