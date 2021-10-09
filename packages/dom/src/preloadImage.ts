@@ -8,7 +8,7 @@ export function preloadImage(progress: Progress, textureUrl: string): Promise<HT
     image.crossOrigin = "Anonymous";
     image.onerror = reject;
     image.onload = function () {
-      if (!resolved) {
+      if (resolved) {
         return;
       }
 

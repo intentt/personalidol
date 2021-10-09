@@ -58,20 +58,17 @@ export function DOMTextureService(
       return;
     }
 
-    do {
-      let request = _textureQueue.shift();
+    let request = _textureQueue.shift();
 
-      if (!request) {
-        throw new Error("Unexpected empty processing request in the texture queue.");
-      }
+    if (!request) {
+      throw new Error("Unexpected empty processing request in the texture queue.");
+    }
 
-      _processTextureQueue(request);
-    } while (_textureQueue.length > 0);
+    _processTextureQueue(request);
   }
 
   async function _createImageData(request: TextureQueueItem): Promise<ImageData> {
     const progress: IProgress = Progress(progressMessagePort, "texture", request.textureUrl);
-
     const image: HTMLImageElement = await progress.wait(preloadImage(progress, request.textureUrl));
 
     canvas2DDrawImage(canvas, context2D, image);
