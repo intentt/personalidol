@@ -6,6 +6,10 @@ let _isTested: boolean = false;
  * `createImageBitmap` with additional options.
  */
 async function _test(): Promise<boolean> {
+  if (navigator.userAgent.toLowerCase().indexOf("safari") !== -1) {
+    return false;
+  }
+
   if ("function" !== typeof globalThis.createImageBitmap) {
     return false;
   }
