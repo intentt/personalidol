@@ -12,6 +12,7 @@ import { getHTMLElementById } from "@personalidol/dom/src/getHTMLElementById";
 import { HTMLElementSizeHandle } from "@personalidol/dom/src/HTMLElementSizeHandle";
 import { InternationalizationService } from "@personalidol/i18n/src/InternationalizationService";
 import { isCanvasTransferControlToOffscreenSupported } from "@personalidol/framework/src/isCanvasTransferControlToOffscreenSupported";
+import { isCreateImageBitmapSupported } from "@personalidol/framework/src/isCreateImageBitmapSupported";
 import { isSharedArrayBufferSupported } from "@personalidol/framework/src/isSharedArrayBufferSupported";
 import { isUserSettingsValid } from "@personalidol/personalidol/src/isUserSettingsValid";
 import { KeyboardObserver } from "@personalidol/input/src/KeyboardObserver";
@@ -291,7 +292,8 @@ async function bootstrap() {
   // Atlas canvas is used to speed up texture atlas creation.
 
   const atlasMessageChannel = createMultiThreadMessageChannel();
-  const atlasToTextureMessageChannel = isCanvasTransferControlToOffscreenSupported() ? createMultiThreadMessageChannel() : createSingleThreadMessageChannel();
+  const atlasToTextureMessageChannel =
+    isCanvasTransferControlToOffscreenSupported() && isCreateImageBitmapSupported() ? createMultiThreadMessageChannel() : createSingleThreadMessageChannel();
   const atlasToProgressMessageChannel = createMultiThreadMessageChannel();
   const atlasToStatsMessageChannel = createMultiThreadMessageChannel();
 
