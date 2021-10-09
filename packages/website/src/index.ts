@@ -11,7 +11,6 @@ import { FontPreloadService } from "@personalidol/dom/src/FontPreloadService";
 import { getHTMLElementById } from "@personalidol/dom/src/getHTMLElementById";
 import { HTMLElementSizeHandle } from "@personalidol/dom/src/HTMLElementSizeHandle";
 import { InternationalizationService } from "@personalidol/i18n/src/InternationalizationService";
-import { isCanvasTransferControlToOffscreenSupported } from "@personalidol/framework/src/isCanvasTransferControlToOffscreenSupported";
 import { isSharedArrayBufferSupported } from "@personalidol/framework/src/isSharedArrayBufferSupported";
 import { isUserSettingsValid } from "@personalidol/personalidol/src/isUserSettingsValid";
 import { KeyboardObserver } from "@personalidol/input/src/KeyboardObserver";
@@ -293,11 +292,9 @@ async function bootstrap() {
   const atlasMessageChannel = createMultiThreadMessageChannel();
 
   // Both services are going to land in the same thread in this scenario.
-  const atlasToTextureMessageChannel =
-    "main" === texturesService.thread && !isCanvasTransferControlToOffscreenSupported() ? createSingleThreadMessageChannel() : createMultiThreadMessageChannel();
+  const atlasToTextureMessageChannel = createMultiThreadMessageChannel();
   const atlasToProgressMessageChannel = createMultiThreadMessageChannel();
-  const atlasToStatsMessageChannel =
-    "main" === statsCollector.thread && !isCanvasTransferControlToOffscreenSupported() ? createSingleThreadMessageChannel() : createMultiThreadMessageChannel();
+  const atlasToStatsMessageChannel = createMultiThreadMessageChannel();
 
   addProgressMessagePort(atlasToProgressMessageChannel.port1, false);
   texturesService.registerMessagePort(atlasToTextureMessageChannel.port1);

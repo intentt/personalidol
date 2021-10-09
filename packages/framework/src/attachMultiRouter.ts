@@ -8,4 +8,5 @@ export function attachMultiRouter(messagePort: MessagePort, router: MessageEvent
   messagePort.onmessage = function (evt: ExtendableMessageEvent | MessageEvent) {
     routeMultiMessage(messagePort, evt, evt.data, router);
   };
+  messagePort.start();
 }

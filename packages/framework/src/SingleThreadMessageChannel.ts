@@ -76,9 +76,7 @@ export function SingleThreadMessageChannel(): MessageChannel {
     throw new Error("Not yet implemented: port1.removeEventListener");
   }
 
-  function port1start() {
-    throw new Error("Not yet implemented: port1.start");
-  }
+  function port1start() {}
 
   function port2addEventListener() {
     throw new Error("Not yet implemented: port2.addEventListener");
@@ -104,9 +102,7 @@ export function SingleThreadMessageChannel(): MessageChannel {
     throw new Error("Not yet implemented: port2.removeEventListener");
   }
 
-  function port2start() {
-    throw new Error("Not yet implemented: port2.start");
-  }
+  function port2start() {}
 
   return Object.freeze({
     port1: port1,
