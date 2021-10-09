@@ -293,7 +293,7 @@ async function bootstrap() {
 
   const atlasMessageChannel = createMultiThreadMessageChannel();
   const atlasToTextureMessageChannel =
-    isCanvasTransferControlToOffscreenSupported() && isCreateImageBitmapSupported() ? createMultiThreadMessageChannel() : createSingleThreadMessageChannel();
+    (isCanvasTransferControlToOffscreenSupported() || isCreateImageBitmapSupported()) ? createMultiThreadMessageChannel() : createSingleThreadMessageChannel();
   const atlasToProgressMessageChannel = createMultiThreadMessageChannel();
   const atlasToStatsMessageChannel = createMultiThreadMessageChannel();
 
