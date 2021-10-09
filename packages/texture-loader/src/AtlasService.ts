@@ -186,17 +186,17 @@ export function AtlasService(
    * +-------+-------+
    */
   async function _createTextureAtlas(request: AtlasQueueItem): Promise<Atlas> {
-    logger.debug(`ATLAS_SERVICE.CREATE_TEXTURE_ATLAS.PRE_TEXTURES("${request.textureUrls.join('","')}")`)
+    logger.debug(`ATLAS_SERVICE.CREATE_TEXTURE_ATLAS.PRE_TEXTURES("${request.textureUrls.join('","')}")`);
 
     const textures = [];
 
     for (let textureUrl of request.textureUrls) {
-      logger.debug(`ATLAS_SERVICE.CREATE_TEXTURE_ATLAS.TEXTURE("${textureUrl}")`)
+      logger.debug(`ATLAS_SERVICE.CREATE_TEXTURE_ATLAS.TEXTURE("${textureUrl}")`);
       textures.push(await _requestTexture(textureUrl));
     }
 
     // const textures = await Promise.all(request.textureUrls.map(_requestTexture));
-    logger.debug(`ATLAS_SERVICE.CREATE_TEXTURE_ATLAS.POST_TEXTURES("${request.textureUrls.join('","')}")`)
+    logger.debug(`ATLAS_SERVICE.CREATE_TEXTURE_ATLAS.POST_TEXTURES("${request.textureUrls.join('","')}")`);
 
     const textureSize = textures[0].height;
     const width = textures[0].width;
