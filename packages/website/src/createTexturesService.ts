@@ -48,6 +48,7 @@ export async function createTexturesService(
       );
 
       return Object.freeze({
+        thread: "worker" as const,
         registerMessagePort(messagePort: MessagePort) {
           texturesWorker.postMessage(
             {

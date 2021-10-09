@@ -70,6 +70,7 @@ export function InternationalizationService(
     isPreloadable: true,
     name: "InternationalizationService",
     state: state,
+    thread: "main" as const,
 
     preload: preload,
     registerMessagePort: registerMessagePort,

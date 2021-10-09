@@ -103,6 +103,7 @@ export function DOMTextureService(
     id: generateUUID(),
     name: "DOMTextureService",
     state: state,
+    thread: "main" as const,
 
     registerMessagePort: registerMessagePort,
     start: start,

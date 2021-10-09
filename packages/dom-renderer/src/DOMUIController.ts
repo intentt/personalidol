@@ -279,6 +279,7 @@ export function DOMUIController<L extends DOMElementsLookup, C extends DOMElemen
     isPreloadable: true,
     name: "DOMUIController",
     state: state,
+    thread: "main" as const,
 
     dispose: dispose,
     preload: preload,

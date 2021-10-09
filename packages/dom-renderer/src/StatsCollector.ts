@@ -85,6 +85,7 @@ export function StatsCollector(userSettings: UserSettings, domMessagePort: Messa
     id: generateUUID(),
     name: "StatsCollector",
     state: state,
+    thread: "main" as const,
 
     registerMessagePort: registerMessagePort,
     start: start,

@@ -56,6 +56,7 @@ export function createAtlasService(
       serviceManager.services.add(atlasWorkerServiceClient);
 
       return Object.freeze({
+        thread: "worker" as const,
         registerMessagePort(messagePort: MessagePort) {
           atlasWorker.postMessage(
             {
@@ -74,7 +75,7 @@ export function createAtlasService(
         throw new Error("Unable to get atlas canvas 2D context.");
       }
 
-      const atlasService = AtlasService(logger, atlasCanvas, atlasCanvasContext2D, progressMessagePort, texturesMessagePort);
+      const atlasService = AtlasService(logger, atlasCanvas, atlasCanvasContext2D, "main", progressMessagePort, texturesMessagePort);
 
       serviceManager.services.add(atlasService);
 

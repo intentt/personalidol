@@ -118,6 +118,7 @@ export function AtlasService(
   logger: Logger,
   canvas: HTMLCanvasElement | OffscreenCanvas,
   context2D: Context2D,
+  thread: "main" | "worker",
   progressMessagePort: MessagePort,
   texturesMessagePort: MessagePort
 ): IAtlasService {
@@ -306,6 +307,7 @@ export function AtlasService(
     id: generateUUID(),
     name: "AtlasService",
     state: state,
+    thread: thread,
 
     registerMessagePort: registerMessagePort,
     start: start,

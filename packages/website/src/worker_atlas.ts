@@ -41,7 +41,7 @@ const serviceBuilder: IServiceBuilder<Dependencies> = ServiceBuilder<Dependencie
 serviceBuilder.onready.add(onDependenciesReady);
 
 function onDependenciesReady(dependencies: Dependencies): void {
-  _atlasService = AtlasService(logger, dependencies.canvas, dependencies.context2d, dependencies.progressMessagePort, dependencies.texturesMessagePort);
+  _atlasService = AtlasService(logger, dependencies.canvas, dependencies.context2d, "worker", dependencies.progressMessagePort, dependencies.texturesMessagePort);
 }
 
 function notifyReady(): void {
