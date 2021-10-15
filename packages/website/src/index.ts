@@ -50,8 +50,8 @@ import { createTexturesService } from "./createTexturesService";
 const THREAD_DEBUG_NAME: string = "main_thread";
 
 // Number of items expected to be loaded before the game engine is ready.
-// 7 services + 3 fonts + 1 ammo.wasm
-const PROGRESS_EXPECT = 7 + 3 + 1;
+// 7 services + 3 fonts + 1 ammo.wasm.js + 1 ammo.wasm.wasm
+const PROGRESS_EXPECT = 7 + 3 + 1 + 1;
 
 const uiRoot = getHTMLElementById(window.document, "ui-root");
 
@@ -324,12 +324,14 @@ async function bootstrap() {
   addProgressMessagePort(dynamicsToProgressMessageChannel.port1, false);
   statsCollector.registerMessagePort(dynamicsToStatsMessageChannel.port1);
 
+  await prefetch(websiteToProgressMessageChannel.port2, "worker", `${__STATIC_BASE_PATH}/lib/ammo.wasm.js?${__CACHE_BUST}`);
   await prefetch(websiteToProgressMessageChannel.port2, "worker", workers.dynamics.url);
 
   const dynamicsWorker = new Worker(workers.dynamics.url, {
     credentials: "same-origin",
     name: workers.dynamics.name,
-    type: "module",
+    // Ammo.js expects importScripts to be used.
+    type: "classic",
   });
 
   const ammoWorkerServiceClient = WorkerServiceClient(dynamicsWorker, workers.dynamics.name);

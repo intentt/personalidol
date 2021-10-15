@@ -2,8 +2,6 @@
 
 import Loglevel from "loglevel";
 
-// import workers from "./workers.json";
-
 declare var clients: Clients;
 declare var self: ServiceWorkerGlobalScope;
 
@@ -25,6 +23,13 @@ self.addEventListener("install", async function (event: ExtendableEvent) {
 
 async function _activate(event: ExtendableEvent): Promise<void> {
   await self.clients.claim();
+
+  // Clean up old caches.
+  for (let cacheKey of await caches.keys()) {
+    if (cacheKey != __BUILD_ID) {
+      await caches.delete(cacheKey);
+    }
+  }
 }
 
 async function _install(event: ExtendableEvent): Promise<void> {

@@ -25,6 +25,8 @@ import type { SimulantsLookup } from "@personalidol/personalidol/src/SimulantsLo
 
 declare var self: DedicatedWorkerGlobalScope;
 
+importScripts(`${__STATIC_BASE_PATH}/lib/ammo.wasm.js?${__CACHE_BUST}`);
+
 type Dependencies = {
   ammo: typeof Ammo;
   dynamicsMessagePort: MessagePort;
@@ -39,7 +41,7 @@ const partialDependencies: Partial<Dependencies> = {
   statsMessagePort: undefined,
 };
 
-const AMMO_WASM_URL: string = `${__STATIC_BASE_PATH}/lib/ammo.wasm.wasm?${__CACHE_BUST}`;
+const AMMO_WASM_WASM_URL: string = `${__STATIC_BASE_PATH}/lib/ammo.wasm.wasm?${__CACHE_BUST}`;
 const logger = Loglevel.getLogger(self.name);
 
 // If the FallbackScheduler uses `setTimeout`, then it would be ok to sample
@@ -52,7 +54,7 @@ const serviceManager: IServiceManager = ServiceManager(logger);
 logger.setLevel(__LOG_LEVEL);
 logger.debug(`WORKER_SPAWNED(${self.name})`);
 
-const ammoLoader = AmmoLoader(AMMO_WASM_URL);
+const ammoLoader = AmmoLoader(AMMO_WASM_WASM_URL);
 const serviceBuilder: IServiceBuilder<Dependencies> = ServiceBuilder<Dependencies>(self.name, partialDependencies);
 
 serviceBuilder.onready.add(onDependenciesReady);
@@ -92,7 +94,7 @@ self.onmessage = createRouter({
 
   async progressMessagePort(port: MessagePort): Promise<void> {
     serviceBuilder.setDependency("progressMessagePort", port);
-    await prefetch(port, "worker", AMMO_WASM_URL);
+    await prefetch(port, "worker", AMMO_WASM_WASM_URL);
     serviceBuilder.setDependency("ammo", await ammoLoader.loadWASM());
   },
 

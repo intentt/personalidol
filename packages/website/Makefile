@@ -67,6 +67,9 @@ public/index.html: public/index.mustache public/lib/index_$(BUILD_ID).js scripts
 public/lib:
 	mkdir -p public/lib
 
+public/lib/ammo.wasm.js: public/lib
+	cp `node -e "console.log(require.resolve('ammo.js/builds/ammo.wasm.js'))"` ./public/lib/ammo.wasm.js
+
 public/lib/ammo.wasm.wasm: public/lib
 	cp `node -e "console.log(require.resolve('ammo.js/builds/ammo.wasm.wasm'))"` ./public/lib/ammo.wasm.wasm
 
@@ -111,6 +114,7 @@ purge:
 release: \
 	clean \
 	public/index.html \
+	public/lib/ammo.wasm.js \
 	public/lib/ammo.wasm.wasm \
 	public/service_worker.js \
 	public/service_worker_$(BUILD_ID).js.map \
