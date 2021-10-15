@@ -270,7 +270,7 @@ async function bootstrap() {
 
   addProgressMessagePort(fontPreloadToProgressMessageChannel.port1, false);
 
-  const fontPreloadService = FontPreloadService(fontPreloadMessageChannel.port1, fontPreloadToProgressMessageChannel.port2);
+  const fontPreloadService = FontPreloadService(logger, fontPreloadMessageChannel.port1, fontPreloadToProgressMessageChannel.port2);
 
   serviceManager.services.add(fontPreloadService);
 
@@ -324,8 +324,8 @@ async function bootstrap() {
   addProgressMessagePort(dynamicsToProgressMessageChannel.port1, false);
   statsCollector.registerMessagePort(dynamicsToStatsMessageChannel.port1);
 
-  await prefetch(websiteToProgressMessageChannel.port2, "worker", `${__STATIC_BASE_PATH}/lib/ammo.wasm.js?${__CACHE_BUST}`);
-  await prefetch(websiteToProgressMessageChannel.port2, "worker", workers.dynamics.url);
+  await prefetch(logger, websiteToProgressMessageChannel.port2, "worker", `${__STATIC_BASE_PATH}/lib/ammo.wasm.js?${__CACHE_BUST}`);
+  await prefetch(logger, websiteToProgressMessageChannel.port2, "worker", workers.dynamics.url);
 
   const dynamicsWorker = new Worker(workers.dynamics.url, {
     credentials: "same-origin",
@@ -358,7 +358,7 @@ async function bootstrap() {
 
   addProgressMessagePort(quakeMapsToProgressMessageChannel.port1, false);
 
-  await prefetch(websiteToProgressMessageChannel.port2, "worker", workers.quakemaps.url);
+  await prefetch(logger, websiteToProgressMessageChannel.port2, "worker", workers.quakemaps.url);
 
   const quakeMapsWorker = new Worker(workers.quakemaps.url, {
     credentials: "same-origin",
@@ -385,7 +385,7 @@ async function bootstrap() {
 
   addProgressMessagePort(fbxToProgressMessageChannel.port1, false);
 
-  await prefetch(websiteToProgressMessageChannel.port2, "worker", workers.fbx.url);
+  await prefetch(logger, websiteToProgressMessageChannel.port2, "worker", workers.fbx.url);
 
   const fbxWorker = new Worker(workers.fbx.url, {
     credentials: "same-origin",
@@ -411,7 +411,7 @@ async function bootstrap() {
 
   addProgressMessagePort(gltfToProgressMessageChannel.port1, false);
 
-  await prefetch(websiteToProgressMessageChannel.port2, "worker", workers.gltf.url);
+  await prefetch(logger, websiteToProgressMessageChannel.port2, "worker", workers.gltf.url);
 
   const gltfWorker = new Worker(workers.gltf.url, {
     credentials: "same-origin",

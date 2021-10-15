@@ -1,15 +1,13 @@
 import { monitorResponseProgress } from "./monitorResponseProgress";
 import { Progress } from "./Progress";
 
-import { Progress as IProgress } from "./Progress.interface";
+import type { Logger } from "loglevel";
 
-let cache: null | Cache = null;
+import type { Progress as IProgress } from "./Progress.interface";
 
-async function _cachedGet(cache: Cache, progress: IProgress, url: string): Promise<void> {
-  const request = new Request(url, {
-    // Cache is managed manually.
-    cache: "no-store",
-  });
+async function _cachedGet(logger: Logger, progress: IProgress, url: string): Promise<void> {
+  const cache = await caches.open(__BUILD_ID);
+  const request = new Request(url);
 
   const cachedResponse = await cache.match(request);
 
@@ -17,12 +15,10 @@ async function _cachedGet(cache: Cache, progress: IProgress, url: string): Promi
     return;
   }
 
-  const response = await fetch(url);
+  const response = await fetch(request);
   const responseProgressMonitor = monitorResponseProgress(progress.progress, false);
-  const responseClone = response.clone();
 
   await responseProgressMonitor(response);
-  await cache.put(url, responseClone);
 }
 
 /**
@@ -30,12 +26,13 @@ async function _cachedGet(cache: Cache, progress: IProgress, url: string): Promi
  * cache. Prefetching allows to monitor download progress for items that
  * normally do not support that.
  */
-export async function prefetch(messagePort: MessagePort, resourceType: string, url: string): Promise<void> {
-  if (!cache) {
-    cache = await caches.open(__BUILD_ID);
-  }
-
+export async function prefetch(
+  logger: Logger,
+  messagePort: MessagePort,
+  resourceType: string,
+  url: string
+): Promise<void> {
   const progress = Progress(messagePort, resourceType, url);
 
-  return progress.wait(_cachedGet(cache, progress, url));
+  return progress.wait(_cachedGet(logger, progress, url));
 }

@@ -4,12 +4,15 @@ import { createRouter } from "@personalidol/framework/src/createRouter";
 import { generateUUID } from "@personalidol/math/src/generateUUID";
 import { prefetch } from "@personalidol/framework/src/prefetch";
 
+import type { Logger } from "loglevel";
+
 import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
 
 import type { FontPreloadService as IFontPreloadService } from "./FontPreloadService.interface";
 import type { FontPreloadParameters } from "./FontPreloadParameters.type";
 
 export function FontPreloadService(
+  logger: Logger,
   fontPreloadMessagePort: MessagePort,
   progressMessagePort: MessagePort
 ): IFontPreloadService {
@@ -28,7 +31,7 @@ export function FontPreloadService(
   }
 
   async function _preloadFont(parameters: FontPreloadParameters & RPCMessage) {
-    await prefetch(progressMessagePort, "font", parameters.source);
+    await prefetch(logger, progressMessagePort, "font", parameters.source);
 
     const fontFace = new FontFace(parameters.family, `url(${parameters.source})`, parameters.descriptors);
 

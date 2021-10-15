@@ -31,7 +31,7 @@ export function createAtlasService(
       // @ts-ignore OffscreenCanvas is experimental
       const offscreenAtlas = atlasCanvas.transferControlToOffscreen();
 
-      await prefetch(websiteToProgressMessagePort, "worker", workers.atlas.url);
+      await prefetch(logger, websiteToProgressMessagePort, "worker", workers.atlas.url);
 
       const atlasWorker = new Worker(workers.atlas.url, {
         credentials: "same-origin",

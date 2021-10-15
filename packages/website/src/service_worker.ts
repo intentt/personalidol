@@ -17,6 +17,26 @@ self.addEventListener("activate", function (event: ExtendableEvent) {
   event.waitUntil(_activate(event));
 });
 
+self.addEventListener("fetch", function (event: FetchEvent) {
+  event.respondWith(
+    caches.open(__BUILD_ID).then(async function (cache: Cache) {
+      const cachedResponse = await cache.match(event.request);
+
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      const freshResponse = await fetch(event.request);
+
+      if (event.request.url.includes(__BUILD_ID)) {
+        cache.put(event.request, freshResponse.clone());
+      }
+
+      return freshResponse;
+    })
+  );
+});
+
 self.addEventListener("install", async function (event: ExtendableEvent) {
   event.waitUntil(_install(event));
 });

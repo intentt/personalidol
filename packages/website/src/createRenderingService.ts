@@ -49,7 +49,7 @@ export async function createRenderingService(
 
     domUIController.registerMessagePort(domRendererMessageChannel.port1);
 
-    await prefetch(websiteToProgressMessagePort, "worker", workers.offscreen.url);
+    await prefetch(logger, websiteToProgressMessagePort, "worker", workers.offscreen.url);
 
     const offscreenWorker = new Worker(workers.offscreen.url, {
       credentials: "same-origin",
@@ -230,7 +230,7 @@ export async function createRenderingService(
        */
       const _dynamicImport = `${__STATIC_BASE_PATH}/lib/createScenes_${__BUILD_ID}.js`;
 
-      await prefetch(websiteToProgressMessagePort, "worker", _dynamicImport);
+      await prefetch(logger, websiteToProgressMessagePort, "worker", _dynamicImport);
 
       // This block is here to supress esbuild warnings about importing a
       // module that may not exist.

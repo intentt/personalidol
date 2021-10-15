@@ -94,7 +94,7 @@ self.onmessage = createRouter({
 
   async progressMessagePort(port: MessagePort): Promise<void> {
     serviceBuilder.setDependency("progressMessagePort", port);
-    await prefetch(port, "worker", AMMO_WASM_WASM_URL);
+    await prefetch(logger, port, "worker", AMMO_WASM_WASM_URL);
     serviceBuilder.setDependency("ammo", await ammoLoader.loadWASM());
   },
 

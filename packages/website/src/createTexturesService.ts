@@ -29,7 +29,7 @@ export async function createTexturesService(
     if (await isCreateImageBitmapSupported()) {
       logger.debug("SUPPORTED(createImageBitmap) // offload texture service to a worker thread");
 
-      await prefetch(websiteToProgressMessagePort, "worker", workers.textures.url);
+      await prefetch(logger, websiteToProgressMessagePort, "worker", workers.textures.url);
 
       const texturesWorker = new Worker(workers.textures.url, {
         credentials: "same-origin",
