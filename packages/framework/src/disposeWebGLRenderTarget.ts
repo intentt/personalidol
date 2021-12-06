@@ -1,7 +1,6 @@
-import type { RenderTarget } from "three/src/renderers/webgl/WebGLRenderLists";
 import type { WebGLRenderTarget } from "three/src/renderers/WebGLRenderTarget";
 
-type SupportedRenederTargets = RenderTarget | WebGLRenderTarget;
+type SupportedRenederTargets = WebGLRenderTarget;
 
 function isWebGLRenderTarget(renderTarget: SupportedRenederTargets): renderTarget is WebGLRenderTarget {
   return true === (renderTarget as WebGLRenderTarget).isWebGLRenderTarget;

@@ -70,9 +70,6 @@ const _rpcLookupTable: RPCLookupTable = createRPCLookupTable();
 const _internationalizationMessageRouter = createRouter({
   loadedNamespaces: handleRPCResponse(_rpcLookupTable),
 });
-const _fbxMessageRouter = createRouter({
-  geometry: handleRPCResponse(_rpcLookupTable),
-});
 const _gltfMessageRouter = createRouter({
   geometry: handleRPCResponse(_rpcLookupTable),
 });
@@ -98,7 +95,6 @@ export function LocationMapScene(
   uiState: UIState,
   domMessagePort: MessagePort,
   dynamicsMessagePort: MessagePort,
-  fbxMessagePort: MessagePort,
   gltfMessagePort: MessagePort,
   internationalizationMessagePort: MessagePort,
   progressMessagePort: MessagePort,
@@ -186,7 +182,6 @@ export function LocationMapScene(
     _rpcLookupTable,
     _scene,
     domMessagePort,
-    fbxMessagePort,
     texturesMessagePort
   );
 
@@ -241,7 +236,6 @@ export function LocationMapScene(
   async function preload(): Promise<void> {
     state.isPreloading = true;
 
-    fbxMessagePort.onmessage = _fbxMessageRouter;
     gltfMessagePort.onmessage = _gltfMessageRouter;
     internationalizationMessagePort.onmessage = _internationalizationMessageRouter;
     quakeMapsMessagePort.onmessage = _quakeMapsRouter;

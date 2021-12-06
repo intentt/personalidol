@@ -25,7 +25,6 @@ type Dependencies = {
   dimensionsState: Uint32Array;
   domMessagePort: MessagePort;
   dynamicsMessagePort: MessagePort;
-  fbxMessagePort: MessagePort;
   fontPreloadMessagePort: MessagePort;
   gameMessagePort: MessagePort;
   gltfMessagePort: MessagePort;
@@ -49,7 +48,6 @@ const partialDependencies: Partial<Dependencies> = {
   dimensionsState: undefined,
   domMessagePort: undefined,
   dynamicsMessagePort: undefined,
-  fbxMessagePort: undefined,
   fontPreloadMessagePort: undefined,
   gameMessagePort: undefined,
   gltfMessagePort: undefined,
@@ -110,7 +108,6 @@ function onDependenciesReady(dependencies: Dependencies): void {
     userSettings,
     dependencies.domMessagePort,
     dependencies.dynamicsMessagePort,
-    dependencies.fbxMessagePort,
     dependencies.fontPreloadMessagePort,
     dependencies.gameMessagePort,
     dependencies.gltfMessagePort,
@@ -149,10 +146,6 @@ self.onmessage = createRouter({
 
   dynamicsMessagePort(port: MessagePort): void {
     serviceBuilder.setDependency("dynamicsMessagePort", port);
-  },
-
-  fbxMessagePort(port: MessagePort): void {
-    serviceBuilder.setDependency("fbxMessagePort", port);
   },
 
   fontPreloadMessagePort(port: MessagePort): void {

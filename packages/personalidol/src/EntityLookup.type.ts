@@ -1,4 +1,3 @@
-import type { EntityFBXModel } from "./EntityFBXModel.type";
 import type { EntityFuncGroup } from "./EntityFuncGroup.type";
 import type { EntityGLTFModel } from "./EntityGLTFModel.type";
 import type { EntityLightAmbient } from "./EntityLightAmbient.type";
@@ -19,7 +18,6 @@ export type EntityLookup = {
   light_hemisphere: EntityLightHemisphere;
   light_point: EntityLightPoint;
   light_spotlight: EntityLightSpotlight;
-  model_fbx: EntityFBXModel;
   model_gltf: EntityGLTFModel;
   player: EntityPlayer;
   sounds: EntitySounds;

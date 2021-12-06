@@ -1,4 +1,3 @@
-import type { EntityFBXModel } from "./EntityFBXModel.type";
 import type { EntityFuncGroup } from "./EntityFuncGroup.type";
 import type { EntityGLTFModel } from "./EntityGLTFModel.type";
 import type { EntityLightAmbient } from "./EntityLightAmbient.type";
@@ -15,7 +14,6 @@ import type { EntityWorldspawn } from "./EntityWorldspawn.type";
 
 // prettier-ignore
 export type AnyEntity =
-  | EntityFBXModel
   | EntityFuncGroup
   | EntityGLTFModel
   | EntityLightAmbient

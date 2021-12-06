@@ -7,10 +7,6 @@ export const workers = {
     name: "Worker(Dynamics)",
     url: `${__STATIC_BASE_PATH}/lib/worker_dynamics_${__BUILD_ID}.js`,
   },
-  fbx: {
-    name: "Loader(FBX)",
-    url: `${__STATIC_BASE_PATH}/lib/worker_fbx_${__BUILD_ID}.js`,
-  },
   gltf: {
     name: "Loader(GLTF)",
     url: `${__STATIC_BASE_PATH}/lib/worker_gltf_${__BUILD_ID}.js`,

@@ -18,7 +18,7 @@ export function preloadImage(progress: Progress, textureUrl: string): Promise<HT
 
     image.src = textureUrl;
 
-    if (image.complete && !resolved) {
+    if (image.complete) {
       resolved = true;
       resolve(image);
     }

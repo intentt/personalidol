@@ -135,7 +135,6 @@ export async function createRenderingService(
 
     return async function (
       dynamicsMessagePort: MessagePort,
-      fbxMessagePort: MessagePort,
       fontPreloadMessagePort: MessagePort,
       gameMessagePort: MessagePort,
       gltfMessagePort: MessagePort,
@@ -154,7 +153,6 @@ export async function createRenderingService(
           devicePixelRatio: devicePixelRatio,
           domMessagePort: domRendererMessageChannel.port2,
           dynamicsMessagePort: dynamicsMessagePort,
-          fbxMessagePort: fbxMessagePort,
           fontPreloadMessagePort: fontPreloadMessagePort,
           gameMessagePort: gameMessagePort,
           gltfMessagePort: gltfMessagePort,
@@ -169,7 +167,6 @@ export async function createRenderingService(
         [
           domRendererMessageChannel.port2,
           dynamicsMessagePort,
-          fbxMessagePort,
           fontPreloadMessagePort,
           gameMessagePort,
           gltfMessagePort,
@@ -211,7 +208,6 @@ export async function createRenderingService(
 
     return async function (
       dynamicsMessagePort: MessagePort,
-      fbxMessagePort: MessagePort,
       fontPreloadMessagePort: MessagePort,
       gameMessagePort: MessagePort,
       gltfMessagePort: MessagePort,
@@ -260,7 +256,6 @@ export async function createRenderingService(
         userSettings,
         domRendererMessageChannel.port2,
         dynamicsMessagePort,
-        fbxMessagePort,
         fontPreloadMessagePort,
         gameMessagePort,
         gltfMessagePort,

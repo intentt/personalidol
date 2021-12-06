@@ -378,32 +378,6 @@ async function bootstrap() {
     [atlasMessageChannel.port2, quakeMapsMessageChannel.port1, quakeMapsToProgressMessageChannel.port2]
   );
 
-  // FBX loader offloads model loading from the rendering thread.
-
-  const fbxMessageChannel = createMultiThreadMessageChannel();
-  const fbxToProgressMessageChannel = createMultiThreadMessageChannel();
-
-  addProgressMessagePort(fbxToProgressMessageChannel.port1, false);
-
-  await prefetch(logger, websiteToProgressMessageChannel.port2, "worker", workers.fbx.url);
-
-  const fbxWorker = new Worker(workers.fbx.url, {
-    credentials: "same-origin",
-    name: workers.fbx.name,
-    type: "module",
-  });
-
-  const fbxWorkerServiceClient = WorkerServiceClient(fbxWorker, workers.fbx.name);
-  await fbxWorkerServiceClient.ready();
-
-  fbxWorker.postMessage(
-    {
-      fbxMessagePort: fbxMessageChannel.port1,
-      progressMessagePort: fbxToProgressMessageChannel.port2,
-    },
-    [fbxMessageChannel.port1, fbxToProgressMessageChannel.port2]
-  );
-
   // GLTF loader offloads model loading from the rendering thread.
 
   const gltfMessageChannel = createMultiThreadMessageChannel();
@@ -456,7 +430,6 @@ async function bootstrap() {
 
   await createScenes(
     dynamicsMessageChannel.port2,
-    fbxMessageChannel.port2,
     fontPreloadMessageChannel.port2,
     gameMessageChannel.port2,
     gltfMessageChannel.port2,

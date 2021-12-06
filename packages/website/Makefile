@@ -15,7 +15,6 @@ JS_TARGETS_BASENAME := \
 	index \
 	worker_atlas \
 	worker_dynamics \
-	worker_fbx \
 	worker_gltf \
 	worker_offscreen \
 	worker_progress \

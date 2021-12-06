@@ -19,6 +19,9 @@ node_modules:
 .PHONY: bootstrap
 bootstrap: node_modules
 
+.PHONY: fmt
+fmt: prettier
+
 .PHONY: prettier
 prettier: bootstrap
 	$(call FOREACH,prettier)

@@ -33,9 +33,9 @@ export function preload(logger: Logger, mount: Preloadable): void {
     return;
   }
 
-  // setTimeout(function () {
-  //   if (mount.state.isPreloading) {
-  //     logger.warn(`PRELOAD.SLOW(${name(mount)})`);
-  //   }
-  // }, 3000);
+  setTimeout(function () {
+    if (mount.state.isPreloading) {
+      logger.warn(`PRELOAD.SLOW(${name(mount)})`);
+    }
+  }, 3000);
 }
