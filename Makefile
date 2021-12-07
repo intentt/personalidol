@@ -11,7 +11,7 @@ endef
 
 yarn.lock: package.json packages/*/package.json
 
-node_modules:
+node_modules: yarn.lock
 	yarn install --check-files --frozen-lockfile --non-interactive
 
 # Phony targets

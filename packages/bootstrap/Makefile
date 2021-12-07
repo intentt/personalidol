@@ -6,8 +6,8 @@ LOCALES_LOAD_PATH ?= /g/personalidol/locales/{{lng}}/{{ns}}.json
 SERVICE_WORKER_BASE_PATH ?= /g/personalidol
 STATIC_BASE_PATH ?= /g/personalidol
 
-BUILD_ID := $(shell sh ./scripts/helper_build_id.sh)
-CACHE_BUST := $(addprefix _v=,$(BUILD_ID))
+BUILD_ID ?= $(shell sh ./scripts/helper_build_id.sh)
+CACHE_BUST ?= $(addprefix _v=,$(BUILD_ID))
 
 # service worker is a special case not included here
 JS_TARGETS_BASENAME := \
@@ -56,6 +56,19 @@ endef
 $(JS_TARGETS): public/lib
 	$(call ESBUILD, $(TS_ENTRYPOINTS))
 
+electron/main.js: src/electron.ts
+	yarn run esbuild \
+		--bundle \
+	    --entry-names="./main" \
+	    --external:electron \
+	    --log-limit=0 \
+	    --minify \
+	    --outdir=./electron \
+	    --platform=node \
+	    --tsconfig=tsconfig.json \
+	    src/electron.ts \
+	;
+
 public/index.html: public/index.mustache public/lib/index_$(BUILD_ID).js scripts/build_mustache.js
 	ASSETS_BASE_PATH=$(ASSETS_BASE_PATH) \
 	BUILD_ID=$(BUILD_ID) \
@@ -92,6 +105,10 @@ clean:
 	rm -rf ./public/lib
 	rm -rf ./public/service_worker.js
 	rm -rf ./public/service_worker_*.js.map
+
+.PHONY: electron
+electron: public/index.html electron/main.js
+	yarn run electron ./electron/main.js
 
 .PHONY: ncu
 ncu:
