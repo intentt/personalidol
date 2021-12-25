@@ -48,5 +48,6 @@
     "ecstatic": "^4.1.3",
     "glob-parent": "^5.1.2",
     "trim-newlines": "^3.0.1"
-  }
+  },
+  "version": "0.0.7"
 }
