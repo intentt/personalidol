@@ -95,8 +95,8 @@ public/lib/ammo.wasm.wasm: public/lib
 	cp `node -e "console.log(require.resolve('ammo.js/builds/ammo.wasm.wasm'))"` ./public/lib/ammo.wasm.wasm
 
 .INTERMEDIATE: public/lib/service_worker_$(BUILD_ID).js
-public/lib/service_worker_$(BUILD_ID).js: public/lib src/service_worker.ts
-	$(call ESBUILD, src/service_worker.ts)
+public/lib/service_worker_$(BUILD_ID).js: public/lib packages/bootstrap/src/service_worker.ts
+	$(call ESBUILD, packages/bootstrap/src/service_worker.ts)
 
 .INTERMEDIATE: public/lib/service_worker_$(BUILD_ID).js.map
 public/lib/service_worker_$(BUILD_ID).js.map: public/lib public/lib/service_worker_$(BUILD_ID).js
