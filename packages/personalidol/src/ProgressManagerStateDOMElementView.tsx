@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import { h } from "preact";
 
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
 
 import { DOMZIndex } from "./DOMZIndex.enum";
 
-import type { ProgressManagerState } from "@personalidol/framework/src/ProgressManagerState.type";
+import type { ProgressManagerState } from "../../framework/src/ProgressManagerState.type";
 
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";
 

@@ -12,7 +12,7 @@ import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 import type { Texture as ITexture } from "three/src/textures/Texture";
 
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityFuncGroup } from "./EntityFuncGroup.type";

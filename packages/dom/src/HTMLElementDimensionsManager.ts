@@ -1,7 +1,7 @@
-import { DimensionsIndices } from "@personalidol/framework/src/DimensionsIndices.enum";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { DimensionsIndices } from "../../framework/src/DimensionsIndices.enum";
+import { generateUUID } from "../../math/src/generateUUID";
 
-import type { ResizeableRenderer } from "@personalidol/three-modules/src/ResizeableRenderer.interface";
+import type { ResizeableRenderer } from "../../three-modules/src/ResizeableRenderer.interface";
 
 import type { HTMLElementDimensionsManager as IHTMLElementDimensionsManager } from "./HTMLElementDimensionsManager.interface";
 import type { HTMLElementDimensionsManagerState } from "./HTMLElementDimensionsManagerState.type";

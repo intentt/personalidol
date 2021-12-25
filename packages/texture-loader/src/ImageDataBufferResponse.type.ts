@@ -1,4 +1,4 @@
-import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
+import type { RPCMessage } from "../../framework/src/RPCMessage.type";
 
 export type ImageDataBufferResponse = RPCMessage & {
   imageDataBuffer: ArrayBuffer;

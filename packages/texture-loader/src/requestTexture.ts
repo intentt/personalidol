@@ -1,7 +1,7 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { sendRPCMessage } from "@personalidol/framework/src/sendRPCMessage";
+import { generateUUID } from "../../math/src/generateUUID";
+import { sendRPCMessage } from "../../framework/src/sendRPCMessage";
 
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
 
 import type { TextureRequest } from "./TextureRequest.type";
 

@@ -1,4 +1,4 @@
-import type { EntityProperties } from "@personalidol/quakemaps/src/EntityProperties.type";
+import type { EntityProperties } from "../../quakemaps/src/EntityProperties.type";
 
 export type Entity = {
   readonly id: string;

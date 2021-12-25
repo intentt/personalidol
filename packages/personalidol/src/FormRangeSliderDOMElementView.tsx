@@ -1,7 +1,7 @@
 import { h } from "preact";
 
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
-import { roundToNearestMultiple } from "@personalidol/math/src/roundToNearestMultiple";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
+import { roundToNearestMultiple } from "../../math/src/roundToNearestMultiple";
 
 import type { JSX } from "preact";
 

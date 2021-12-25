@@ -1,7 +1,7 @@
 import { MorphBlendMeshTransition } from "./MorphBlendMeshTransition";
 
-import type { MorphBlendMesh } from "@personalidol/three-modules/src/misc/MorphBlendMesh.interface";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { MorphBlendMesh } from "../../three-modules/src/misc/MorphBlendMesh.interface";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { MorphBlendMeshMixer as IMorphBlendMeshMixer } from "./MorphBlendMeshMixer.interface";
 import type { MorphBlendMeshMixerState } from "./MorphBlendMeshMixerState.type";

@@ -1,4 +1,4 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import { createRPCLookupTable } from "./createRPCLookupTable";
 import { handleRPCResponse } from "./handleRPCResponse";

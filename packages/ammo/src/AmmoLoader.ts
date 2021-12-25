@@ -1,6 +1,6 @@
 /// <reference types="@types/ammo.js" />
 
-import { must } from "@personalidol/framework/src/must";
+import { must } from "../../framework/src/must";
 
 import type { AmmoLoader as IAmmoLoader } from "./AmmoLoader.interface";
 

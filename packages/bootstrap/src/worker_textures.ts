@@ -2,20 +2,20 @@
 
 import Loglevel from "loglevel";
 
-import { attachMultiRouter } from "@personalidol/framework/src/attachMultiRouter";
-import { createReusedResponsesCache } from "@personalidol/framework/src/createReusedResponsesCache";
-import { createReusedResponsesUsage } from "@personalidol/framework/src/createReusedResponsesUsage";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { keyFromTextureRequest } from "@personalidol/texture-loader/src/keyFromTextureRequest";
-import { monitorResponseProgress } from "@personalidol/framework/src/monitorResponseProgress";
-import { Progress } from "@personalidol/framework/src/Progress";
-import { reuseResponse } from "@personalidol/framework/src/reuseResponse";
+import { attachMultiRouter } from "../../framework/src/attachMultiRouter";
+import { createReusedResponsesCache } from "../../framework/src/createReusedResponsesCache";
+import { createReusedResponsesUsage } from "../../framework/src/createReusedResponsesUsage";
+import { createRouter } from "../../framework/src/createRouter";
+import { keyFromTextureRequest } from "../../texture-loader/src/keyFromTextureRequest";
+import { monitorResponseProgress } from "../../framework/src/monitorResponseProgress";
+import { Progress } from "../../framework/src/Progress";
+import { reuseResponse } from "../../framework/src/reuseResponse";
 
-import type { MessageWorkerReady } from "@personalidol/framework/src/MessageWorkerReady.type";
-import type { Progress as IProgress } from "@personalidol/framework/src/Progress.interface";
-import type { ReusedResponsesCache } from "@personalidol/framework/src/ReusedResponsesCache.type";
-import type { ReusedResponsesUsage } from "@personalidol/framework/src/ReusedResponsesUsage.type";
-import type { TextureRequest } from "@personalidol/texture-loader/src/TextureRequest.type";
+import type { MessageWorkerReady } from "../../framework/src/MessageWorkerReady.type";
+import type { Progress as IProgress } from "../../framework/src/Progress.interface";
+import type { ReusedResponsesCache } from "../../framework/src/ReusedResponsesCache.type";
+import type { ReusedResponsesUsage } from "../../framework/src/ReusedResponsesUsage.type";
+import type { TextureRequest } from "../../texture-loader/src/TextureRequest.type";
 
 declare var self: DedicatedWorkerGlobalScope;
 
@@ -41,7 +41,10 @@ function _createImageBitmapFlipY(blob: Blob): Promise<ImageBitmap> {
 }
 
 function _fetchImageBitmap(progress: IProgress, textureRequest: TextureRequest): Promise<ImageBitmap> {
-  return fetch(textureRequest.textureUrl).then(monitorResponseProgress(progress.progress, true)).then(_responseToBlob).then(_createImageBitmapFlipY);
+  return fetch(textureRequest.textureUrl)
+    .then(monitorResponseProgress(progress.progress, true))
+    .then(_responseToBlob)
+    .then(_createImageBitmapFlipY);
 }
 
 async function _fetchImageBitmapWithProgress(textureRequest: TextureRequest): Promise<ImageBitmap> {
@@ -60,7 +63,13 @@ function _responseToBlob(response: Response): Promise<Blob> {
 
 const textureMessagesRouter = {
   async createImageBitmap(messagePort: MessagePort, textureRequest: TextureRequest): Promise<void> {
-    const imageBitmap = await reuseResponse(loadingCache, loadingUsage, keyFromTextureRequest(textureRequest), textureRequest, _fetchImageBitmapWithProgress);
+    const imageBitmap = await reuseResponse(
+      loadingCache,
+      loadingUsage,
+      keyFromTextureRequest(textureRequest),
+      textureRequest,
+      _fetchImageBitmapWithProgress
+    );
 
     // prettier-ignore
     messagePort.postMessage(

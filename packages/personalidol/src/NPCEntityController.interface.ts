@@ -1,4 +1,4 @@
-import type { RigidBodyRemoteHandle } from "@personalidol/dynamics/src/RigidBodyRemoteHandle.interface";
+import type { RigidBodyRemoteHandle } from "../../dynamics/src/RigidBodyRemoteHandle.interface";
 
 import type { EntityController } from "./EntityController.interface";
 import type { NPCEntity } from "./NPCEntity.type";

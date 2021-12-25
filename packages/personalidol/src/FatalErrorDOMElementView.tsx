@@ -1,8 +1,8 @@
 import { h } from "preact";
 
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
 
-import type { MessageProgressError } from "@personalidol/framework/src/MessageProgressError.type";
+import type { MessageProgressError } from "../../framework/src/MessageProgressError.type";
 
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";
 

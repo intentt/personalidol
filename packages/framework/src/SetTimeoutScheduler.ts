@@ -1,4 +1,4 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { Scheduler } from "./Scheduler.interface";
 import type { SchedulerCallback } from "./SchedulerCallback.type";

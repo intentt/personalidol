@@ -1,12 +1,12 @@
 import { Loader } from "three/src/loaders/Loader";
 
-import { requestTexture } from "@personalidol/texture-loader/src/requestTexture";
+import { requestTexture } from "../../texture-loader/src/requestTexture";
 
 import type { LoadingManager } from "three/src/loaders/LoadingManager";
 import type { Logger } from "loglevel";
 import type { Texture as ITexture } from "three/src/textures/Texture";
 
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
 
 export class THREETextureLoader extends Loader {
   logger: Logger;

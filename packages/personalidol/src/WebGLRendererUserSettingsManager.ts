@@ -1,10 +1,10 @@
-import { createSettingsHandle } from "@personalidol/framework/src/createSettingsHandle";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { createSettingsHandle } from "../../framework/src/createSettingsHandle";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
 
-import type { UserSettingsManager } from "@personalidol/framework/src/UserSettingsManager.interface";
-import type { UserSettingsManagerState } from "@personalidol/framework/src/UserSettingsManagerState.type";
+import type { UserSettingsManager } from "../../framework/src/UserSettingsManager.interface";
+import type { UserSettingsManagerState } from "../../framework/src/UserSettingsManagerState.type";
 
 import type { UserSettings } from "./UserSettings.type";
 

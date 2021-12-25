@@ -1,6 +1,6 @@
 import Loglevel from "loglevel";
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import { Director } from "./Director";
 

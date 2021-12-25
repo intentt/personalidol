@@ -1,17 +1,17 @@
 import { Vector2 } from "three/src/math/Vector2";
 import { Vector3 } from "three/src/math/Vector3";
 
-import { computePrimaryTouchStretchVector } from "@personalidol/input/src/computePrimaryTouchStretchVector";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { isPrimaryTouchInitiatedByRootElement } from "@personalidol/input/src/isPrimaryTouchInitiatedByRootElement";
-import { isPrimaryTouchPressed } from "@personalidol/input/src/isPrimaryTouchPressed";
+import { computePrimaryTouchStretchVector } from "../../input/src/computePrimaryTouchStretchVector";
+import { generateUUID } from "../../math/src/generateUUID";
+import { isPrimaryTouchInitiatedByRootElement } from "../../input/src/isPrimaryTouchInitiatedByRootElement";
+import { isPrimaryTouchPressed } from "../../input/src/isPrimaryTouchPressed";
 
 import type { Vector2 as IVector2 } from "three/src/math/Vector2";
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { UserInputController } from "@personalidol/input/src/UserInputController.interface";
-import type { UserInputControllerState } from "@personalidol/input/src/UserInputControllerState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { UserInputController } from "../../input/src/UserInputController.interface";
+import type { UserInputControllerState } from "../../input/src/UserInputControllerState.type";
 
 import type { UserSettings } from "./UserSettings.type";
 

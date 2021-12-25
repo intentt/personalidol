@@ -1,10 +1,10 @@
 import HTTPBackend from "i18next-http-backend";
 import i18next from "i18next";
 
-import { LoglevelPlugin } from "@personalidol/i18n/src/LoglevelPlugin";
-import { monitorResponseProgress } from "@personalidol/framework/src/monitorResponseProgress";
-import { noop } from "@personalidol/framework/src/noop";
-import { Progress } from "@personalidol/framework/src/Progress";
+import { LoglevelPlugin } from "../../i18n/src/LoglevelPlugin";
+import { monitorResponseProgress } from "../../framework/src/monitorResponseProgress";
+import { noop } from "../../framework/src/noop";
+import { Progress } from "../../framework/src/Progress";
 
 import type { Logger } from "loglevel";
 import type { i18n } from "i18next";

@@ -4,7 +4,7 @@ import { marshalVector3 } from "./marshalVector3";
 
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
-import type { AtlasTextureDimension } from "@personalidol/texture-loader/src/AtlasTextureDimension.type";
+import type { AtlasTextureDimension } from "../../texture-loader/src/AtlasTextureDimension.type";
 
 import type { Brush } from "./Brush.type";
 import type { Geometry } from "./Geometry.type";

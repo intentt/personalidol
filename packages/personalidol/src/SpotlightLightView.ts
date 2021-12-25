@@ -1,10 +1,10 @@
 import { Color } from "three/src/math/Color";
 import { SpotLight } from "three/src/lights/SpotLight";
 
-import { disposeWebGLRenderTarget } from "@personalidol/framework/src/disposeWebGLRenderTarget";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { onlyOne } from "@personalidol/framework/src/onlyOne";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
+import { disposeWebGLRenderTarget } from "../../framework/src/disposeWebGLRenderTarget";
+import { generateUUID } from "../../math/src/generateUUID";
+import { onlyOne } from "../../framework/src/onlyOne";
+import { preload as fPreload } from "../../framework/src/preload";
 
 import { createEntityViewState } from "./createEntityViewState";
 import { ShadowLightUserSettingsManager } from "./ShadowLightUserSettingsManager";
@@ -12,7 +12,7 @@ import { ShadowLightUserSettingsManager } from "./ShadowLightUserSettingsManager
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { View } from "@personalidol/views/src/View.interface";
+import type { View } from "../../views/src/View.interface";
 
 import type { EntityLightSpotlight } from "./EntityLightSpotlight.type";
 import type { EntityView } from "./EntityView.interface";

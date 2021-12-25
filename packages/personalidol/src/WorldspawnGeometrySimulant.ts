@@ -1,17 +1,17 @@
 /// <reference types="@types/ammo.js" />
 
-import { buildGeometryPoints } from "@personalidol/quakemaps/src/buildGeometryPoints";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { disposableAmmo } from "@personalidol/ammo/src/disposableAmmo";
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
-import { fixBrushAfterDeserialization } from "@personalidol/quakemaps/src/fixBrushAfterDeserialization";
+import { buildGeometryPoints } from "../../quakemaps/src/buildGeometryPoints";
+import { createRouter } from "../../framework/src/createRouter";
+import { disposableAmmo } from "../../ammo/src/disposableAmmo";
+import { disposeAll } from "../../framework/src/disposeAll";
+import { fixBrushAfterDeserialization } from "../../quakemaps/src/fixBrushAfterDeserialization";
 
-import type { Brush } from "@personalidol/quakemaps/src/Brush.type";
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { MessageFeedbackSimulantPreloaded } from "@personalidol/dynamics/src/MessageFeedbackSimulantPreloaded.type";
-import type { Simulant } from "@personalidol/dynamics/src/Simulant.interface";
-import type { SimulantState } from "@personalidol/dynamics/src/SimulantState.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { Brush } from "../../quakemaps/src/Brush.type";
+import type { DisposableCallback } from "../../framework/src/DisposableCallback.type";
+import type { MessageFeedbackSimulantPreloaded } from "../../dynamics/src/MessageFeedbackSimulantPreloaded.type";
+import type { Simulant } from "../../dynamics/src/Simulant.interface";
+import type { SimulantState } from "../../dynamics/src/SimulantState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { SimulantsLookup } from "./SimulantsLookup.type";
 

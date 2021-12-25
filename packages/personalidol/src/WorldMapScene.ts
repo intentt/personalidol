@@ -1,8 +1,8 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { Logger } from "loglevel";
 
-import type { SceneState } from "@personalidol/framework/src/SceneState.type";
+import type { SceneState } from "../../framework/src/SceneState.type";
 
 import type { WorldMapScene as IWorldMapScene } from "./WorldMapScene.interface";
 

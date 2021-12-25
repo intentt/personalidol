@@ -1,7 +1,7 @@
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { pause } from "@personalidol/framework/src/pause";
-import { unpause } from "@personalidol/framework/src/unpause";
+import { createRouter } from "../../framework/src/createRouter";
+import { generateUUID } from "../../math/src/generateUUID";
+import { pause } from "../../framework/src/pause";
+import { unpause } from "../../framework/src/unpause";
 
 import { GameState } from "./GameState";
 import { isMainMenuScene } from "./isMainMenuScene";
@@ -11,14 +11,14 @@ import { WorldMapScene } from "./WorldMapScene";
 
 import type { Logger } from "loglevel";
 
-import type { CSS2DRenderer } from "@personalidol/three-css2d-renderer/src/CSS2DRenderer.interface";
-import type { DirectorState } from "@personalidol/framework/src/DirectorState.type";
-import type { EffectComposer } from "@personalidol/three-modules/src/postprocessing/EffectComposer.interface";
-import type { Evaluator } from "@personalidol/expression-language/src/Evaluator.interface";
-import type { EventBus } from "@personalidol/framework/src/EventBus.interface";
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { Scene } from "@personalidol/framework/src/Scene.interface";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { CSS2DRenderer } from "../../three-css2d-renderer/src/CSS2DRenderer.interface";
+import type { DirectorState } from "../../framework/src/DirectorState.type";
+import type { EffectComposer } from "../../three-modules/src/postprocessing/EffectComposer.interface";
+import type { Evaluator } from "../../expression-language/src/Evaluator.interface";
+import type { EventBus } from "../../framework/src/EventBus.interface";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { Scene } from "../../framework/src/Scene.interface";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { GameState as IGameState } from "./GameState.type";
 import type { GameStateController as IGameStateController } from "./GameStateController.interface";

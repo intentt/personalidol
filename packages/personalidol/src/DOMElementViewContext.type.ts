@@ -1,4 +1,4 @@
-import type { DOMElementViewContext as BaseDOMElementViewContext } from "@personalidol/dom-renderer/src/DOMElementViewContext.type";
+import type { DOMElementViewContext as BaseDOMElementViewContext } from "../../dom-renderer/src/DOMElementViewContext.type";
 
 import type { UserSettings } from "./UserSettings.type";
 

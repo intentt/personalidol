@@ -1,9 +1,9 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
-import { DimensionsIndices } from "@personalidol/framework/src/DimensionsIndices.enum";
+import { DimensionsIndices } from "../../framework/src/DimensionsIndices.enum";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { WindowResizeObserver as IWindowResizeObserver } from "./WindowResizeObserver.interface";
 

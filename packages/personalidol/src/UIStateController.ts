@@ -1,12 +1,12 @@
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { DOMElementViewHandle } from "@personalidol/dom-renderer/src/DOMElementViewHandle";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { createRouter } from "../../framework/src/createRouter";
+import { DOMElementViewHandle } from "../../dom-renderer/src/DOMElementViewHandle";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { Logger } from "loglevel";
 
-import type { DOMElementViewHandle as IDOMElementViewHandle } from "@personalidol/dom-renderer/src/DOMElementViewHandle.interface";
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { DOMElementViewHandle as IDOMElementViewHandle } from "../../dom-renderer/src/DOMElementViewHandle.interface";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { DOMElementsLookup } from "./DOMElementsLookup.type";
 import type { UIState } from "./UIState.type";

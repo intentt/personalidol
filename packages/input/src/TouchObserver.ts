@@ -1,13 +1,13 @@
-import { DimensionsIndices } from "@personalidol/framework/src/DimensionsIndices.enum";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { isInDimensionsBounds } from "@personalidol/framework/src/isInDimensionsBounds";
-import { passiveEventListener } from "@personalidol/framework/src/passiveEventListener";
+import { DimensionsIndices } from "../../framework/src/DimensionsIndices.enum";
+import { generateUUID } from "../../math/src/generateUUID";
+import { isInDimensionsBounds } from "../../framework/src/isInDimensionsBounds";
+import { passiveEventListener } from "../../framework/src/passiveEventListener";
 
 import { TouchIndices } from "./TouchIndices.enum";
 import { TouchState } from "./TouchState";
 
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { WindowFocusObserverState } from "@personalidol/dom/src/WindowFocusObserverState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { WindowFocusObserverState } from "../../dom/src/WindowFocusObserverState.type";
 
 import type { TouchObserver as ITouchObserver } from "./TouchObserver.interface";
 import type { TouchObserverState } from "./TouchObserverState.type";

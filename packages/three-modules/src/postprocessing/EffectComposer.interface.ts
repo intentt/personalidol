@@ -1,5 +1,5 @@
-import type { DisposableGeneric } from "@personalidol/framework/src/DisposableGeneric.interface";
-import type { ResizeableRenderer } from "@personalidol/framework/src/ResizeableRenderer.interface";
+import type { DisposableGeneric } from "../../../framework/src/DisposableGeneric.interface";
+import type { ResizeableRenderer } from "../../../framework/src/ResizeableRenderer.interface";
 
 import type { Pass } from "./Pass.interface";
 

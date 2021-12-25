@@ -7,27 +7,27 @@ import { PerspectiveCamera } from "three/src/cameras/PerspectiveCamera";
 import { Scene } from "three/src/scenes/Scene";
 import { SpotLight } from "three/src/lights/SpotLight";
 
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
-import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { GlitchPass } from "@personalidol/three-modules/src/postprocessing/GlitchPass";
-import { RenderPass } from "@personalidol/three-modules/src/postprocessing/RenderPass";
-import { unmountAll } from "@personalidol/framework/src/unmountAll";
-import { unmountPass } from "@personalidol/three-modules/src/unmountPass";
-import { updatePerspectiveCameraAspect } from "@personalidol/framework/src/updatePerspectiveCameraAspect";
+import { createRouter } from "../../framework/src/createRouter";
+import { disposableGeneric } from "../../framework/src/disposableGeneric";
+import { disposableMaterial } from "../../framework/src/disposableMaterial";
+import { disposeAll } from "../../framework/src/disposeAll";
+import { generateUUID } from "../../math/src/generateUUID";
+import { GlitchPass } from "../../three-modules/src/postprocessing/GlitchPass";
+import { RenderPass } from "../../three-modules/src/postprocessing/RenderPass";
+import { unmountAll } from "../../framework/src/unmountAll";
+import { unmountPass } from "../../three-modules/src/unmountPass";
+import { updatePerspectiveCameraAspect } from "../../framework/src/updatePerspectiveCameraAspect";
 
 import type { Logger } from "loglevel";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { EffectComposer } from "@personalidol/three-modules/src/postprocessing/EffectComposer.interface";
-import type { MessageProgressError } from "@personalidol/framework/src/MessageProgressError.type";
-import type { ProgressManagerState } from "@personalidol/framework/src/ProgressManagerState.type";
-import type { Scene as IScene } from "@personalidol/framework/src/Scene.interface";
-import type { SceneState } from "@personalidol/framework/src/SceneState.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
+import type { DisposableCallback } from "../../framework/src/DisposableCallback.type";
+import type { EffectComposer } from "../../three-modules/src/postprocessing/EffectComposer.interface";
+import type { MessageProgressError } from "../../framework/src/MessageProgressError.type";
+import type { ProgressManagerState } from "../../framework/src/ProgressManagerState.type";
+import type { Scene as IScene } from "../../framework/src/Scene.interface";
+import type { SceneState } from "../../framework/src/SceneState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { UnmountableCallback } from "../../framework/src/UnmountableCallback.type";
 
 import type { UserSettings } from "./UserSettings.type";
 

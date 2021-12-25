@@ -1,4 +1,4 @@
-import { name } from "@personalidol/framework/src/name";
+import { name } from "../../framework/src/name";
 
 import { InteractableEntityController } from "./InteractableEntityController";
 import { InteractorEntityController } from "./InteractorEntityController";
@@ -14,12 +14,12 @@ import { WorldspawnGeometryEntityController } from "./WorldspawnGeometryEntityCo
 
 import type { Logger } from "loglevel";
 
-import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
-import type { Evaluator } from "@personalidol/expression-language/src/Evaluator.interface";
-import type { InteractableBag } from "@personalidol/views/src/InteractableBag.interface";
-import type { UserInputController } from "@personalidol/input/src/UserInputController.interface";
-import type { UserInputMouseController } from "@personalidol/input/src/UserInputMouseController.interface";
-import type { ViewBag } from "@personalidol/views/src/ViewBag.interface";
+import type { CameraController } from "../../framework/src/CameraController.interface";
+import type { Evaluator } from "../../expression-language/src/Evaluator.interface";
+import type { InteractableBag } from "../../views/src/InteractableBag.interface";
+import type { UserInputController } from "../../input/src/UserInputController.interface";
+import type { UserInputMouseController } from "../../input/src/UserInputMouseController.interface";
+import type { ViewBag } from "../../views/src/ViewBag.interface";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityController as IEntityController } from "./EntityController.interface";

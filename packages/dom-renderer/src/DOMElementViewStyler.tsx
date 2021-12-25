@@ -1,7 +1,7 @@
 import { h } from "preact";
 
-import { createConstructableStylesheet } from "@personalidol/dom/src/createConstructableStylesheet";
-import { isConstructableCSSStyleSheetSupported } from "@personalidol/framework/src/isConstructableCSSStyleSheetSupported";
+import { createConstructableStylesheet } from "../../dom/src/createConstructableStylesheet";
+import { isConstructableCSSStyleSheetSupported } from "../../framework/src/isConstructableCSSStyleSheetSupported";
 
 import type { VNode } from "preact";
 

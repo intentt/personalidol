@@ -1,12 +1,12 @@
-import { attachMultiRouter } from "@personalidol/framework/src/attachMultiRouter";
-import { createReusedResponsesCache } from "@personalidol/framework/src/createReusedResponsesCache";
-import { createReusedResponsesUsage } from "@personalidol/framework/src/createReusedResponsesUsage";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { createRPCLookupTable } from "@personalidol/framework/src/createRPCLookupTable";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { handleRPCResponse } from "@personalidol/framework/src/handleRPCResponse";
-import { isPowerOfTwo } from "@personalidol/math/src/isPowerOfTwo";
-import { reuseResponse } from "@personalidol/framework/src/reuseResponse";
+import { attachMultiRouter } from "../../framework/src/attachMultiRouter";
+import { createReusedResponsesCache } from "../../framework/src/createReusedResponsesCache";
+import { createReusedResponsesUsage } from "../../framework/src/createReusedResponsesUsage";
+import { createRouter } from "../../framework/src/createRouter";
+import { createRPCLookupTable } from "../../framework/src/createRPCLookupTable";
+import { generateUUID } from "../../math/src/generateUUID";
+import { handleRPCResponse } from "../../framework/src/handleRPCResponse";
+import { isPowerOfTwo } from "../../math/src/isPowerOfTwo";
+import { reuseResponse } from "../../framework/src/reuseResponse";
 
 import { imageDataBufferResponseToImageData } from "./imageDataBufferResponseToImageData";
 import { isImageBitmap } from "./isImageBitmap";
@@ -15,11 +15,11 @@ import { requestTexture } from "./requestTexture";
 
 import type { Logger } from "loglevel";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { ReusedResponsesCache } from "@personalidol/framework/src/ReusedResponsesCache.type";
-import type { ReusedResponsesUsage } from "@personalidol/framework/src/ReusedResponsesUsage.type";
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
-import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { ReusedResponsesCache } from "../../framework/src/ReusedResponsesCache.type";
+import type { ReusedResponsesUsage } from "../../framework/src/ReusedResponsesUsage.type";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
+import type { RPCMessage } from "../../framework/src/RPCMessage.type";
 
 import type { Atlas } from "./Atlas.type";
 import type { AtlasResponse } from "./AtlasResponse.type";

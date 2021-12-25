@@ -1,13 +1,13 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { passiveEventListener } from "@personalidol/framework/src/passiveEventListener";
+import { generateUUID } from "../../math/src/generateUUID";
+import { passiveEventListener } from "../../framework/src/passiveEventListener";
 
 import { isKeyboardKeyName } from "./isKeyboardKeyName";
 import { KeyboardIndices } from "./KeyboardIndices.enum";
 
 import type { Logger } from "loglevel";
 
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { WindowFocusObserverState } from "@personalidol/dom/src/WindowFocusObserverState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { WindowFocusObserverState } from "../../dom/src/WindowFocusObserverState.type";
 
 import type { KeyboardKeyName } from "./KeyboardKeyName.type";
 import type { KeyboardObserver as IKeyboardObserver } from "./KeyboardObserver.interface";

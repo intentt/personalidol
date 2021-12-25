@@ -1,8 +1,8 @@
-import { DimensionsIndices } from "@personalidol/framework/src/DimensionsIndices.enum";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { DimensionsIndices } from "../../framework/src/DimensionsIndices.enum";
+import { generateUUID } from "../../math/src/generateUUID";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { ResizeableRenderer } from "@personalidol/framework/src/ResizeableRenderer.interface";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { ResizeableRenderer } from "../../framework/src/ResizeableRenderer.interface";
 
 import type { RendererDimensionsManager as IRendererDimensionsManager } from "./RendererDimensionsManager.interface";
 

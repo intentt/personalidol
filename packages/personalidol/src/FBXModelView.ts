@@ -4,14 +4,14 @@ import { Group } from "three/src/objects/Group";
 import { Mesh } from "three/src/objects/Mesh";
 import { MeshStandardMaterial } from "three/src/materials/MeshStandardMaterial";
 
-import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
-import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { mountAll } from "@personalidol/framework/src/mountAll";
-import { unmountAll } from "@personalidol/framework/src/unmountAll";
-import { sendRPCMessage } from "@personalidol/framework/src/sendRPCMessage";
+import { disposableGeneric } from "../../framework/src/disposableGeneric";
+import { disposableMaterial } from "../../framework/src/disposableMaterial";
+import { disposeAll } from "../../framework/src/disposeAll";
+import { preload as fPreload } from "../../framework/src/preload";
+import { generateUUID } from "../../math/src/generateUUID";
+import { mountAll } from "../../framework/src/mountAll";
+import { unmountAll } from "../../framework/src/unmountAll";
+import { sendRPCMessage } from "../../framework/src/sendRPCMessage";
 
 import { createEntityViewState } from "./createEntityViewState";
 import { MeshUserSettingsManager } from "./MeshUserSettingsManager";
@@ -21,13 +21,13 @@ import type { Group as IGroup } from "three/src/objects/Group";
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { GeometryAttributes } from "@personalidol/framework/src/GeometryAttributes.type";
-import type { MountableCallback } from "@personalidol/framework/src/MountableCallback.type";
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
-import type { UserSettingsManager } from "@personalidol/framework/src/UserSettingsManager.interface";
+import type { DisposableCallback } from "../../framework/src/DisposableCallback.type";
+import type { GeometryAttributes } from "../../framework/src/GeometryAttributes.type";
+import type { MountableCallback } from "../../framework/src/MountableCallback.type";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { UnmountableCallback } from "../../framework/src/UnmountableCallback.type";
+import type { UserSettingsManager } from "../../framework/src/UserSettingsManager.interface";
 
 import type { EntityFBXModel } from "./EntityFBXModel.type";
 import type { EntityView } from "./EntityView.interface";

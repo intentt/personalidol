@@ -1,4 +1,4 @@
-import { name } from "@personalidol/framework/src/name";
+import { name } from "../../framework/src/name";
 
 import { isTargeting } from "./isTargeting";
 import { createViewBuildingPlan } from "./createViewBuildingPlan";
@@ -7,7 +7,7 @@ import { LocationMapEntityFilter } from "./LocationMapEntityFilter";
 import type { Logger } from "loglevel";
 import type { Texture as ITexture } from "three/src/textures/Texture";
 
-import type { Evaluator } from "@personalidol/expression-language/src/Evaluator.interface";
+import type { Evaluator } from "../../expression-language/src/Evaluator.interface";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityView } from "./EntityView.interface";

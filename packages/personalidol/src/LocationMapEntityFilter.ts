@@ -1,4 +1,4 @@
-import type { Evaluator } from "@personalidol/expression-language/src/Evaluator.interface";
+import type { Evaluator } from "../../expression-language/src/Evaluator.interface";
 
 import type { AnyEntity } from "./AnyEntity.type";
 

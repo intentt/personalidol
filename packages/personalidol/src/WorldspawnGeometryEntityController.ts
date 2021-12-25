@@ -1,12 +1,12 @@
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { name } from "@personalidol/framework/src/name";
+import { createRouter } from "../../framework/src/createRouter";
+import { generateUUID } from "../../math/src/generateUUID";
+import { name } from "../../framework/src/name";
 
 import { createEntityControllerState } from "./createEntityControllerState";
 
-import type { MessageSimulantDispose } from "@personalidol/dynamics/src/MessageSimulantDispose.type";
-import type { MessageSimulantRegister } from "@personalidol/dynamics/src/MessageSimulantRegister.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { MessageSimulantDispose } from "../../dynamics/src/MessageSimulantDispose.type";
+import type { MessageSimulantRegister } from "../../dynamics/src/MessageSimulantRegister.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { GeometryWithBrushesEntity } from "./GeometryWithBrushesEntity.type";

@@ -1,10 +1,10 @@
 import { h } from "preact";
 
-import { isStatsReport } from "@personalidol/framework/src/isStatsReport";
+import { isStatsReport } from "../../framework/src/isStatsReport";
 
 import { DOMElementView } from "./DOMElementView";
 
-import type { StatsReport } from "@personalidol/framework/src/StatsReport.type";
+import type { StatsReport } from "../../framework/src/StatsReport.type";
 
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";
 import type { StatsReporterDOMElementView as IStatsReporterDOMElementView } from "./StatsReporterDOMElementView.interface";

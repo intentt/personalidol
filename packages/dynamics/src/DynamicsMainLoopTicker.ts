@@ -1,10 +1,10 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { Logger } from "loglevel";
 
-import type { MainLoopTicker } from "@personalidol/framework/src/MainLoopTicker.interface";
-import type { MainLoopTickerState } from "@personalidol/framework/src/MainLoopTickerState.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { MainLoopTicker } from "../../framework/src/MainLoopTicker.interface";
+import type { MainLoopTickerState } from "../../framework/src/MainLoopTickerState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 /**
  * This ticker aims to keep any number of updates with stricty the same delta.

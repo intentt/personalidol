@@ -1,19 +1,19 @@
 import { Vector3 } from "three/src/math/Vector3";
 
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { name } from "@personalidol/framework/src/name";
-import { RigidBodyRemoteHandle } from "@personalidol/dynamics/src/RigidBodyRemoteHandle";
+import { createRouter } from "../../framework/src/createRouter";
+import { generateUUID } from "../../math/src/generateUUID";
+import { name } from "../../framework/src/name";
+import { RigidBodyRemoteHandle } from "../../dynamics/src/RigidBodyRemoteHandle";
 
 import { createEntityControllerState } from "./createEntityControllerState";
 
 import type { Logger } from "loglevel";
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
-import type { MessageSimulantDispose } from "@personalidol/dynamics/src/MessageSimulantDispose.type";
-import type { MessageSimulantRegister } from "@personalidol/dynamics/src/MessageSimulantRegister.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { Vector3Simple } from "@personalidol/quakemaps/src/Vector3Simple.type";
+import type { MessageSimulantDispose } from "../../dynamics/src/MessageSimulantDispose.type";
+import type { MessageSimulantRegister } from "../../dynamics/src/MessageSimulantRegister.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { Vector3Simple } from "../../quakemaps/src/Vector3Simple.type";
 
 import type { CharacterView } from "./CharacterView.interface";
 import type { EntityControllerState } from "./EntityControllerState.type";

@@ -1,14 +1,14 @@
 import { Fragment, h } from "preact";
 
-import { CSS2DObjectState } from "@personalidol/three-css2d-renderer/src/CSS2DObjectState";
-import { CSS2DObjectStateIndices } from "@personalidol/three-css2d-renderer/src/CSS2DObjectStateIndices.enum";
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
-import { isSharedArrayBuffer } from "@personalidol/framework/src/isSharedArrayBuffer";
+import { CSS2DObjectState } from "../../three-css2d-renderer/src/CSS2DObjectState";
+import { CSS2DObjectStateIndices } from "../../three-css2d-renderer/src/CSS2DObjectStateIndices.enum";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
+import { isSharedArrayBuffer } from "../../framework/src/isSharedArrayBuffer";
 
 import { DOMZIndex } from "./DOMZIndex.enum";
 
-import type { DOMElementProps } from "@personalidol/dom-renderer/src/DOMElementProps.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { DOMElementProps } from "../../dom-renderer/src/DOMElementProps.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";
 

@@ -1,15 +1,15 @@
 import { Fragment, h } from "preact";
 
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
-import { isCanvasTransferControlToOffscreenSupported } from "@personalidol/framework/src/isCanvasTransferControlToOffscreenSupported";
-import { isCustomEvent } from "@personalidol/framework/src/isCustomEvent";
-import { unary } from "@personalidol/framework/src/unary";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
+import { isCanvasTransferControlToOffscreenSupported } from "../../framework/src/isCanvasTransferControlToOffscreenSupported";
+import { isCustomEvent } from "../../framework/src/isCustomEvent";
+import { unary } from "../../framework/src/unary";
 
 import { CameraParameters } from "./CameraParameters.enum";
 import { DOMBreakpoints } from "./DOMBreakpoints.enum";
 import { UserSettingsDynamicLightQualityMap } from "./UserSettingsDynamicLightQualityMap.enum";
 
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";
 import type { MessageUIStateChange } from "./MessageUIStateChange.type";

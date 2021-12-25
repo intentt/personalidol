@@ -1,4 +1,4 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 import { name } from "./name";
 
 import type { Logger } from "loglevel";

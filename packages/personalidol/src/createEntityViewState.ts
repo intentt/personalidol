@@ -1,4 +1,4 @@
-import { createViewState } from "@personalidol/views/src/createViewState";
+import { createViewState } from "../../views/src/createViewState";
 
 import type { EntityViewState } from "./EntityViewState.type";
 

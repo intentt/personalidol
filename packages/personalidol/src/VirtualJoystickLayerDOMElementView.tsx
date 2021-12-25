@@ -2,13 +2,13 @@ import clsx from "clsx";
 import { h } from "preact";
 import { Vector2 } from "three/src/math/Vector2";
 
-import { computePrimaryTouchStretchVector } from "@personalidol/input/src/computePrimaryTouchStretchVector";
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
-import { getPrimaryTouchInitialClientX } from "@personalidol/input/src/getPrimaryTouchInitialClientX";
-import { getPrimaryTouchInitialClientY } from "@personalidol/input/src/getPrimaryTouchInitialClientY";
-import { isPrimaryTouchInDimensionsBounds } from "@personalidol/input/src/isPrimaryTouchInDimensionsBounds";
-import { isPrimaryTouchInitiatedByRootElement } from "@personalidol/input/src/isPrimaryTouchInitiatedByRootElement";
-import { isPrimaryTouchPressed } from "@personalidol/input/src/isPrimaryTouchPressed";
+import { computePrimaryTouchStretchVector } from "../../input/src/computePrimaryTouchStretchVector";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
+import { getPrimaryTouchInitialClientX } from "../../input/src/getPrimaryTouchInitialClientX";
+import { getPrimaryTouchInitialClientY } from "../../input/src/getPrimaryTouchInitialClientY";
+import { isPrimaryTouchInDimensionsBounds } from "../../input/src/isPrimaryTouchInDimensionsBounds";
+import { isPrimaryTouchInitiatedByRootElement } from "../../input/src/isPrimaryTouchInitiatedByRootElement";
+import { isPrimaryTouchPressed } from "../../input/src/isPrimaryTouchPressed";
 
 import { DOMZIndex } from "./DOMZIndex.enum";
 

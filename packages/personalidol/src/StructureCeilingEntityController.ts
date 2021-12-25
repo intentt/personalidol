@@ -1,8 +1,8 @@
 import { Raycaster } from "three/src/core/Raycaster";
 import { Vector2 } from "three/src/math/Vector2";
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { name } from "@personalidol/framework/src/name";
+import { generateUUID } from "../../math/src/generateUUID";
+import { name } from "../../framework/src/name";
 
 import { createEntityControllerState } from "./createEntityControllerState";
 
@@ -11,8 +11,8 @@ import type { Logger } from "loglevel";
 import type { Raycaster as IRaycaster } from "three/src/core/Raycaster";
 import type { Vector2 as IVector2 } from "three/src/math/Vector2";
 
-import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { CameraController } from "../../framework/src/CameraController.interface";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { EntityController } from "./EntityController.interface";
 import type { EntityControllerState } from "./EntityControllerState.type";

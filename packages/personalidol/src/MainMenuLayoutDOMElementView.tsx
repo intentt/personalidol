@@ -1,6 +1,6 @@
 import { h } from "preact";
 
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
 
 import { DOMBreakpoints } from "./DOMBreakpoints.enum";
 import { DOMZIndex } from "./DOMZIndex.enum";

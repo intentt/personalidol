@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { h } from "preact";
 
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
-import { must } from "@personalidol/framework/src/must";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
+import { must } from "../../framework/src/must";
 
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";
 

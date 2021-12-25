@@ -1,45 +1,45 @@
 import Loglevel from "loglevel";
 
-import { createMultiThreadMessageChannel } from "@personalidol/framework/src/createMultiThreadMessageChannel";
-import { createSingleThreadMessageChannel } from "@personalidol/framework/src/createSingleThreadMessageChannel";
-import { DimensionsState } from "@personalidol/framework/src/DimensionsState";
-import { domElementsLookup } from "@personalidol/personalidol/src/domElementsLookup";
-import { DOMElementViewBuilder } from "@personalidol/personalidol/src/DOMElementViewBuilder";
-import { DOMUIController } from "@personalidol/dom-renderer/src/DOMUIController";
-import { EventBus } from "@personalidol/framework/src/EventBus";
-import { FontPreloadService } from "@personalidol/dom/src/FontPreloadService";
-import { getHTMLElementById } from "@personalidol/dom/src/getHTMLElementById";
-import { HTMLElementSizeHandle } from "@personalidol/dom/src/HTMLElementSizeHandle";
-import { InternationalizationService } from "@personalidol/i18n/src/InternationalizationService";
-import { isCanvasTransferControlToOffscreenSupported } from "@personalidol/framework/src/isCanvasTransferControlToOffscreenSupported";
-import { isSharedArrayBufferSupported } from "@personalidol/framework/src/isSharedArrayBufferSupported";
-import { isUserSettingsValid } from "@personalidol/personalidol/src/isUserSettingsValid";
-import { KeyboardObserver } from "@personalidol/input/src/KeyboardObserver";
-import { KeyboardState } from "@personalidol/input/src/KeyboardState";
-import { LanguageUserSettingsManager } from "@personalidol/personalidol/src/LanguageUserSettingsManager";
-import { LocalStorageUserSettingsSync } from "@personalidol/framework/src/LocalStorageUserSettingsSync";
-import { MainLoop } from "@personalidol/framework/src/MainLoop";
-import { MainLoopStatsHook } from "@personalidol/framework/src/MainLoopStatsHook";
-import { MouseObserver } from "@personalidol/input/src/MouseObserver";
-import { MouseState } from "@personalidol/input/src/MouseState";
-import { MouseWheelObserver } from "@personalidol/input/src/MouseWheelObserver";
-import { MultiThreadUserSettingsSync } from "@personalidol/framework/src/MultiThreadUserSettingsSync";
-import { PerformanceStatsHook } from "@personalidol/framework/src/PerformanceStatsHook";
-import { prefetch } from "@personalidol/framework/src/prefetch";
-import { preload } from "@personalidol/framework/src/preload";
-import { Preloader } from "@personalidol/framework/src/Preloader";
-import { RendererDimensionsManager } from "@personalidol/dom-renderer/src/RendererDimensionsManager";
-import { RequestAnimationFrameScheduler } from "@personalidol/framework/src/RequestAnimationFrameScheduler";
-import { ServiceManager } from "@personalidol/framework/src/ServiceManager";
-import { ServiceWorkerManager } from "@personalidol/service-worker/src/ServiceWorkerManager";
-import { StatsCollector } from "@personalidol/dom-renderer/src/StatsCollector";
-import { StatsReporter } from "@personalidol/framework/src/StatsReporter";
-import { TouchObserver } from "@personalidol/input/src/TouchObserver";
-import { TouchState } from "@personalidol/input/src/TouchState";
-import { UserSettings } from "@personalidol/personalidol/src/UserSettings";
-import { WindowFocusObserver } from "@personalidol/dom/src/WindowFocusObserver";
-import { WindowResizeObserver } from "@personalidol/dom/src/WindowResizeObserver";
-import { WorkerServiceClient } from "@personalidol/framework/src/WorkerServiceClient";
+import { createMultiThreadMessageChannel } from "../../framework/src/createMultiThreadMessageChannel";
+import { createSingleThreadMessageChannel } from "../../framework/src/createSingleThreadMessageChannel";
+import { DimensionsState } from "../../framework/src/DimensionsState";
+import { domElementsLookup } from "../../personalidol/src/domElementsLookup";
+import { DOMElementViewBuilder } from "../../personalidol/src/DOMElementViewBuilder";
+import { DOMUIController } from "../../dom-renderer/src/DOMUIController";
+import { EventBus } from "../../framework/src/EventBus";
+import { FontPreloadService } from "../../dom/src/FontPreloadService";
+import { getHTMLElementById } from "../../dom/src/getHTMLElementById";
+import { HTMLElementSizeHandle } from "../../dom/src/HTMLElementSizeHandle";
+import { InternationalizationService } from "../../i18n/src/InternationalizationService";
+import { isCanvasTransferControlToOffscreenSupported } from "../../framework/src/isCanvasTransferControlToOffscreenSupported";
+import { isSharedArrayBufferSupported } from "../../framework/src/isSharedArrayBufferSupported";
+import { isUserSettingsValid } from "../../personalidol/src/isUserSettingsValid";
+import { KeyboardObserver } from "../../input/src/KeyboardObserver";
+import { KeyboardState } from "../../input/src/KeyboardState";
+import { LanguageUserSettingsManager } from "../../personalidol/src/LanguageUserSettingsManager";
+import { LocalStorageUserSettingsSync } from "../../framework/src/LocalStorageUserSettingsSync";
+import { MainLoop } from "../../framework/src/MainLoop";
+import { MainLoopStatsHook } from "../../framework/src/MainLoopStatsHook";
+import { MouseObserver } from "../../input/src/MouseObserver";
+import { MouseState } from "../../input/src/MouseState";
+import { MouseWheelObserver } from "../../input/src/MouseWheelObserver";
+import { MultiThreadUserSettingsSync } from "../../framework/src/MultiThreadUserSettingsSync";
+import { PerformanceStatsHook } from "../../framework/src/PerformanceStatsHook";
+import { prefetch } from "../../framework/src/prefetch";
+import { preload } from "../../framework/src/preload";
+import { Preloader } from "../../framework/src/Preloader";
+import { RendererDimensionsManager } from "../../dom-renderer/src/RendererDimensionsManager";
+import { RequestAnimationFrameScheduler } from "../../framework/src/RequestAnimationFrameScheduler";
+import { ServiceManager } from "../../framework/src/ServiceManager";
+import { ServiceWorkerManager } from "../../service-worker/src/ServiceWorkerManager";
+import { StatsCollector } from "../../dom-renderer/src/StatsCollector";
+import { StatsReporter } from "../../framework/src/StatsReporter";
+import { TouchObserver } from "../../input/src/TouchObserver";
+import { TouchState } from "../../input/src/TouchState";
+import { UserSettings } from "../../personalidol/src/UserSettings";
+import { WindowFocusObserver } from "../../dom/src/WindowFocusObserver";
+import { WindowResizeObserver } from "../../dom/src/WindowResizeObserver";
+import { WorkerServiceClient } from "../../framework/src/WorkerServiceClient";
 
 import { workers } from "./workers";
 import { createAtlasService } from "./createAtlasService";
@@ -90,16 +90,46 @@ async function bootstrap() {
   const windowResizeObserver = WindowResizeObserver(dimensionsState, mainLoop.ticker.tickTimerState);
 
   const windowFocusObserver = WindowFocusObserver(logger, mainLoop.ticker.tickTimerState);
-  const keyboardObserver = KeyboardObserver(logger, canvas, keyboardState, windowFocusObserver.state, mainLoop.ticker.tickTimerState);
-  const mouseObserver = MouseObserver(canvas, dimensionsState, mouseState, windowFocusObserver.state, mainLoop.ticker.tickTimerState);
-  const touchObserver = TouchObserver(canvas, dimensionsState, touchState, windowFocusObserver.state, mainLoop.ticker.tickTimerState);
+  const keyboardObserver = KeyboardObserver(
+    logger,
+    canvas,
+    keyboardState,
+    windowFocusObserver.state,
+    mainLoop.ticker.tickTimerState
+  );
+  const mouseObserver = MouseObserver(
+    canvas,
+    dimensionsState,
+    mouseState,
+    windowFocusObserver.state,
+    mainLoop.ticker.tickTimerState
+  );
+  const touchObserver = TouchObserver(
+    canvas,
+    dimensionsState,
+    touchState,
+    windowFocusObserver.state,
+    mainLoop.ticker.tickTimerState
+  );
 
   const userSettings = UserSettings.createEmptyState(devicePixelRatio);
   const userSettingsMessageChannel = createMultiThreadMessageChannel();
-  const localStorageUserSettingsSync = LocalStorageUserSettingsSync(userSettings, isUserSettingsValid, THREAD_DEBUG_NAME);
-  const multiThreadUserSettingsSync = MultiThreadUserSettingsSync(userSettings, userSettingsMessageChannel.port1, THREAD_DEBUG_NAME);
+  const localStorageUserSettingsSync = LocalStorageUserSettingsSync(
+    userSettings,
+    isUserSettingsValid,
+    THREAD_DEBUG_NAME
+  );
+  const multiThreadUserSettingsSync = MultiThreadUserSettingsSync(
+    userSettings,
+    userSettingsMessageChannel.port1,
+    THREAD_DEBUG_NAME
+  );
 
-  const statsReporter = StatsReporter(THREAD_DEBUG_NAME, statsReporterMessageChannel.port2, mainLoop.ticker.tickTimerState);
+  const statsReporter = StatsReporter(
+    THREAD_DEBUG_NAME,
+    statsReporterMessageChannel.port2,
+    mainLoop.ticker.tickTimerState
+  );
 
   statsReporter.hooks.add(MainLoopStatsHook(mainLoop));
 
@@ -146,7 +176,10 @@ async function bootstrap() {
 
   const internationalizationToProgressMessageChannel = createMultiThreadMessageChannel();
   const i18next = createI18next(logger, internationalizationToProgressMessageChannel.port2);
-  const internationalizationService = InternationalizationService(i18next, internationalizationToProgressMessageChannel.port2);
+  const internationalizationService = InternationalizationService(
+    i18next,
+    internationalizationToProgressMessageChannel.port2
+  );
   const internationalizationMessageChannel = createMultiThreadMessageChannel();
 
   internationalizationService.registerMessagePort(internationalizationMessageChannel.port1);
@@ -270,7 +303,11 @@ async function bootstrap() {
 
   addProgressMessagePort(fontPreloadToProgressMessageChannel.port1, false);
 
-  const fontPreloadService = FontPreloadService(logger, fontPreloadMessageChannel.port1, fontPreloadToProgressMessageChannel.port2);
+  const fontPreloadService = FontPreloadService(
+    logger,
+    fontPreloadMessageChannel.port1,
+    fontPreloadToProgressMessageChannel.port2
+  );
 
   serviceManager.services.add(fontPreloadService);
 
@@ -284,7 +321,13 @@ async function bootstrap() {
 
   addProgressMessagePort(texturesToProgressMessageChannel.port1, false);
 
-  const texturesService = await createTexturesService(logger, mainLoop, serviceManager, texturesToProgressMessageChannel.port2, websiteToProgressMessageChannel.port2);
+  const texturesService = await createTexturesService(
+    logger,
+    mainLoop,
+    serviceManager,
+    texturesToProgressMessageChannel.port2,
+    websiteToProgressMessageChannel.port2
+  );
 
   texturesService.registerMessagePort(texturesMessageChannel.port1);
 
@@ -294,10 +337,14 @@ async function bootstrap() {
 
   // Both services are going to land in the same thread in this scenario.
   const atlasToTextureMessageChannel =
-    "main" === texturesService.thread && !isCanvasTransferControlToOffscreenSupported() ? createSingleThreadMessageChannel() : createMultiThreadMessageChannel();
+    "main" === texturesService.thread && !isCanvasTransferControlToOffscreenSupported()
+      ? createSingleThreadMessageChannel()
+      : createMultiThreadMessageChannel();
   const atlasToProgressMessageChannel = createMultiThreadMessageChannel();
   const atlasToStatsMessageChannel =
-    "main" === statsCollector.thread && !isCanvasTransferControlToOffscreenSupported() ? createSingleThreadMessageChannel() : createMultiThreadMessageChannel();
+    "main" === statsCollector.thread && !isCanvasTransferControlToOffscreenSupported()
+      ? createSingleThreadMessageChannel()
+      : createMultiThreadMessageChannel();
 
   addProgressMessagePort(atlasToProgressMessageChannel.port1, false);
   texturesService.registerMessagePort(atlasToTextureMessageChannel.port1);
@@ -324,7 +371,12 @@ async function bootstrap() {
   addProgressMessagePort(dynamicsToProgressMessageChannel.port1, false);
   statsCollector.registerMessagePort(dynamicsToStatsMessageChannel.port1);
 
-  await prefetch(logger, websiteToProgressMessageChannel.port2, "worker", `${__STATIC_BASE_PATH}/lib/ammo.wasm.js?${__CACHE_BUST}`);
+  await prefetch(
+    logger,
+    websiteToProgressMessageChannel.port2,
+    "worker",
+    `${__STATIC_BASE_PATH}/lib/ammo.wasm.js?${__CACHE_BUST}`
+  );
   await prefetch(logger, websiteToProgressMessageChannel.port2, "worker", workers.dynamics.url);
 
   const dynamicsWorker = new Worker(workers.dynamics.url, {

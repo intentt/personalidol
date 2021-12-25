@@ -1,5 +1,5 @@
 import { createRouter } from "./createRouter";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { MainLoopUpdatableState } from "./MainLoopUpdatableState.type";
 import type { UserSettings } from "./UserSettings.type";

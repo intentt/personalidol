@@ -1,8 +1,8 @@
-import type { Disposable } from "@personalidol/framework/src/Disposable.interface";
-import type { MainLoopUpdatable } from "@personalidol/framework/src/MainLoopUpdatable.interface";
-import type { Mountable } from "@personalidol/framework/src/Mountable.interface";
-import type { Pauseable } from "@personalidol/framework/src/Pauseable.interface";
-import type { Preloadable } from "@personalidol/framework/src/Preloadable.interface";
+import type { Disposable } from "../../framework/src/Disposable.interface";
+import type { MainLoopUpdatable } from "../../framework/src/MainLoopUpdatable.interface";
+import type { Mountable } from "../../framework/src/Mountable.interface";
+import type { Pauseable } from "../../framework/src/Pauseable.interface";
+import type { Preloadable } from "../../framework/src/Preloadable.interface";
 
 import type { SimulantState } from "./SimulantState.type";
 

@@ -2,13 +2,13 @@
 
 import Loglevel from "loglevel";
 
-import { AtlasService } from "@personalidol/texture-loader/src/AtlasService";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { ServiceBuilder } from "@personalidol/framework/src/ServiceBuilder";
+import { AtlasService } from "../../texture-loader/src/AtlasService";
+import { createRouter } from "../../framework/src/createRouter";
+import { ServiceBuilder } from "../../framework/src/ServiceBuilder";
 
-import type { AtlasService as IAtlasService } from "@personalidol/texture-loader/src/AtlasService.interface";
-import type { MessageWorkerReady } from "@personalidol/framework/src/MessageWorkerReady.type";
-import type { ServiceBuilder as IServiceBuilder } from "@personalidol/framework/src/ServiceBuilder.interface";
+import type { AtlasService as IAtlasService } from "../../texture-loader/src/AtlasService.interface";
+import type { MessageWorkerReady } from "../../framework/src/MessageWorkerReady.type";
+import type { ServiceBuilder as IServiceBuilder } from "../../framework/src/ServiceBuilder.interface";
 
 type Dependencies = {
   canvas: OffscreenCanvas;
@@ -41,7 +41,14 @@ const serviceBuilder: IServiceBuilder<Dependencies> = ServiceBuilder<Dependencie
 serviceBuilder.onready.add(onDependenciesReady);
 
 function onDependenciesReady(dependencies: Dependencies): void {
-  _atlasService = AtlasService(logger, dependencies.canvas, dependencies.context2d, "worker", dependencies.progressMessagePort, dependencies.texturesMessagePort);
+  _atlasService = AtlasService(
+    logger,
+    dependencies.canvas,
+    dependencies.context2d,
+    "worker",
+    dependencies.progressMessagePort,
+    dependencies.texturesMessagePort
+  );
 }
 
 function notifyReady(): void {

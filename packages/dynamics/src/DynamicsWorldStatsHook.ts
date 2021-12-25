@@ -1,10 +1,10 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
 import type { SimulantsLookup } from "./SimulantsLookup.type";
-import type { StatsHook } from "@personalidol/framework/src/StatsHook.interface";
-import type { StatsReport } from "@personalidol/framework/src/StatsReport.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { StatsHook } from "../../framework/src/StatsHook.interface";
+import type { StatsReport } from "../../framework/src/StatsReport.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { DynamicsWorld } from "./DynamicsWorld.interface";
 

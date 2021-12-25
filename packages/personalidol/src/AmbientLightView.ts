@@ -1,8 +1,8 @@
 import { AmbientLight } from "three/src/lights/AmbientLight";
 
 import { BackgroundLightUserSettingsManager } from "./BackgroundLightUserSettingsManager";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
+import { generateUUID } from "../../math/src/generateUUID";
+import { preload as fPreload } from "../../framework/src/preload";
 
 import { createEntityViewState } from "./createEntityViewState";
 

@@ -1,9 +1,9 @@
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { createRouter } from "../../framework/src/createRouter";
+import { generateUUID } from "../../math/src/generateUUID";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { StatsReport } from "@personalidol/framework/src/StatsReport.type";
-import type { UserSettings } from "@personalidol/framework/src/UserSettings.type";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { StatsReport } from "../../framework/src/StatsReport.type";
+import type { UserSettings } from "../../framework/src/UserSettings.type";
 
 import type { DOMElementsLookup } from "./DOMElementsLookup.type";
 import type { MessageDOMUIDispose } from "./MessageDOMUIDispose.type";

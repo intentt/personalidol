@@ -4,11 +4,11 @@ import { FloatType, RGBFormat } from "three/src/constants";
 import { ShaderMaterial } from "three/src/materials/ShaderMaterial";
 import { UniformsUtils } from "three/src/renderers/shaders/UniformsUtils";
 
-import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
-import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
-import { randFloat } from "@personalidol/math/src/randFloat";
-import { randInt } from "@personalidol/math/src/randInt";
+import { disposableGeneric } from "../../../framework/src/disposableGeneric";
+import { disposableMaterial } from "../../../framework/src/disposableMaterial";
+import { disposeAll } from "../../../framework/src/disposeAll";
+import { randFloat } from "../../../math/src/randFloat";
+import { randInt } from "../../../math/src/randInt";
 
 import { FullScreenQuad } from "./FullScreenQuad";
 import { Pass } from "./Pass";
@@ -18,7 +18,7 @@ import type { Uniform } from "three/src/core/Uniform";
 import type { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
 import type { WebGLRenderTarget } from "three/src/renderers/WebGLRenderTarget";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
+import type { DisposableCallback } from "../../../framework/src/DisposableCallback.type";
 
 export class GlitchPass extends Pass {
   private _disposables: Set<DisposableCallback> = new Set();
@@ -55,7 +55,12 @@ export class GlitchPass extends Pass {
     disposeAll(this._disposables);
   }
 
-  render(renderer: WebGLRenderer, renderToScreen: boolean, writeBuffer: WebGLRenderTarget, readBuffer: WebGLRenderTarget) {
+  render(
+    renderer: WebGLRenderer,
+    renderToScreen: boolean,
+    writeBuffer: WebGLRenderTarget,
+    readBuffer: WebGLRenderTarget
+  ) {
     this.uniforms["tDiffuse"].value = readBuffer.texture;
     this.uniforms["seed"].value = Math.random(); //default seeding
     this.uniforms["byp"].value = 0;

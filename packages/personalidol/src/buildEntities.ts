@@ -1,15 +1,15 @@
-import { buildGeometryAttributes } from "@personalidol/quakemaps/src/buildGeometryAttributes";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { UnmarshalException } from "@personalidol/quakemaps/src/UnmarshalException";
-import { unmarshalVector3 } from "@personalidol/quakemaps/src/unmarshalVector3";
+import { buildGeometryAttributes } from "../../quakemaps/src/buildGeometryAttributes";
+import { generateUUID } from "../../math/src/generateUUID";
+import { UnmarshalException } from "../../quakemaps/src/UnmarshalException";
+import { unmarshalVector3 } from "../../quakemaps/src/unmarshalVector3";
 
 import type { Vector3 } from "three";
 
-import type { Brush } from "@personalidol/quakemaps/src/Brush.type";
-import type { EntityProperties } from "@personalidol/quakemaps/src/EntityProperties.type";
-import type { EntitySketch } from "@personalidol/quakemaps/src/EntitySketch.type";
-import type { TextureDimensionsResolver } from "@personalidol/quakemaps/src/TextureDimensionsResolver.type";
-import type { Vector3Simple } from "@personalidol/quakemaps/src/Vector3Simple.type";
+import type { Brush } from "../../quakemaps/src/Brush.type";
+import type { EntityProperties } from "../../quakemaps/src/EntityProperties.type";
+import type { EntitySketch } from "../../quakemaps/src/EntitySketch.type";
+import type { TextureDimensionsResolver } from "../../quakemaps/src/TextureDimensionsResolver.type";
+import type { Vector3Simple } from "../../quakemaps/src/Vector3Simple.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityFuncGroup } from "./EntityFuncGroup.type";

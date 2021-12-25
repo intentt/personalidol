@@ -1,14 +1,14 @@
-import { dispose as fDispose } from "@personalidol/framework/src/dispose";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { mount as fMount } from "@personalidol/framework/src/mount";
-import { pause as fPause } from "@personalidol/framework/src/pause";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
-import { unmount as fUnmount } from "@personalidol/framework/src/unmount";
-import { unpause as fUnpause } from "@personalidol/framework/src/unpause";
+import { dispose as fDispose } from "../../framework/src/dispose";
+import { generateUUID } from "../../math/src/generateUUID";
+import { mount as fMount } from "../../framework/src/mount";
+import { pause as fPause } from "../../framework/src/pause";
+import { preload as fPreload } from "../../framework/src/preload";
+import { unmount as fUnmount } from "../../framework/src/unmount";
+import { unpause as fUnpause } from "../../framework/src/unpause";
 
 import type { Logger } from "loglevel";
 
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { View } from "./View.interface";
 import type { ViewBag as IViewBag } from "./ViewBag.interface";

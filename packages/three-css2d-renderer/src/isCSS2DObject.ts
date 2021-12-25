@@ -1,6 +1,6 @@
 import type { Object3D } from "three/src/core/Object3D";
 
-import type { DOMElementsLookup } from "@personalidol/dom-renderer/src/DOMElementsLookup.type";
+import type { DOMElementsLookup } from "../../dom-renderer/src/DOMElementsLookup.type";
 
 import type { CSS2DObject } from "./CSS2DObject.interface";
 

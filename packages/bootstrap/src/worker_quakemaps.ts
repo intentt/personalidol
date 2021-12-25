@@ -3,29 +3,29 @@
 import Loglevel from "loglevel";
 import { Vector3 } from "three/src/math/Vector3";
 
-import { attachMultiRouter } from "@personalidol/framework/src/attachMultiRouter";
-import { buildEntities } from "@personalidol/personalidol/src/buildEntities";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { createRPCLookupTable } from "@personalidol/framework/src/createRPCLookupTable";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { getI18NextKeyNamespace } from "@personalidol/i18n/src/getI18NextKeyNamespace";
-import { handleRPCResponse } from "@personalidol/framework/src/handleRPCResponse";
-import { monitorResponseProgress } from "@personalidol/framework/src/monitorResponseProgress";
-import { Progress } from "@personalidol/framework/src/Progress";
-import { sendRPCMessage } from "@personalidol/framework/src/sendRPCMessage";
-import { unmarshalMap } from "@personalidol/quakemaps/src/unmarshalMap";
+import { attachMultiRouter } from "../../framework/src/attachMultiRouter";
+import { buildEntities } from "../../personalidol/src/buildEntities";
+import { createRouter } from "../../framework/src/createRouter";
+import { createRPCLookupTable } from "../../framework/src/createRPCLookupTable";
+import { generateUUID } from "../../math/src/generateUUID";
+import { getI18NextKeyNamespace } from "../../i18n/src/getI18NextKeyNamespace";
+import { handleRPCResponse } from "../../framework/src/handleRPCResponse";
+import { monitorResponseProgress } from "../../framework/src/monitorResponseProgress";
+import { Progress } from "../../framework/src/Progress";
+import { sendRPCMessage } from "../../framework/src/sendRPCMessage";
+import { unmarshalMap } from "../../quakemaps/src/unmarshalMap";
 
 import type { Vector3 as IVector3 } from "three";
 
-import type { AnyEntity } from "@personalidol/personalidol/src/AnyEntity.type";
-import type { AtlasResponse } from "@personalidol/texture-loader/src/AtlasResponse.type";
-import type { AtlasTextureDimension } from "@personalidol/texture-loader/src/AtlasTextureDimension.type";
-import type { EntitySketch } from "@personalidol/quakemaps/src/EntitySketch.type";
-import type { MessageWorkerReady } from "@personalidol/framework/src/MessageWorkerReady.type";
-import type { Progress as IProgress } from "@personalidol/framework/src/Progress.interface";
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
-import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
-import type { Vector3Simple } from "@personalidol/quakemaps/src/Vector3Simple.type";
+import type { AnyEntity } from "../../personalidol/src/AnyEntity.type";
+import type { AtlasResponse } from "../../texture-loader/src/AtlasResponse.type";
+import type { AtlasTextureDimension } from "../../texture-loader/src/AtlasTextureDimension.type";
+import type { EntitySketch } from "../../quakemaps/src/EntitySketch.type";
+import type { MessageWorkerReady } from "../../framework/src/MessageWorkerReady.type";
+import type { Progress as IProgress } from "../../framework/src/Progress.interface";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
+import type { RPCMessage } from "../../framework/src/RPCMessage.type";
+import type { Vector3Simple } from "../../quakemaps/src/Vector3Simple.type";
 
 declare var self: DedicatedWorkerGlobalScope;
 
@@ -48,7 +48,10 @@ const _atlasMessageRouter = createRouter({
   textureAtlas: handleRPCResponse(_rpcLookupTable),
 });
 
-function _estimateResourcesToLoad(entitySketches: ReadonlyArray<EntitySketch>, textureUrls: ReadonlyArray<string>): number {
+function _estimateResourcesToLoad(
+  entitySketches: ReadonlyArray<EntitySketch>,
+  textureUrls: ReadonlyArray<string>
+): number {
   const resources: {
     [key: string]: boolean;
   } = {};
@@ -90,9 +93,20 @@ async function _fetchUnmarshalMapContent(
   rpc: string,
   discardOccluding: null | Vector3Simple = null
 ): Promise<void> {
-  const content: string = await fetch(filename).then(monitorResponseProgress(progress.progress, true)).then(_responseToText);
+  const content: string = await fetch(filename)
+    .then(monitorResponseProgress(progress.progress, true))
+    .then(_responseToText);
 
-  return _onMapContentLoaded(progress, messagePort, atlasMessagePort, progressMessagePort, filename, rpc, content, discardOccluding);
+  return _onMapContentLoaded(
+    progress,
+    messagePort,
+    atlasMessagePort,
+    progressMessagePort,
+    filename,
+    rpc,
+    content,
+    discardOccluding
+  );
 }
 
 async function _onMapContentLoaded(
@@ -105,7 +119,9 @@ async function _onMapContentLoaded(
   content: string,
   discardOccluding: null | Vector3Simple = null
 ): Promise<void> {
-  const discardOccludingVector3: null | IVector3 = discardOccluding ? new Vector3(discardOccluding.x, discardOccluding.y, discardOccluding.z) : null;
+  const discardOccludingVector3: null | IVector3 = discardOccluding
+    ? new Vector3(discardOccluding.x, discardOccluding.y, discardOccluding.z)
+    : null;
   const entities: Array<AnyEntity> = [];
   const textureUrls: Array<string> = [];
   const transferables: Array<Transferable> = [];
@@ -117,7 +133,9 @@ async function _onMapContentLoaded(
     }
 
     if (!textureAtlas.textureDimensions.hasOwnProperty(textureName)) {
-      throw new Error(`WORKER(${self.name}) received unexpected texture dimensions resolve request. Texture is not included in the texture atlas: "${textureName}"`);
+      throw new Error(
+        `WORKER(${self.name}) received unexpected texture dimensions resolve request. Texture is not included in the texture atlas: "${textureName}"`
+      );
     }
 
     return textureAtlas.textureDimensions[textureName];
@@ -184,7 +202,17 @@ const quakeMapsMessagesRouter = {
 
     const progress = Progress(_progressMessagePort, "map", filename);
 
-    progress.wait(_fetchUnmarshalMapContent(progress, messagePort, _atlasMessagePort, _progressMessagePort, filename, rpc, discardOccluding));
+    progress.wait(
+      _fetchUnmarshalMapContent(
+        progress,
+        messagePort,
+        _atlasMessagePort,
+        _progressMessagePort,
+        filename,
+        rpc,
+        discardOccluding
+      )
+    );
   },
 };
 

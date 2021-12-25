@@ -21,7 +21,13 @@ export class RenderPass extends Pass {
   overrideMaterial: null | Material;
   scene: Scene;
 
-  constructor(scene: Scene, camera: Camera, overrideMaterial: null | Material = null, clearColor: null | IColor = null, clearAlpha: number = 0) {
+  constructor(
+    scene: Scene,
+    camera: Camera,
+    overrideMaterial: null | Material = null,
+    clearColor: null | IColor = null,
+    clearAlpha: number = 0
+  ) {
     super();
 
     this.scene = scene;
@@ -35,7 +41,12 @@ export class RenderPass extends Pass {
 
   dispose(): void {}
 
-  render(renderer: WebGLRenderer, renderToScreen: boolean, writeBuffer: WebGLRenderTarget, readBuffer: WebGLRenderTarget) {
+  render(
+    renderer: WebGLRenderer,
+    renderToScreen: boolean,
+    writeBuffer: WebGLRenderTarget,
+    readBuffer: WebGLRenderTarget
+  ) {
     const oldAutoClear = renderer.autoClear;
 
     renderer.autoClear = false;

@@ -1,5 +1,5 @@
-import { isCanvasTransferControlToOffscreenSupported } from "@personalidol/framework/src/isCanvasTransferControlToOffscreenSupported";
-import { UserSettings as BaseUserSettings } from "@personalidol/framework/src/UserSettings";
+import { isCanvasTransferControlToOffscreenSupported } from "../../framework/src/isCanvasTransferControlToOffscreenSupported";
+import { UserSettings as BaseUserSettings } from "../../framework/src/UserSettings";
 
 import { CameraParameters } from "./CameraParameters.enum";
 import { UserSettingsDynamicLightQualityMap } from "./UserSettingsDynamicLightQualityMap.enum";

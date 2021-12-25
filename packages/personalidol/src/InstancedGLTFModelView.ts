@@ -1,10 +1,10 @@
 import { Group } from "three/src/objects/Group";
 
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { mountAll } from "@personalidol/framework/src/mountAll";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
-import { unmountAll } from "@personalidol/framework/src/unmountAll";
+import { disposeAll } from "../../framework/src/disposeAll";
+import { generateUUID } from "../../math/src/generateUUID";
+import { mountAll } from "../../framework/src/mountAll";
+import { preload as fPreload } from "../../framework/src/preload";
+import { unmountAll } from "../../framework/src/unmountAll";
 
 import { createEntityViewState } from "./createEntityViewState";
 import { useObjectLabel } from "./useObjectLabel";
@@ -13,10 +13,10 @@ import type { Group as IGroup } from "three/src/objects/Group";
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { MountableCallback } from "@personalidol/framework/src/MountableCallback.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
+import type { DisposableCallback } from "../../framework/src/DisposableCallback.type";
+import type { MountableCallback } from "../../framework/src/MountableCallback.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { UnmountableCallback } from "../../framework/src/UnmountableCallback.type";
 
 import type { EntityGLTFModel } from "./EntityGLTFModel.type";
 import type { EntityView } from "./EntityView.interface";

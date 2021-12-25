@@ -1,24 +1,24 @@
 import { Vector3 } from "three/src/math/Vector3";
 
-import { dispose as fDispose } from "@personalidol/framework/src/dispose";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { longestVector3 } from "@personalidol/framework/src/longestVector3";
-import { mount as fMount } from "@personalidol/framework/src/mount";
-import { name } from "@personalidol/framework/src/name";
-import { pause as fPause } from "@personalidol/framework/src/pause";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
-import { unmount as fUnmount } from "@personalidol/framework/src/unmount";
-import { unpause as fUnpause } from "@personalidol/framework/src/unpause";
+import { dispose as fDispose } from "../../framework/src/dispose";
+import { generateUUID } from "../../math/src/generateUUID";
+import { longestVector3 } from "../../framework/src/longestVector3";
+import { mount as fMount } from "../../framework/src/mount";
+import { name } from "../../framework/src/name";
+import { pause as fPause } from "../../framework/src/pause";
+import { preload as fPreload } from "../../framework/src/preload";
+import { unmount as fUnmount } from "../../framework/src/unmount";
+import { unpause as fUnpause } from "../../framework/src/unpause";
 
 import { createEntityControllerState } from "./createEntityControllerState";
 import { NPCEntityController } from "./NPCEntityController";
 
 import type { Logger } from "loglevel";
 
-import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { UserInputController } from "@personalidol/input/src/UserInputController.interface";
-import type { UserInputMouseController } from "@personalidol/input/src/UserInputMouseController.interface";
+import type { CameraController } from "../../framework/src/CameraController.interface";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { UserInputController } from "../../input/src/UserInputController.interface";
+import type { UserInputMouseController } from "../../input/src/UserInputMouseController.interface";
 
 import type { CharacterView } from "./CharacterView.interface";
 import type { EntityControllerState } from "./EntityControllerState.type";

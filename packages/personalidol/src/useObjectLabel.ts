@@ -1,12 +1,12 @@
-import { CSS2DObject } from "@personalidol/three-css2d-renderer/src/CSS2DObject";
+import { CSS2DObject } from "../../three-css2d-renderer/src/CSS2DObject";
 
 import { isEntityWithObjectLabel } from "./isEntityWithObjectLabel";
 
 import type { Object3D } from "three/src/core/Object3D";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { MountableCallback } from "@personalidol/framework/src/MountableCallback.type";
-import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
+import type { DisposableCallback } from "../../framework/src/DisposableCallback.type";
+import type { MountableCallback } from "../../framework/src/MountableCallback.type";
+import type { UnmountableCallback } from "../../framework/src/UnmountableCallback.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { DOMElementsLookup } from "./DOMElementsLookup.type";

@@ -3,26 +3,26 @@
 import Loglevel from "loglevel";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-import { attachMultiRouter } from "@personalidol/framework/src/attachMultiRouter";
-import { createReusedResponsesCache } from "@personalidol/framework/src/createReusedResponsesCache";
-import { createReusedResponsesUsage } from "@personalidol/framework/src/createReusedResponsesUsage";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
-import { findMesh } from "@personalidol/framework/src/findMesh";
-import { isMesh } from "@personalidol/framework/src/isMesh";
-import { Progress } from "@personalidol/framework/src/Progress";
-import { reuseResponse } from "@personalidol/framework/src/reuseResponse";
+import { attachMultiRouter } from "../../framework/src/attachMultiRouter";
+import { createReusedResponsesCache } from "../../framework/src/createReusedResponsesCache";
+import { createReusedResponsesUsage } from "../../framework/src/createReusedResponsesUsage";
+import { createRouter } from "../../framework/src/createRouter";
+import { disposableMaterial } from "../../framework/src/disposableMaterial";
+import { findMesh } from "../../framework/src/findMesh";
+import { isMesh } from "../../framework/src/isMesh";
+import { Progress } from "../../framework/src/Progress";
+import { reuseResponse } from "../../framework/src/reuseResponse";
 
 import type { BufferAttribute } from "three/src/core/BufferAttribute";
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import type { GLTFLoader as IGLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-import type { GeometryAttributes } from "@personalidol/framework/src/GeometryAttributes.type";
-import type { MessageWorkerReady } from "@personalidol/framework/src/MessageWorkerReady.type";
-import type { ReusedResponse } from "@personalidol/framework/src/ReusedResponse.type";
-import type { ReusedResponsesCache } from "@personalidol/framework/src/ReusedResponsesCache.type";
-import type { ReusedResponsesUsage } from "@personalidol/framework/src/ReusedResponsesUsage.type";
-import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
+import type { GeometryAttributes } from "../../framework/src/GeometryAttributes.type";
+import type { MessageWorkerReady } from "../../framework/src/MessageWorkerReady.type";
+import type { ReusedResponse } from "../../framework/src/ReusedResponse.type";
+import type { ReusedResponsesCache } from "../../framework/src/ReusedResponsesCache.type";
+import type { ReusedResponsesUsage } from "../../framework/src/ReusedResponsesUsage.type";
+import type { RPCMessage } from "../../framework/src/RPCMessage.type";
 
 declare var self: DedicatedWorkerGlobalScope;
 
@@ -71,7 +71,8 @@ function _extractGLTFGeometryAttributes(url: string, gltf: GLTF, modelScale: num
   const position: Float32Array = mesh.geometry.attributes.position.array as Float32Array;
   const uv: Float32Array = mesh.geometry.attributes.uv.array as Float32Array;
 
-  const transferables: Array<ArrayBuffer> = normal.buffer === position.buffer ? [position.buffer, uv.buffer] : [normal.buffer, position.buffer, uv.buffer];
+  const transferables: Array<ArrayBuffer> =
+    normal.buffer === position.buffer ? [position.buffer, uv.buffer] : [normal.buffer, position.buffer, uv.buffer];
   if (index) {
     transferables.push(index.buffer);
   }
@@ -104,11 +105,23 @@ function _gltfLoadWithProgress(url: string, modelScale: number): Promise<Geometr
   );
 }
 
-async function _loadGeometry(messagePort: MessagePort, rpc: string, modelFilename: string, modelName: string, modelScale: number): Promise<void> {
+async function _loadGeometry(
+  messagePort: MessagePort,
+  rpc: string,
+  modelFilename: string,
+  modelName: string,
+  modelScale: number
+): Promise<void> {
   const modelUrl = `${__ASSETS_BASE_PATH}/models/model-glb-${modelName}/${modelFilename}?${__CACHE_BUST}`;
-  const geometry: ReusedResponse<GeometryAttributes> = await reuseResponse(loadingCache, loadingUsage, modelUrl, modelUrl, function (url: string) {
-    return _gltfLoadWithProgress(url, modelScale);
-  });
+  const geometry: ReusedResponse<GeometryAttributes> = await reuseResponse(
+    loadingCache,
+    loadingUsage,
+    modelUrl,
+    modelUrl,
+    function (url: string) {
+      return _gltfLoadWithProgress(url, modelScale);
+    }
+  );
 
   // prettier-ignore
   messagePort.postMessage(

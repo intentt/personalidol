@@ -1,7 +1,7 @@
 import { HemisphereLight } from "three/src/lights/HemisphereLight";
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
+import { generateUUID } from "../../math/src/generateUUID";
+import { preload as fPreload } from "../../framework/src/preload";
 
 import { BackgroundLightUserSettingsManager } from "./BackgroundLightUserSettingsManager";
 import { createEntityViewState } from "./createEntityViewState";

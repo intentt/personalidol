@@ -7,7 +7,7 @@ import { getPrimaryPointerVectorY } from "./getPrimaryPointerVectorY";
 import type { Raycaster as ITHREERaycaster } from "three/src/core/Raycaster";
 import type { Vector2 as IVector2 } from "three/src/math/Vector2";
 
-import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
+import type { CameraController } from "../../framework/src/CameraController.interface";
 import type { Object3D } from "three/src/core/Object3D";
 
 import type { Raycastable } from "./Raycastable.interface";

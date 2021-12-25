@@ -1,9 +1,9 @@
 import { Color } from "three/src/math/Color";
 import { PointLight } from "three/src/lights/PointLight";
 
-import { disposeWebGLRenderTarget } from "@personalidol/framework/src/disposeWebGLRenderTarget";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
+import { disposeWebGLRenderTarget } from "../../framework/src/disposeWebGLRenderTarget";
+import { generateUUID } from "../../math/src/generateUUID";
+import { preload as fPreload } from "../../framework/src/preload";
 
 import { createEntityViewState } from "./createEntityViewState";
 import { ShadowLightUserSettingsManager } from "./ShadowLightUserSettingsManager";

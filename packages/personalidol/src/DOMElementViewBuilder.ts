@@ -1,8 +1,8 @@
 import type { i18n } from "i18next";
 import type { Logger } from "loglevel";
 
-import type { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView.interface";
-import type { DOMElementViewBuilder as IDOMElementViewBuilder } from "@personalidol/dom-renderer/src/DOMElementViewBuilder.interface";
+import type { DOMElementView } from "../../dom-renderer/src/DOMElementView.interface";
+import type { DOMElementViewBuilder as IDOMElementViewBuilder } from "../../dom-renderer/src/DOMElementViewBuilder.interface";
 
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";
 

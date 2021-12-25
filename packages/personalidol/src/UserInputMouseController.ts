@@ -1,20 +1,20 @@
 import { Vector2 } from "three/src/math/Vector2";
 import { Vector3 } from "three/src/math/Vector3";
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { getMousePointerVectorX } from "@personalidol/input/src/getMousePointerVectorX";
-import { getMousePointerVectorY } from "@personalidol/input/src/getMousePointerVectorY";
-import { isPotentiallyMouseClick } from "@personalidol/input/src/isPotentiallyMouseClick";
-import { isPrimaryMouseButtonPressed } from "@personalidol/input/src/isPrimaryMouseButtonPressed";
-import { isPrimaryMouseButtonPressInitiatedByRootElement } from "@personalidol/input/src/isPrimaryMouseButtonPressInitiatedByRootElement";
+import { generateUUID } from "../../math/src/generateUUID";
+import { getMousePointerVectorX } from "../../input/src/getMousePointerVectorX";
+import { getMousePointerVectorY } from "../../input/src/getMousePointerVectorY";
+import { isPotentiallyMouseClick } from "../../input/src/isPotentiallyMouseClick";
+import { isPrimaryMouseButtonPressed } from "../../input/src/isPrimaryMouseButtonPressed";
+import { isPrimaryMouseButtonPressInitiatedByRootElement } from "../../input/src/isPrimaryMouseButtonPressInitiatedByRootElement";
 
 import type { Vector2 as IVector2 } from "three/src/math/Vector2";
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
-import type { Raycaster } from "@personalidol/input/src/Raycaster.interface";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { UserInputMouseController } from "@personalidol/input/src/UserInputMouseController.interface";
-import type { UserInputMouseControllerState } from "@personalidol/input/src/UserInputMouseControllerState.type";
+import type { Raycaster } from "../../input/src/Raycaster.interface";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { UserInputMouseController } from "../../input/src/UserInputMouseController.interface";
+import type { UserInputMouseControllerState } from "../../input/src/UserInputMouseControllerState.type";
 
 import type { UserSettings } from "./UserSettings.type";
 

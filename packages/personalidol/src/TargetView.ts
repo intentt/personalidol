@@ -1,7 +1,7 @@
 import { Object3D } from "three/src/core/Object3D";
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { noop } from "@personalidol/framework/src/noop";
+import { generateUUID } from "../../math/src/generateUUID";
+import { noop } from "../../framework/src/noop";
 
 import { createEntityViewState } from "./createEntityViewState";
 

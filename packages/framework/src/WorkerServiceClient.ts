@@ -1,4 +1,4 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { MainLoopUpdateCallback } from "./MainLoopUpdateCallback.type";
 import type { MainLoopUpdatableState } from "./MainLoopUpdatableState.type";

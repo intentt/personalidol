@@ -1,9 +1,9 @@
 import { ShaderMaterial } from "three/src/materials/ShaderMaterial";
 import { UniformsUtils } from "three/src/renderers/shaders/UniformsUtils";
 
-import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
-import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
+import { disposableGeneric } from "../../../framework/src/disposableGeneric";
+import { disposableMaterial } from "../../../framework/src/disposableMaterial";
+import { disposeAll } from "../../../framework/src/disposeAll";
 
 import { FullScreenQuad } from "./FullScreenQuad";
 import { Pass } from "./Pass";
@@ -15,7 +15,7 @@ import type { Uniform } from "three/src/core/Uniform";
 import type { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
 import type { WebGLRenderTarget } from "three/src/renderers/WebGLRenderTarget";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
+import type { DisposableCallback } from "../../../framework/src/DisposableCallback.type";
 
 type Shader = {
   defines?: { [key: string]: number };
@@ -67,7 +67,13 @@ export class ShaderPass extends Pass {
     disposeAll(this._disposables);
   }
 
-  render(renderer: WebGLRenderer, renderToScreen: boolean, writeBuffer: WebGLRenderTarget, readBuffer: WebGLRenderTarget, deltaTime: number = 0 /*,  maskActive */) {
+  render(
+    renderer: WebGLRenderer,
+    renderToScreen: boolean,
+    writeBuffer: WebGLRenderTarget,
+    readBuffer: WebGLRenderTarget,
+    deltaTime: number = 0 /*,  maskActive */
+  ) {
     if (this.uniforms[this.textureID]) {
       this.uniforms[this.textureID].value = readBuffer.texture;
     }

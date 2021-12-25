@@ -1,26 +1,26 @@
-import { createMultiThreadMessageChannel } from "@personalidol/framework/src/createMultiThreadMessageChannel";
-import { createSingleThreadMessageChannel } from "@personalidol/framework/src/createSingleThreadMessageChannel";
-import { DimensionsIndices } from "@personalidol/framework/src/DimensionsIndices.enum";
-import { isCanvasTransferControlToOffscreenSupported } from "@personalidol/framework/src/isCanvasTransferControlToOffscreenSupported";
-import { isSharedArrayBufferSupported } from "@personalidol/framework/src/isSharedArrayBufferSupported";
-import { prefetch } from "@personalidol/framework/src/prefetch";
-import { WorkerServiceClient } from "@personalidol/framework/src/WorkerServiceClient";
+import { createMultiThreadMessageChannel } from "../../framework/src/createMultiThreadMessageChannel";
+import { createSingleThreadMessageChannel } from "../../framework/src/createSingleThreadMessageChannel";
+import { DimensionsIndices } from "../../framework/src/DimensionsIndices.enum";
+import { isCanvasTransferControlToOffscreenSupported } from "../../framework/src/isCanvasTransferControlToOffscreenSupported";
+import { isSharedArrayBufferSupported } from "../../framework/src/isSharedArrayBufferSupported";
+import { prefetch } from "../../framework/src/prefetch";
+import { WorkerServiceClient } from "../../framework/src/WorkerServiceClient";
 
 import { workers } from "./workers";
 
 import type { Logger } from "loglevel";
 
-import type { DOMElementsLookup } from "@personalidol/personalidol/src/DOMElementsLookup.type";
-import type { DOMElementViewContext } from "@personalidol/personalidol/src/DOMElementViewContext.type";
-import type { DOMUIController } from "@personalidol/dom-renderer/src/DOMUIController.interface";
-import type { EventBus } from "@personalidol/framework/src/EventBus.interface";
-import type { KeyboardObserverState } from "@personalidol/input/src/KeyboardObserverState.type";
-import type { MainLoop } from "@personalidol/framework/src/MainLoop.interface";
-import type { MouseObserverState } from "@personalidol/input/src/MouseObserverState.type";
-import type { ServiceManager } from "@personalidol/framework/src/ServiceManager.interface";
-import type { StatsReporter } from "@personalidol/framework/src/StatsReporter.interface";
-import type { TouchObserverState } from "@personalidol/input/src/TouchObserverState.type";
-import type { UserSettings } from "@personalidol/personalidol/src/UserSettings.type";
+import type { DOMElementsLookup } from "../../personalidol/src/DOMElementsLookup.type";
+import type { DOMElementViewContext } from "../../personalidol/src/DOMElementViewContext.type";
+import type { DOMUIController } from "../../dom-renderer/src/DOMUIController.interface";
+import type { EventBus } from "../../framework/src/EventBus.interface";
+import type { KeyboardObserverState } from "../../input/src/KeyboardObserverState.type";
+import type { MainLoop } from "../../framework/src/MainLoop.interface";
+import type { MouseObserverState } from "../../input/src/MouseObserverState.type";
+import type { ServiceManager } from "../../framework/src/ServiceManager.interface";
+import type { StatsReporter } from "../../framework/src/StatsReporter.interface";
+import type { TouchObserverState } from "../../input/src/TouchObserverState.type";
+import type { UserSettings } from "../../personalidol/src/UserSettings.type";
 
 export async function createRenderingService(
   logger: Logger,

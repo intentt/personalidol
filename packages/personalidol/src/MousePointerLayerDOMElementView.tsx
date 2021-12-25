@@ -1,8 +1,8 @@
 import { h } from "preact";
 
-import { DOMElementView } from "@personalidol/dom-renderer/src/DOMElementView";
-import { MouseIndices } from "@personalidol/input/src/MouseIndices.enum";
-import { TouchIndices } from "@personalidol/input/src/TouchIndices.enum";
+import { DOMElementView } from "../../dom-renderer/src/DOMElementView";
+import { MouseIndices } from "../../input/src/MouseIndices.enum";
+import { TouchIndices } from "../../input/src/TouchIndices.enum";
 
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";
 

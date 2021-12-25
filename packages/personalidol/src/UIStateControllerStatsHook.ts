@@ -1,8 +1,8 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { StatsHook } from "@personalidol/framework/src/StatsHook.interface";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { StatsHook } from "../../framework/src/StatsHook.interface";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { UIStateController } from "./UIStateController.interface";
 import type { UIStateControllerStatsReport } from "./UIStateControllerStatsReport.type";

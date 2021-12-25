@@ -1,15 +1,15 @@
-import { AtlasService } from "@personalidol/texture-loader/src/AtlasService";
-import { isCanvasTransferControlToOffscreenSupported } from "@personalidol/framework/src/isCanvasTransferControlToOffscreenSupported";
-import { prefetch } from "@personalidol/framework/src/prefetch";
-import { WorkerServiceClient } from "@personalidol/framework/src/WorkerServiceClient";
+import { AtlasService } from "../../texture-loader/src/AtlasService";
+import { isCanvasTransferControlToOffscreenSupported } from "../../framework/src/isCanvasTransferControlToOffscreenSupported";
+import { prefetch } from "../../framework/src/prefetch";
+import { WorkerServiceClient } from "../../framework/src/WorkerServiceClient";
 
 import { workers } from "./workers";
 
 import type { Logger } from "loglevel";
 
-import type { MainLoop } from "@personalidol/framework/src/MainLoop.interface";
-import type { RegistersMessagePort } from "@personalidol/framework/src/RegistersMessagePort.interface";
-import type { ServiceManager } from "@personalidol/framework/src/ServiceManager.interface";
+import type { MainLoop } from "../../framework/src/MainLoop.interface";
+import type { RegistersMessagePort } from "../../framework/src/RegistersMessagePort.interface";
+import type { ServiceManager } from "../../framework/src/ServiceManager.interface";
 
 export function createAtlasService(
   logger: Logger,
@@ -75,7 +75,14 @@ export function createAtlasService(
         throw new Error("Unable to get atlas canvas 2D context.");
       }
 
-      const atlasService = AtlasService(logger, atlasCanvas, atlasCanvasContext2D, "main", progressMessagePort, texturesMessagePort);
+      const atlasService = AtlasService(
+        logger,
+        atlasCanvas,
+        atlasCanvasContext2D,
+        "main",
+        progressMessagePort,
+        texturesMessagePort
+      );
 
       serviceManager.services.add(atlasService);
 

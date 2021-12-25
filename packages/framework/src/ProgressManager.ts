@@ -1,4 +1,4 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { MessageProgress } from "./MessageProgress.type";
 import type { MessageProgressChange } from "./MessageProgressChange.type";

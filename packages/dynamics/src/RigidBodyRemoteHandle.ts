@@ -1,4 +1,4 @@
-import type { Vector3Simple } from "@personalidol/quakemaps/src/Vector3Simple.type";
+import type { Vector3Simple } from "../../quakemaps/src/Vector3Simple.type";
 
 import type { RigidBodyRemoteHandle as IRigidBodyRemoteHandle } from "./RigidBodyRemoteHandle.interface";
 

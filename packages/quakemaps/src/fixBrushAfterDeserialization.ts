@@ -1,7 +1,7 @@
 import { Plane } from "three/src/math/Plane";
 import { Vector3 } from "three/src/math/Vector3";
 
-import type { Brush } from "@personalidol/quakemaps/src/Brush.type";
+import type { Brush } from "../../quakemaps/src/Brush.type";
 
 export function fixBrushAfterDeserialization(brush: Brush): void {
   for (let halfSpace of brush.halfSpaces) {

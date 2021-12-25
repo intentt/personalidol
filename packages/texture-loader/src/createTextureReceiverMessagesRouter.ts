@@ -1,12 +1,12 @@
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { handleRPCResponse } from "@personalidol/framework/src/handleRPCResponse";
+import { createRouter } from "../../framework/src/createRouter";
+import { handleRPCResponse } from "../../framework/src/handleRPCResponse";
 
 import { imageDataBufferResponseToTexture } from "./imageDataBufferResponseToTexture";
 import { imageToTexture } from "./imageToTexture";
 
 import type { Texture as ITexture } from "three";
 
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
 
 import type { ImageBitmapResponse } from "./ImageBitmapResponse.type";
 import type { ImageDataBufferResponse } from "./ImageDataBufferResponse.type";

@@ -1,13 +1,13 @@
 import { Object3D } from "three/src/core/Object3D";
 
-import { isSharedArrayBufferSupported } from "@personalidol/framework/src/isSharedArrayBufferSupported";
+import { isSharedArrayBufferSupported } from "../../framework/src/isSharedArrayBufferSupported";
 
 import { CSS2DObjectState } from "./CSS2DObjectState";
 import { isCSS2DObject } from "./isCSS2DObject";
 
-import type { DOMElementProps } from "@personalidol/dom-renderer/src/DOMElementProps.type";
-import type { DOMElementsLookup } from "@personalidol/dom-renderer/src/DOMElementsLookup.type";
-import type { MessageDOMUIDispose } from "@personalidol/dom-renderer/src/MessageDOMUIDispose.type";
+import type { DOMElementProps } from "../../dom-renderer/src/DOMElementProps.type";
+import type { DOMElementsLookup } from "../../dom-renderer/src/DOMElementsLookup.type";
+import type { MessageDOMUIDispose } from "../../dom-renderer/src/MessageDOMUIDispose.type";
 
 import type { CSS2DObject as ICSS2DObject } from "./CSS2DObject.interface";
 

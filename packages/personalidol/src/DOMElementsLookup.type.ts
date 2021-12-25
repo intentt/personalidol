@@ -1,4 +1,4 @@
-import type { DOMElementsLookup as BaseDOMElementsLookup } from "@personalidol/dom-renderer/src/DOMElementsLookup.type";
+import type { DOMElementsLookup as BaseDOMElementsLookup } from "../../dom-renderer/src/DOMElementsLookup.type";
 
 import type { ButtonDOMElementView } from "./ButtonDOMElementView";
 import type { FatalErrorDOMElementView } from "./FatalErrorDOMElementView";

@@ -1,18 +1,18 @@
 /// <reference types="@types/ammo.js" />
 
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { dispose } from "@personalidol/framework/src/dispose";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { mount } from "@personalidol/framework/src/mount";
-import { name } from "@personalidol/framework/src/name";
-import { preload } from "@personalidol/framework/src/preload";
-import { unmount } from "@personalidol/framework/src/unmount";
+import { createRouter } from "../../framework/src/createRouter";
+import { dispose } from "../../framework/src/dispose";
+import { generateUUID } from "../../math/src/generateUUID";
+import { mount } from "../../framework/src/mount";
+import { name } from "../../framework/src/name";
+import { preload } from "../../framework/src/preload";
+import { unmount } from "../../framework/src/unmount";
 
 import { UserDataRegistry } from "./UserDataRegistry";
 
 import type { Logger } from "loglevel";
 
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { UserDataRegistry as IUserDataRegistry } from "./UserDataRegistry.interface";
 

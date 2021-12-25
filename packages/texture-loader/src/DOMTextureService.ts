@@ -1,18 +1,18 @@
-import { attachMultiRouter } from "@personalidol/framework/src/attachMultiRouter";
-import { createReusedResponsesCache } from "@personalidol/framework/src/createReusedResponsesCache";
-import { createReusedResponsesUsage } from "@personalidol/framework/src/createReusedResponsesUsage";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { preloadImage } from "@personalidol/dom/src/preloadImage";
-import { Progress } from "@personalidol/framework/src/Progress";
-import { reuseResponse } from "@personalidol/framework/src/reuseResponse";
+import { attachMultiRouter } from "../../framework/src/attachMultiRouter";
+import { createReusedResponsesCache } from "../../framework/src/createReusedResponsesCache";
+import { createReusedResponsesUsage } from "../../framework/src/createReusedResponsesUsage";
+import { generateUUID } from "../../math/src/generateUUID";
+import { preloadImage } from "../../dom/src/preloadImage";
+import { Progress } from "../../framework/src/Progress";
+import { reuseResponse } from "../../framework/src/reuseResponse";
 
 import { canvas2DDrawImage } from "./canvas2DDrawImage";
 import { keyFromTextureRequest } from "./keyFromTextureRequest";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { Progress as IProgress } from "@personalidol/framework/src/Progress.interface";
-import type { ReusedResponsesCache } from "@personalidol/framework/src/ReusedResponsesCache.type";
-import type { ReusedResponsesUsage } from "@personalidol/framework/src/ReusedResponsesUsage.type";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { Progress as IProgress } from "../../framework/src/Progress.interface";
+import type { ReusedResponsesCache } from "../../framework/src/ReusedResponsesCache.type";
+import type { ReusedResponsesUsage } from "../../framework/src/ReusedResponsesUsage.type";
 
 import type { DOMTextureService as IDOMTextureService } from "./DOMTextureService.interface";
 import type { ImageDataBufferResponse } from "./ImageDataBufferResponse.type";

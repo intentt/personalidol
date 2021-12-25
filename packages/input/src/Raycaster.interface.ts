@@ -1,4 +1,4 @@
-import type { MainLoopUpdatable } from "@personalidol/framework/src/MainLoopUpdatable.interface";
+import type { MainLoopUpdatable } from "../../framework/src/MainLoopUpdatable.interface";
 
 import type { Raycastable } from "./Raycastable.interface";
 import type { RaycasterState } from "./RaycasterState.type";

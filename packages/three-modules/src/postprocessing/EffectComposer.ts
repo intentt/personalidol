@@ -3,8 +3,8 @@ import { LinearFilter, RGBAFormat } from "three/src/constants";
 import { Vector2 } from "three/src/math/Vector2";
 import { WebGLRenderTarget } from "three/src/renderers/WebGLRenderTarget";
 
-import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
+import { disposableGeneric } from "../../../framework/src/disposableGeneric";
+import { disposeAll } from "../../../framework/src/disposeAll";
 
 import { Pass } from "./Pass";
 import { ShaderPass } from "./ShaderPass";
@@ -12,7 +12,7 @@ import { ShaderPass } from "./ShaderPass";
 import type { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
 import type { WebGLRenderTarget as IWebGLRenderTarget } from "three/src/renderers/WebGLRenderTarget";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
+import type { DisposableCallback } from "../../../framework/src/DisposableCallback.type";
 
 import type { EffectComposer as IEffectComposer } from "./EffectComposer.interface";
 

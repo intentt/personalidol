@@ -1,4 +1,4 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { DOMElementsLookup } from "./DOMElementsLookup.type";
 import type { DOMElementViewHandle as IDOMElementViewHandle } from "./DOMElementViewHandle.interface";

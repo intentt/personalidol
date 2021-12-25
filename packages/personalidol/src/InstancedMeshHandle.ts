@@ -1,4 +1,4 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { Logger } from "loglevel";
 import type { InstancedMesh } from "three/src/objects/InstancedMesh";

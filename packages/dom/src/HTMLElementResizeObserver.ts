@@ -1,6 +1,6 @@
 /// <reference types="@types/resize-observer-browser" />
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import { DimensionsIndices } from "./DimensionsIndices.enum";
 

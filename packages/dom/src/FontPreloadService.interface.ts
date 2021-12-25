@@ -1,3 +1,3 @@
-import type { Service } from "@personalidol/framework/src/Service.interface";
+import type { Service } from "../../framework/src/Service.interface";
 
 export interface FontPreloadService extends Service {}

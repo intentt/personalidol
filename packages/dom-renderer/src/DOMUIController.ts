@@ -1,8 +1,8 @@
-import { clearHTMLElement } from "@personalidol/dom/src/clearHTMLElement";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { createSingleThreadMessageChannel } from "@personalidol/framework/src/createSingleThreadMessageChannel";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { isCustomEvent } from "@personalidol/framework/src/isCustomEvent";
+import { clearHTMLElement } from "../../dom/src/clearHTMLElement";
+import { createRouter } from "../../framework/src/createRouter";
+import { createSingleThreadMessageChannel } from "../../framework/src/createSingleThreadMessageChannel";
+import { generateUUID } from "../../math/src/generateUUID";
+import { isCustomEvent } from "../../framework/src/isCustomEvent";
 
 import { Events } from "./Events.enum";
 import { isDOMElementView } from "./isDOMElementView";
@@ -12,7 +12,7 @@ import { isHTMLElementConstructor } from "./isHTMLElementConstructor";
 import type { i18n } from "i18next";
 import type { Logger } from "loglevel";
 
-import type { MainLoop } from "@personalidol/framework/src/MainLoop.interface";
+import type { MainLoop } from "../../framework/src/MainLoop.interface";
 
 import type { DOMElementProps } from "./DOMElementProps.type";
 import type { DOMElementsLookup } from "./DOMElementsLookup.type";

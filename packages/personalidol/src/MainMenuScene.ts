@@ -1,28 +1,28 @@
 import { PerspectiveCamera } from "three/src/cameras/PerspectiveCamera";
 import { Scene } from "three/src/scenes/Scene";
 
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { unmountAll } from "@personalidol/framework/src/unmountAll";
+import { disposeAll } from "../../framework/src/disposeAll";
+import { generateUUID } from "../../math/src/generateUUID";
+import { unmountAll } from "../../framework/src/unmountAll";
 
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { createRPCLookupTable } from "@personalidol/framework/src/createRPCLookupTable";
-import { handleRPCResponse } from "@personalidol/framework/src/handleRPCResponse";
-import { RenderPass } from "@personalidol/three-modules/src/postprocessing/RenderPass";
-import { sendRPCMessage } from "@personalidol/framework/src/sendRPCMessage";
-import { unmountPass } from "@personalidol/three-modules/src/unmountPass";
+import { createRouter } from "../../framework/src/createRouter";
+import { createRPCLookupTable } from "../../framework/src/createRPCLookupTable";
+import { handleRPCResponse } from "../../framework/src/handleRPCResponse";
+import { RenderPass } from "../../three-modules/src/postprocessing/RenderPass";
+import { sendRPCMessage } from "../../framework/src/sendRPCMessage";
+import { unmountPass } from "../../three-modules/src/unmountPass";
 
 import type { Logger } from "loglevel";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { EffectComposer } from "@personalidol/three-modules/src/postprocessing/EffectComposer.interface";
-import type { FontPreloadParameters } from "@personalidol/dom/src/FontPreloadParameters.type";
-import type { MessageDOMUIDispose } from "@personalidol/dom-renderer/src/MessageDOMUIDispose.type";
-import type { MessageDOMUIRender } from "@personalidol/dom-renderer/src/MessageDOMUIRender.type";
-import type { MessageFontPreload } from "@personalidol/dom/src/MessageFontPreload.type";
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
-import type { SceneState } from "@personalidol/framework/src/SceneState.type";
-import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
+import type { DisposableCallback } from "../../framework/src/DisposableCallback.type";
+import type { EffectComposer } from "../../three-modules/src/postprocessing/EffectComposer.interface";
+import type { FontPreloadParameters } from "../../dom/src/FontPreloadParameters.type";
+import type { MessageDOMUIDispose } from "../../dom-renderer/src/MessageDOMUIDispose.type";
+import type { MessageDOMUIRender } from "../../dom-renderer/src/MessageDOMUIRender.type";
+import type { MessageFontPreload } from "../../dom/src/MessageFontPreload.type";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
+import type { SceneState } from "../../framework/src/SceneState.type";
+import type { UnmountableCallback } from "../../framework/src/UnmountableCallback.type";
 
 import type { DOMElementsLookup } from "./DOMElementsLookup.type";
 import type { MainMenuScene as IMainMenuScene } from "./MainMenuScene.interface";

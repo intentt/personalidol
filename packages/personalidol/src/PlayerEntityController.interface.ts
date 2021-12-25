@@ -1,4 +1,4 @@
-import type { PollablePreloading } from "@personalidol/framework/src/PollablePreloading.interface";
+import type { PollablePreloading } from "../../framework/src/PollablePreloading.interface";
 
 import type { EntityController } from "./EntityController.interface";
 import type { EntityPlayer } from "./EntityPlayer.type";

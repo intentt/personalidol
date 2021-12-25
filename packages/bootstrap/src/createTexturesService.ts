@@ -1,15 +1,15 @@
-import { DOMTextureService } from "@personalidol/texture-loader/src/DOMTextureService";
-import { isCreateImageBitmapSupported } from "@personalidol/framework/src/isCreateImageBitmapSupported";
-import { prefetch } from "@personalidol/framework/src/prefetch";
-import { WorkerServiceClient } from "@personalidol/framework/src/WorkerServiceClient";
+import { DOMTextureService } from "../../texture-loader/src/DOMTextureService";
+import { isCreateImageBitmapSupported } from "../../framework/src/isCreateImageBitmapSupported";
+import { prefetch } from "../../framework/src/prefetch";
+import { WorkerServiceClient } from "../../framework/src/WorkerServiceClient";
 
 import { workers } from "./workers";
 
 import type { Logger } from "loglevel";
 
-import type { MainLoop } from "@personalidol/framework/src/MainLoop.interface";
-import type { RegistersMessagePort } from "@personalidol/framework/src/RegistersMessagePort.interface";
-import type { ServiceManager } from "@personalidol/framework/src/ServiceManager.interface";
+import type { MainLoop } from "../../framework/src/MainLoop.interface";
+import type { RegistersMessagePort } from "../../framework/src/RegistersMessagePort.interface";
+import type { ServiceManager } from "../../framework/src/ServiceManager.interface";
 
 export async function createTexturesService(
   logger: Logger,

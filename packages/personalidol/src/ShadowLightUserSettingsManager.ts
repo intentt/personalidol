@@ -1,12 +1,12 @@
-import { createSettingsHandle } from "@personalidol/framework/src/createSettingsHandle";
-import { disposeWebGLRenderTarget } from "@personalidol/framework/src/disposeWebGLRenderTarget";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { createSettingsHandle } from "../../framework/src/createSettingsHandle";
+import { disposeWebGLRenderTarget } from "../../framework/src/disposeWebGLRenderTarget";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { PointLight } from "three/src/lights/PointLight";
 import type { SpotLight } from "three/src/lights/SpotLight";
 
-import type { UserSettingsManager } from "@personalidol/framework/src/UserSettingsManager.interface";
-import type { UserSettingsManagerState } from "@personalidol/framework/src/UserSettingsManagerState.type";
+import type { UserSettingsManager } from "../../framework/src/UserSettingsManager.interface";
+import type { UserSettingsManagerState } from "../../framework/src/UserSettingsManagerState.type";
 
 import type { EntityLight } from "./EntityLight.type";
 import type { UserSettings } from "./UserSettings.type";

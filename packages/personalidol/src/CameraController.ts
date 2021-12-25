@@ -3,16 +3,16 @@ import { PerspectiveCamera } from "three/src/cameras/PerspectiveCamera";
 import { Vector3 } from "three/src/math/Vector3";
 
 import { CameraParameters } from "./CameraParameters.enum";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { updateOrthographicCameraAspect } from "@personalidol/framework/src/updateOrthographicCameraAspect";
-import { updatePerspectiveCameraAspect } from "@personalidol/framework/src/updatePerspectiveCameraAspect";
+import { generateUUID } from "../../math/src/generateUUID";
+import { updateOrthographicCameraAspect } from "../../framework/src/updateOrthographicCameraAspect";
+import { updatePerspectiveCameraAspect } from "../../framework/src/updatePerspectiveCameraAspect";
 
 import type { Logger } from "loglevel";
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
-import type { CameraController as ICameraController } from "@personalidol/framework/src/CameraController.interface";
-import type { CameraControllerState } from "@personalidol/framework/src/CameraControllerState.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { CameraController as ICameraController } from "../../framework/src/CameraController.interface";
+import type { CameraControllerState } from "../../framework/src/CameraControllerState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { UserSettings } from "./UserSettings.type";
 

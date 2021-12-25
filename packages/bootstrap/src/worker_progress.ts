@@ -2,21 +2,21 @@
 
 import Loglevel from "loglevel";
 
-import { attachMultiRouter } from "@personalidol/framework/src/attachMultiRouter";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { ProgressManager } from "@personalidol/framework/src/ProgressManager";
+import { attachMultiRouter } from "../../framework/src/attachMultiRouter";
+import { createRouter } from "../../framework/src/createRouter";
+import { generateUUID } from "../../math/src/generateUUID";
+import { ProgressManager } from "../../framework/src/ProgressManager";
 
-import type { DOMElementsLookup } from "@personalidol/personalidol/src/DOMElementsLookup.type";
-import type { MessageDOMUIDispose } from "@personalidol/dom-renderer/src/MessageDOMUIDispose.type";
-import type { MessageDOMUIRender } from "@personalidol/dom-renderer/src/MessageDOMUIRender.type";
-import type { MessageProgressChange } from "@personalidol/framework/src/MessageProgressChange.type";
-import type { MessageProgressDone } from "@personalidol/framework/src/MessageProgressDone.type";
-import type { MessageProgressError } from "@personalidol/framework/src/MessageProgressError.type";
-import type { MessageProgressStart } from "@personalidol/framework/src/MessageProgressStart.type";
-import type { MessageWorkerReady } from "@personalidol/framework/src/MessageWorkerReady.type";
-import type { ProgressManager as IProgressManager } from "@personalidol/framework/src/ProgressManager.interface";
-// import type { ProgressManagerState } from "@personalidol/framework/src/ProgressManagerState.type";
+import type { DOMElementsLookup } from "../../personalidol/src/DOMElementsLookup.type";
+import type { MessageDOMUIDispose } from "../../dom-renderer/src/MessageDOMUIDispose.type";
+import type { MessageDOMUIRender } from "../../dom-renderer/src/MessageDOMUIRender.type";
+import type { MessageProgressChange } from "../../framework/src/MessageProgressChange.type";
+import type { MessageProgressDone } from "../../framework/src/MessageProgressDone.type";
+import type { MessageProgressError } from "../../framework/src/MessageProgressError.type";
+import type { MessageProgressStart } from "../../framework/src/MessageProgressStart.type";
+import type { MessageWorkerReady } from "../../framework/src/MessageWorkerReady.type";
+import type { ProgressManager as IProgressManager } from "../../framework/src/ProgressManager.interface";
+// import type { ProgressManagerState } from "../../framework/src/ProgressManagerState.type";
 
 declare var self: DedicatedWorkerGlobalScope;
 
@@ -201,7 +201,13 @@ self.onmessage = createRouter({
     _domMessagePort = domMessagePort;
   },
 
-  progressMessagePort({ broadcastProgress, messagePort }: { broadcastProgress: boolean; messagePort: MessagePort }): void {
+  progressMessagePort({
+    broadcastProgress,
+    messagePort,
+  }: {
+    broadcastProgress: boolean;
+    messagePort: MessagePort;
+  }): void {
     if (broadcastProgress) {
       _broadcastMessagePorts.push(messagePort);
     }

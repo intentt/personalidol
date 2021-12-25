@@ -1,9 +1,9 @@
-import { passiveEventListener } from "@personalidol/framework/src/passiveEventListener";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { passiveEventListener } from "../../framework/src/passiveEventListener";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import { isMousePointerInDimensionsBounds } from "./isMousePointerInDimensionsBounds";
 
-import type { EventBus } from "@personalidol/framework/src/EventBus.interface";
+import type { EventBus } from "../../framework/src/EventBus.interface";
 
 import type { MouseWheelObserver as IMouseWheelObserver } from "./MouseWheelObserver.interface";
 

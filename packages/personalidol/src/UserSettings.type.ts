@@ -1,7 +1,7 @@
 import type { OrthographicCamera } from "three/src/cameras/OrthographicCamera";
 import type { PerspectiveCamera } from "three/src/cameras/PerspectiveCamera";
 
-import type { UserSettings as BaseUserSettings } from "@personalidol/framework/src/UserSettings.type";
+import type { UserSettings as BaseUserSettings } from "../../framework/src/UserSettings.type";
 
 export type UserSettings = BaseUserSettings & {
   cameraZoomAmount: number;

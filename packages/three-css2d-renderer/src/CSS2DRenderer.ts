@@ -2,7 +2,7 @@ import { Matrix4 } from "three/src/math/Matrix4";
 import { Object3D } from "three/src/core/Object3D";
 import { Vector3 } from "three/src/math/Vector3";
 
-import { isSharedArrayBufferSupported } from "@personalidol/framework/src/isSharedArrayBufferSupported";
+import { isSharedArrayBufferSupported } from "../../framework/src/isSharedArrayBufferSupported";
 
 import { CSS2DObjectState } from "./CSS2DObjectState";
 import { CSS2DObjectStateIndices } from "./CSS2DObjectStateIndices.enum";
@@ -12,8 +12,8 @@ import type { Camera } from "three/src/cameras/Camera";
 import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { DOMElementsLookup } from "@personalidol/dom-renderer/src/DOMElementsLookup.type";
-import type { MessageDOMUIRender } from "@personalidol/dom-renderer/src/MessageDOMUIRender.type";
+import type { DOMElementsLookup } from "../../dom-renderer/src/DOMElementsLookup.type";
+import type { MessageDOMUIRender } from "../../dom-renderer/src/MessageDOMUIRender.type";
 
 import type { CSS2DObject } from "./CSS2DObject.interface";
 import type { CSS2DRenderer as ICSS2DRenderer } from "./CSS2DRenderer.interface";

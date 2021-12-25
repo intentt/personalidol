@@ -1,6 +1,6 @@
 import { Fragment, h, render } from "preact";
 
-import { must } from "@personalidol/framework/src/must";
+import { must } from "../../framework/src/must";
 
 import { DOMElementViewStyler } from "./DOMElementViewStyler";
 import { Events } from "./Events.enum";
@@ -9,8 +9,8 @@ import type { i18n, TOptions } from "i18next";
 import type { Logger } from "loglevel";
 import type { VNode } from "preact";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { DOMElementView as IDOMElementView } from "./DOMElementView.interface";
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";

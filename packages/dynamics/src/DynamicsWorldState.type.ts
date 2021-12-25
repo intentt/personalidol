@@ -1,4 +1,4 @@
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
-import type { PauseableState } from "@personalidol/framework/src/PauseableState.type";
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { PauseableState } from "../../framework/src/PauseableState.type";
 
 export type DynamicsWorldState = MainLoopUpdatableState & PauseableState;

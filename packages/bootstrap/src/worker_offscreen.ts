@@ -2,22 +2,22 @@
 
 import Loglevel from "loglevel";
 
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { EventBus } from "@personalidol/framework/src/EventBus";
-import { MainLoop } from "@personalidol/framework/src/MainLoop";
-import { MainLoopStatsHook } from "@personalidol/framework/src/MainLoopStatsHook";
-import { RequestAnimationFrameScheduler } from "@personalidol/framework/src/RequestAnimationFrameScheduler";
-import { ServiceManager } from "@personalidol/framework/src/ServiceManager";
-import { ServiceBuilder } from "@personalidol/framework/src/ServiceBuilder";
-import { StatsReporter } from "@personalidol/framework/src/StatsReporter";
-import { UserSettings } from "@personalidol/personalidol/src/UserSettings";
+import { createRouter } from "../../framework/src/createRouter";
+import { EventBus } from "../../framework/src/EventBus";
+import { MainLoop } from "../../framework/src/MainLoop";
+import { MainLoopStatsHook } from "../../framework/src/MainLoopStatsHook";
+import { RequestAnimationFrameScheduler } from "../../framework/src/RequestAnimationFrameScheduler";
+import { ServiceManager } from "../../framework/src/ServiceManager";
+import { ServiceBuilder } from "../../framework/src/ServiceBuilder";
+import { StatsReporter } from "../../framework/src/StatsReporter";
+import { UserSettings } from "../../personalidol/src/UserSettings";
 
 import { createScenes } from "./createScenes";
 
-import type { MainLoop as IMainLoop } from "@personalidol/framework/src/MainLoop.interface";
-import type { MessageWorkerReady } from "@personalidol/framework/src/MessageWorkerReady.type";
-import type { ServiceBuilder as IServiceBuilder } from "@personalidol/framework/src/ServiceBuilder.interface";
-import type { ServiceManager as IServiceManager } from "@personalidol/framework/src/ServiceManager.interface";
+import type { MainLoop as IMainLoop } from "../../framework/src/MainLoop.interface";
+import type { MessageWorkerReady } from "../../framework/src/MessageWorkerReady.type";
+import type { ServiceBuilder as IServiceBuilder } from "../../framework/src/ServiceBuilder.interface";
+import type { ServiceManager as IServiceManager } from "../../framework/src/ServiceManager.interface";
 
 type Dependencies = {
   canvas: OffscreenCanvas;

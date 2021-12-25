@@ -1,3 +1,3 @@
-import type { AtlasTextureDimension } from "@personalidol/texture-loader/src/AtlasTextureDimension.type";
+import type { AtlasTextureDimension } from "../../texture-loader/src/AtlasTextureDimension.type";
 
 export type TextureDimensionsResolver = (textureName: string) => AtlasTextureDimension;

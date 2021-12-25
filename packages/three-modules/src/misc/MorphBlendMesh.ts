@@ -1,11 +1,11 @@
 import { Mesh } from "three/src/objects/Mesh";
 
-import { clamp } from "@personalidol/math/src/clamp";
+import { clamp } from "../../../math/src/clamp";
 
 import type { BufferGeometry } from "three/src/core/BufferGeometry";
 import type { Material } from "three/src/materials/Material";
 
-import type { MainLoopUpdatableState } from "@personalidol/framework/src/MainLoopUpdatableState.type";
+import type { MainLoopUpdatableState } from "../../../framework/src/MainLoopUpdatableState.type";
 
 import type { MorphBlendMeshAnimation } from "./MorphBlendMeshAnimation.type";
 

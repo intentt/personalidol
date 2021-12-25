@@ -1,13 +1,13 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { name } from "@personalidol/framework/src/name";
+import { generateUUID } from "../../math/src/generateUUID";
+import { name } from "../../framework/src/name";
 
 import { createEntityControllerState } from "./createEntityControllerState";
 
 import type { Logger } from "loglevel";
 
-import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
-import type { InteractableBag } from "@personalidol/views/src/InteractableBag.interface";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
+import type { CameraController } from "../../framework/src/CameraController.interface";
+import type { InteractableBag } from "../../views/src/InteractableBag.interface";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityController } from "./EntityController.interface";

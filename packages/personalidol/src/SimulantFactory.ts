@@ -4,9 +4,9 @@ import { GhostZoneSimulant } from "./GhostZoneSimulant";
 import { NPCSimulant } from "./NPCSimulant";
 import { WorldspawnGeometrySimulant } from "./WorldspawnGeometrySimulant";
 
-import type { MessageSimulantRegister } from "@personalidol/dynamics/src/MessageSimulantRegister.type";
-import type { SimulantFactory as ISimulantFactory } from "@personalidol/dynamics/src/SimulantFactory.interface";
-import type { UserDataRegistry } from "@personalidol/dynamics/src/UserDataRegistry.interface";
+import type { MessageSimulantRegister } from "../../dynamics/src/MessageSimulantRegister.type";
+import type { SimulantFactory as ISimulantFactory } from "../../dynamics/src/SimulantFactory.interface";
+import type { UserDataRegistry } from "../../dynamics/src/UserDataRegistry.interface";
 
 import type { SimulantsLookup } from "./SimulantsLookup.type";
 

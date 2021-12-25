@@ -3,7 +3,7 @@ import { MeshBasicMaterial } from "three/src/materials/MeshBasicMaterial";
 import { OrthographicCamera } from "three/src/cameras/OrthographicCamera";
 import { PlaneGeometry } from "three/src/geometries/PlaneGeometry";
 
-import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
+import { disposableMaterial } from "../../../framework/src/disposableMaterial";
 
 import type { BufferGeometry } from "three/src/core/BufferGeometry";
 import type { Camera } from "three/src/cameras/Camera";
@@ -11,7 +11,7 @@ import type { Material } from "three/src/materials/Material";
 import type { Mesh as IMesh } from "three/src/objects/Mesh";
 import type { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
 
-import type { DisposableGeneric } from "@personalidol/framework/src/DisposableGeneric.interface";
+import type { DisposableGeneric } from "../../../framework/src/DisposableGeneric.interface";
 
 // Helper for passes that need to fill the viewport with a single quad.
 

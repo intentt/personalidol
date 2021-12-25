@@ -1,4 +1,4 @@
-import { domElementsLookup as baseDomElementsLookup } from "@personalidol/dom-renderer/src/domElementsLookup";
+import { domElementsLookup as baseDomElementsLookup } from "../../dom-renderer/src/domElementsLookup";
 
 import { ButtonDOMElementView } from "./ButtonDOMElementView";
 import { DOMZIndex } from "./DOMZIndex.enum";

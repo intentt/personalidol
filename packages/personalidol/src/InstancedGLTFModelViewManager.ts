@@ -3,18 +3,18 @@ import { BufferGeometry } from "three/src/core/BufferGeometry";
 import { InstancedMesh } from "three/src/objects/InstancedMesh";
 import { MeshStandardMaterial } from "three/src/materials/MeshStandardMaterial";
 
-import { createViewState } from "@personalidol/views/src/createViewState";
-import { disposableGeneric } from "@personalidol/framework/src/disposableGeneric";
-import { disposableMaterial } from "@personalidol/framework/src/disposableMaterial";
-import { disposeAll } from "@personalidol/framework/src/disposeAll";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { mountAll } from "@personalidol/framework/src/mountAll";
-import { must } from "@personalidol/framework/src/must";
-import { name } from "@personalidol/framework/src/name";
-import { preload as fPreload } from "@personalidol/framework/src/preload";
-import { requestTexture } from "@personalidol/texture-loader/src/requestTexture";
-import { sendRPCMessage } from "@personalidol/framework/src/sendRPCMessage";
-import { unmountAll } from "@personalidol/framework/src/unmountAll";
+import { createViewState } from "../../views/src/createViewState";
+import { disposableGeneric } from "../../framework/src/disposableGeneric";
+import { disposableMaterial } from "../../framework/src/disposableMaterial";
+import { disposeAll } from "../../framework/src/disposeAll";
+import { generateUUID } from "../../math/src/generateUUID";
+import { mountAll } from "../../framework/src/mountAll";
+import { must } from "../../framework/src/must";
+import { name } from "../../framework/src/name";
+import { preload as fPreload } from "../../framework/src/preload";
+import { requestTexture } from "../../texture-loader/src/requestTexture";
+import { sendRPCMessage } from "../../framework/src/sendRPCMessage";
+import { unmountAll } from "../../framework/src/unmountAll";
 
 import { InstancedMeshHandle } from "./InstancedMeshHandle";
 import { MeshUserSettingsManager } from "./MeshUserSettingsManager";
@@ -26,16 +26,16 @@ import type { MeshStandardMaterial as IMeshStandardMaterial } from "three/src/ma
 import type { Object3D } from "three/src/core/Object3D";
 import type { Scene } from "three/src/scenes/Scene";
 
-import type { DisposableCallback } from "@personalidol/framework/src/DisposableCallback.type";
-import type { GeometryAttributes } from "@personalidol/framework/src/GeometryAttributes.type";
-import type { MountableCallback } from "@personalidol/framework/src/MountableCallback.type";
-import type { Nameable } from "@personalidol/framework/src/Nameable.interface";
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
+import type { DisposableCallback } from "../../framework/src/DisposableCallback.type";
+import type { GeometryAttributes } from "../../framework/src/GeometryAttributes.type";
+import type { MountableCallback } from "../../framework/src/MountableCallback.type";
+import type { Nameable } from "../../framework/src/Nameable.interface";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
 import type { Texture as ITexture } from "three/src/textures/Texture";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { UnmountableCallback } from "@personalidol/framework/src/UnmountableCallback.type";
-import type { UserSettingsManager } from "@personalidol/framework/src/UserSettingsManager.interface";
-import type { ViewState } from "@personalidol/views/src/ViewState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { UnmountableCallback } from "../../framework/src/UnmountableCallback.type";
+import type { UserSettingsManager } from "../../framework/src/UserSettingsManager.interface";
+import type { ViewState } from "../../views/src/ViewState.type";
 
 import type { EntityGLTFModel } from "./EntityGLTFModel.type";
 import type { InstancedGLTFModelViewManager as IInstancedGLTFModelViewManager } from "./InstancedGLTFModelViewManager.interface";

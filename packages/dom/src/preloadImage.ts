@@ -1,4 +1,4 @@
-import type { Progress } from "@personalidol/framework/src/Progress.interface";
+import type { Progress } from "../../framework/src/Progress.interface";
 
 export function preloadImage(progress: Progress, textureUrl: string): Promise<HTMLImageElement> {
   return new Promise(function (resolve, reject) {

@@ -1,6 +1,6 @@
 import { Object3D } from "three/src/core/Object3D";
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import { createEntityViewState } from "./createEntityViewState";
 

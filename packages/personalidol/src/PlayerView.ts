@@ -1,6 +1,6 @@
 import { Object3D } from "three/src/core/Object3D";
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import { createEntityViewState } from "./createEntityViewState";
 
@@ -8,7 +8,7 @@ import type { Logger } from "loglevel";
 import type { Scene } from "three/src/scenes/Scene";
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
-import type { RPCLookupTable } from "@personalidol/framework/src/RPCLookupTable.type";
+import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
 
 import type { CharacterView } from "./CharacterView.interface";
 import type { EntityPlayer } from "./EntityPlayer.type";

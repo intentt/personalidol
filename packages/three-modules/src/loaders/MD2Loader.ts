@@ -212,7 +212,12 @@ const normalData = [
 const _vector = new Vector3();
 
 export class MD2Loader extends Loader {
-  load(url: string, onLoad: (geometry: MD2LoaderParsedGeometry) => void, onProgress?: (event: ProgressEvent) => void, onError?: (event: any) => void): void {
+  load(
+    url: string,
+    onLoad: (geometry: MD2LoaderParsedGeometry) => void,
+    onProgress?: (event: ProgressEvent) => void,
+    onError?: (event: any) => void
+  ): void {
     const scope = this;
     const loader = new FileLoader(scope.manager);
 
@@ -323,9 +328,17 @@ export class MD2Loader extends Loader {
     const uvIndices = [];
 
     for (let i = 0, l = header.num_tris; i < l; i++) {
-      vertexIndices.push(data.getUint16(offset + 0, true), data.getUint16(offset + 2, true), data.getUint16(offset + 4, true));
+      vertexIndices.push(
+        data.getUint16(offset + 0, true),
+        data.getUint16(offset + 2, true),
+        data.getUint16(offset + 4, true)
+      );
 
-      uvIndices.push(data.getUint16(offset + 6, true), data.getUint16(offset + 8, true), data.getUint16(offset + 10, true));
+      uvIndices.push(
+        data.getUint16(offset + 6, true),
+        data.getUint16(offset + 8, true),
+        data.getUint16(offset + 10, true)
+      );
 
       offset += 12;
     }
@@ -341,9 +354,17 @@ export class MD2Loader extends Loader {
     offset = header.offset_frames;
 
     for (let i = 0, l = header.num_frames; i < l; i++) {
-      scale.set(data.getFloat32(offset + 0, true), data.getFloat32(offset + 4, true), data.getFloat32(offset + 8, true));
+      scale.set(
+        data.getFloat32(offset + 0, true),
+        data.getFloat32(offset + 4, true),
+        data.getFloat32(offset + 8, true)
+      );
 
-      translation.set(data.getFloat32(offset + 12, true), data.getFloat32(offset + 16, true), data.getFloat32(offset + 20, true));
+      translation.set(
+        data.getFloat32(offset + 12, true),
+        data.getFloat32(offset + 16, true),
+        data.getFloat32(offset + 20, true)
+      );
 
       offset += 24;
 

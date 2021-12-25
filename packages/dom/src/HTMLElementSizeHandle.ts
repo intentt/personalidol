@@ -1,4 +1,4 @@
-import type { ResizeableRenderer } from "@personalidol/framework/src/ResizeableRenderer.interface";
+import type { ResizeableRenderer } from "../../framework/src/ResizeableRenderer.interface";
 
 export function HTMLElementSizeHandle(htmlElement: HTMLElement): ResizeableRenderer {
   function setSize(width: number, height: number): void {

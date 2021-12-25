@@ -1,8 +1,8 @@
 /// <reference types="@types/ammo.js" />
 
-import type { MainLoopUpdatable } from "@personalidol/framework/src/MainLoopUpdatable.interface";
-import type { Pauseable } from "@personalidol/framework/src/Pauseable.interface";
-import type { Service } from "@personalidol/framework/src/Service.interface";
+import type { MainLoopUpdatable } from "../../framework/src/MainLoopUpdatable.interface";
+import type { Pauseable } from "../../framework/src/Pauseable.interface";
+import type { Service } from "../../framework/src/Service.interface";
 
 import type { DynamicsWorldInfo } from "./DynamicsWorldInfo.type";
 import type { DynamicsWorldState } from "./DynamicsWorldState.type";

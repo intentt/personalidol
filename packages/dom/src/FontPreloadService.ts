@@ -1,12 +1,12 @@
 /// <reference types="@types/css-font-loading-module" />
 
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { prefetch } from "@personalidol/framework/src/prefetch";
+import { createRouter } from "../../framework/src/createRouter";
+import { generateUUID } from "../../math/src/generateUUID";
+import { prefetch } from "../../framework/src/prefetch";
 
 import type { Logger } from "loglevel";
 
-import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
+import type { RPCMessage } from "../../framework/src/RPCMessage.type";
 
 import type { FontPreloadService as IFontPreloadService } from "./FontPreloadService.interface";
 import type { FontPreloadParameters } from "./FontPreloadParameters.type";

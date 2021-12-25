@@ -1,6 +1,6 @@
-import type { Preloadable } from "@personalidol/framework/src/Preloadable.interface";
-import type { RegistersMessagePort } from "@personalidol/framework/src/RegistersMessagePort.interface";
-import type { Service } from "@personalidol/framework/src/Service.interface";
+import type { Preloadable } from "../../framework/src/Preloadable.interface";
+import type { RegistersMessagePort } from "../../framework/src/RegistersMessagePort.interface";
+import type { Service } from "../../framework/src/Service.interface";
 
 import type { DOMElementsLookup } from "./DOMElementsLookup.type";
 import type { DOMElementViewContext } from "./DOMElementViewContext.type";

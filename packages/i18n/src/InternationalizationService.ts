@@ -1,10 +1,10 @@
-import { attachMultiRouter } from "@personalidol/framework/src/attachMultiRouter";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { attachMultiRouter } from "../../framework/src/attachMultiRouter";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import type { i18n } from "i18next";
 
-import type { PreloadableState } from "@personalidol/framework/src/PreloadableState.type";
-import type { RPCMessage } from "@personalidol/framework/src/RPCMessage.type";
+import type { PreloadableState } from "../../framework/src/PreloadableState.type";
+import type { RPCMessage } from "../../framework/src/RPCMessage.type";
 
 import type { InternationalizationService as IInternationalizationService } from "./InternationalizationService.interface";
 

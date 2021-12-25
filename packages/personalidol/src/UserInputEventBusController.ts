@@ -1,16 +1,16 @@
 import { Vector3 } from "three/src/math/Vector3";
 
 import { CameraParameters } from "./CameraParameters.enum";
-import { generateUUID } from "@personalidol/math/src/generateUUID";
-import { noop } from "@personalidol/framework/src/noop";
+import { generateUUID } from "../../math/src/generateUUID";
+import { noop } from "../../framework/src/noop";
 
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 
-import type { CameraController } from "@personalidol/framework/src/CameraController.interface";
-import type { EventBus } from "@personalidol/framework/src/EventBus.interface";
-import type { TickTimerState } from "@personalidol/framework/src/TickTimerState.type";
-import type { UserInputController } from "@personalidol/input/src/UserInputController.interface";
-import type { UserInputControllerState } from "@personalidol/input/src/UserInputControllerState.type";
+import type { CameraController } from "../../framework/src/CameraController.interface";
+import type { EventBus } from "../../framework/src/EventBus.interface";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
+import type { UserInputController } from "../../input/src/UserInputController.interface";
+import type { UserInputControllerState } from "../../input/src/UserInputControllerState.type";
 
 import type { UserSettings } from "./UserSettings.type";
 

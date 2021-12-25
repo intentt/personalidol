@@ -3,25 +3,25 @@
 
 import Loglevel from "loglevel";
 
-import { AmmoLoader } from "@personalidol/ammo/src/AmmoLoader";
-import { createRouter } from "@personalidol/framework/src/createRouter";
-import { DynamicsMainLoopTicker } from "@personalidol/dynamics/src/DynamicsMainLoopTicker";
-import { DynamicsWorld } from "@personalidol/dynamics/src/DynamicsWorld";
-import { DynamicsWorldStatsHook } from "@personalidol/dynamics/src/DynamicsWorldStatsHook";
-import { FallbackScheduler } from "@personalidol/framework/src/FallbackScheduler";
-import { MainLoop } from "@personalidol/framework/src/MainLoop";
-import { MainLoopStatsHook } from "@personalidol/framework/src/MainLoopStatsHook";
-import { prefetch } from "@personalidol/framework/src/prefetch";
-import { ServiceBuilder } from "@personalidol/framework/src/ServiceBuilder";
-import { ServiceManager } from "@personalidol/framework/src/ServiceManager";
-import { SimulantFactory } from "@personalidol/personalidol/src/SimulantFactory";
-import { StatsReporter } from "@personalidol/framework/src/StatsReporter";
+import { AmmoLoader } from "../../ammo/src/AmmoLoader";
+import { createRouter } from "../../framework/src/createRouter";
+import { DynamicsMainLoopTicker } from "../../dynamics/src/DynamicsMainLoopTicker";
+import { DynamicsWorld } from "../../dynamics/src/DynamicsWorld";
+import { DynamicsWorldStatsHook } from "../../dynamics/src/DynamicsWorldStatsHook";
+import { FallbackScheduler } from "../../framework/src/FallbackScheduler";
+import { MainLoop } from "../../framework/src/MainLoop";
+import { MainLoopStatsHook } from "../../framework/src/MainLoopStatsHook";
+import { prefetch } from "../../framework/src/prefetch";
+import { ServiceBuilder } from "../../framework/src/ServiceBuilder";
+import { ServiceManager } from "../../framework/src/ServiceManager";
+import { SimulantFactory } from "../../personalidol/src/SimulantFactory";
+import { StatsReporter } from "../../framework/src/StatsReporter";
 
-import type { MainLoop as IMainLoop } from "@personalidol/framework/src/MainLoop.interface";
-import type { MessageWorkerReady } from "@personalidol/framework/src/MessageWorkerReady.type";
-import type { ServiceBuilder as IServiceBuilder } from "@personalidol/framework/src/ServiceBuilder.interface";
-import type { ServiceManager as IServiceManager } from "@personalidol/framework/src/ServiceManager.interface";
-import type { SimulantsLookup } from "@personalidol/personalidol/src/SimulantsLookup.type";
+import type { MainLoop as IMainLoop } from "../../framework/src/MainLoop.interface";
+import type { MessageWorkerReady } from "../../framework/src/MessageWorkerReady.type";
+import type { ServiceBuilder as IServiceBuilder } from "../../framework/src/ServiceBuilder.interface";
+import type { ServiceManager as IServiceManager } from "../../framework/src/ServiceManager.interface";
+import type { SimulantsLookup } from "../../personalidol/src/SimulantsLookup.type";
 
 declare var self: DedicatedWorkerGlobalScope;
 
@@ -47,7 +47,11 @@ const logger = Loglevel.getLogger(self.name);
 // If the FallbackScheduler uses `setTimeout`, then it would be ok to sample
 // time twice as often as the dynamics loop should update.
 // See: Nyquist–Shannon–Kotelnikov sampling theorem.
-const mainLoop: IMainLoop<number | ReturnType<typeof setTimeout>> = MainLoop(logger, FallbackScheduler(1000 / 120), DynamicsMainLoopTicker(logger, 1 / 60));
+const mainLoop: IMainLoop<number | ReturnType<typeof setTimeout>> = MainLoop(
+  logger,
+  FallbackScheduler(1000 / 120),
+  DynamicsMainLoopTicker(logger, 1 / 60)
+);
 
 const serviceManager: IServiceManager = ServiceManager(logger);
 

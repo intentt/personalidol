@@ -1,6 +1,6 @@
 import { Clock } from "three/src/core/Clock";
 
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 import { DefaultMainLoopTicker } from "./DefaultMainLoopTicker";
 import { isNameable } from "./isNameable";

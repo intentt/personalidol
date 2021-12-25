@@ -1,4 +1,4 @@
-import { generateUUID } from "@personalidol/math/src/generateUUID";
+import { generateUUID } from "../../math/src/generateUUID";
 
 function _createMessageEvent(type: string, data: any): MessageEvent {
   return new MessageEvent(type, {

@@ -1,4 +1,4 @@
-import type { View } from "@personalidol/views/src/View.interface";
+import type { View } from "../../views/src/View.interface";
 
 import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityViewState } from "./EntityViewState.type";

@@ -1,33 +1,33 @@
 import { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
 
-import { CSS2DRenderer } from "@personalidol/three-css2d-renderer/src/CSS2DRenderer";
-import { CSS2DRendererStatsHook } from "@personalidol/three-css2d-renderer/src/CSS2DRendererStatsHook";
-import { Director } from "@personalidol/framework/src/Director";
-import { DirectorPollablePreloadingObserver } from "@personalidol/framework/src/DirectorPollablePreloadingObserver";
-import { EffectComposer } from "@personalidol/three-modules/src/postprocessing/EffectComposer";
-import { Evaluator } from "@personalidol/expression-language/src/Evaluator";
-import { GameState } from "@personalidol/personalidol/src/GameState";
-import { GameStateController } from "@personalidol/personalidol/src/GameStateController";
-import { LoadingScreenScene } from "@personalidol/personalidol/src/LoadingScreenScene";
-import { MultiThreadUserSettingsSync } from "@personalidol/framework/src/MultiThreadUserSettingsSync";
-import { RendererDimensionsManager } from "@personalidol/dom-renderer/src/RendererDimensionsManager";
-import { SceneTransition } from "@personalidol/framework/src/SceneTransition";
-import { UIState } from "@personalidol/personalidol/src/UIState";
-import { UIStateController } from "@personalidol/personalidol/src/UIStateController";
-import { UIStateControllerStatsHook } from "@personalidol/personalidol/src/UIStateControllerStatsHook";
-import { WebGLRendererStatsHook } from "@personalidol/framework/src/WebGLRendererStatsHook";
-import { WebGLRendererUserSettingsManager } from "@personalidol/personalidol/src/WebGLRendererUserSettingsManager";
+import { CSS2DRenderer } from "../../three-css2d-renderer/src/CSS2DRenderer";
+import { CSS2DRendererStatsHook } from "../../three-css2d-renderer/src/CSS2DRendererStatsHook";
+import { Director } from "../../framework/src/Director";
+import { DirectorPollablePreloadingObserver } from "../../framework/src/DirectorPollablePreloadingObserver";
+import { EffectComposer } from "../../three-modules/src/postprocessing/EffectComposer";
+import { Evaluator } from "../../expression-language/src/Evaluator";
+import { GameState } from "../../personalidol/src/GameState";
+import { GameStateController } from "../../personalidol/src/GameStateController";
+import { LoadingScreenScene } from "../../personalidol/src/LoadingScreenScene";
+import { MultiThreadUserSettingsSync } from "../../framework/src/MultiThreadUserSettingsSync";
+import { RendererDimensionsManager } from "../../dom-renderer/src/RendererDimensionsManager";
+import { SceneTransition } from "../../framework/src/SceneTransition";
+import { UIState } from "../../personalidol/src/UIState";
+import { UIStateController } from "../../personalidol/src/UIStateController";
+import { UIStateControllerStatsHook } from "../../personalidol/src/UIStateControllerStatsHook";
+import { WebGLRendererStatsHook } from "../../framework/src/WebGLRendererStatsHook";
+import { WebGLRendererUserSettingsManager } from "../../personalidol/src/WebGLRendererUserSettingsManager";
 
 import type { Logger } from "loglevel";
 
-import type { DOMElementsLookup } from "@personalidol/personalidol/src/DOMElementsLookup.type";
-import type { EventBus } from "@personalidol/framework/src/EventBus.interface";
-import type { GameState as IGameState } from "@personalidol/personalidol/src/GameState.type";
-import type { MainLoop } from "@personalidol/framework/src/MainLoop.interface";
-import type { ServiceManager } from "@personalidol/framework/src/ServiceManager.interface";
-import type { StatsReporter } from "@personalidol/framework/src/StatsReporter.interface";
-import type { UIState as IUIState } from "@personalidol/personalidol/src/UIState.type";
-import type { UserSettings } from "@personalidol/personalidol/src/UserSettings.type";
+import type { DOMElementsLookup } from "../../personalidol/src/DOMElementsLookup.type";
+import type { EventBus } from "../../framework/src/EventBus.interface";
+import type { GameState as IGameState } from "../../personalidol/src/GameState.type";
+import type { MainLoop } from "../../framework/src/MainLoop.interface";
+import type { ServiceManager } from "../../framework/src/ServiceManager.interface";
+import type { StatsReporter } from "../../framework/src/StatsReporter.interface";
+import type { UIState as IUIState } from "../../personalidol/src/UIState.type";
+import type { UserSettings } from "../../personalidol/src/UserSettings.type";
 
 export function createScenes(
   threadDebugName: string,
@@ -57,7 +57,11 @@ export function createScenes(
   uiMessagePort: MessagePort,
   userSettingsMessagePort: MessagePort
 ): void {
-  const multiThreadUserSettingsSync = MultiThreadUserSettingsSync(userSettings, userSettingsMessagePort, threadDebugName);
+  const multiThreadUserSettingsSync = MultiThreadUserSettingsSync(
+    userSettings,
+    userSettingsMessagePort,
+    threadDebugName
+  );
   const updateRendererCSS: boolean = !isOffscreen;
 
   const webGLRenderer = new WebGLRenderer({
@@ -119,13 +123,26 @@ export function createScenes(
     uiState
   );
 
-  const uiStateController = UIStateController(logger, mainLoop.ticker.tickTimerState, domMessagePort, uiMessagePort, uiState);
+  const uiStateController = UIStateController(
+    logger,
+    mainLoop.ticker.tickTimerState,
+    domMessagePort,
+    uiMessagePort,
+    uiState
+  );
 
   statsReporter.hooks.add(CSS2DRendererStatsHook(css2DRenderer));
   statsReporter.hooks.add(UIStateControllerStatsHook(uiStateController));
   statsReporter.hooks.add(WebGLRendererStatsHook(webGLRenderer));
 
-  loadingSceneDirector.state.next = LoadingScreenScene(logger, userSettings, effectComposer, dimensionsState, domMessagePort, progressMessagePort);
+  loadingSceneDirector.state.next = LoadingScreenScene(
+    logger,
+    userSettings,
+    effectComposer,
+    dimensionsState,
+    domMessagePort,
+    progressMessagePort
+  );
 
   serviceManager.services.add(currentSceneDirectorPollablePreloadingObserver);
   serviceManager.services.add(loadingSceneDirectorPollablePreloadingObserver);
