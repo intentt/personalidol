@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-BASE_DIRECTORY=$(realpath $PWD/../../scripts)
+BASE_DIRECTORY=$(realpath $PWD/scripts)
 MAKE=$1
 WATCH_PATTERN=$2
 WATCH_TARGET=$3
