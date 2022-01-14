@@ -45,6 +45,7 @@
   "name": "personalidol",
   "resolutions": {
     "ecstatic": "^4.1.3",
+    "follow-redirects": "^1.14.7",
     "glob-parent": "^5.1.2",
     "trim-newlines": "^3.0.1"
   },
