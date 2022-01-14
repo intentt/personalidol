@@ -2,8 +2,6 @@ import { buildGeometryTriangles } from "./buildGeometryTriangles";
 import { isAlmostEqual } from "./isAlmostEqual";
 import { marshalVector3 } from "./marshalVector3";
 
-import type { Vector3 as IVector3 } from "three/src/math/Vector3";
-
 import type { AtlasTextureDimension } from "../../texture-loader/src/AtlasTextureDimension.type";
 
 import type { Brush } from "./Brush.type";
@@ -16,10 +14,8 @@ import type { Vector3Simple } from "./Vector3Simple.type";
 type UV = [number, number];
 
 export function buildGeometryAttributes(
-  brushes: ReadonlyArray<Brush>,
   resolveTextureDimensions: TextureDimensionsResolver,
-  skipPlaceholders: boolean = true,
-  discardOccluding: null | IVector3 = null
+  brushes: ReadonlyArray<Brush>
 ): Geometry {
   let indexIncrement = 0;
   const indexLookup: {
@@ -34,7 +30,7 @@ export function buildGeometryAttributes(
   const uvs: Array<number> = [];
   const vertices: Array<number> = [];
 
-  for (let brushHalfSpaceTriangle of buildGeometryTriangles(brushes, skipPlaceholders, discardOccluding)) {
+  for (let brushHalfSpaceTriangle of buildGeometryTriangles(brushes)) {
     const halfSpace = brushHalfSpaceTriangle.halfSpace;
     const normal = brushHalfSpaceTriangle.halfSpace.plane.normal;
     const triangle = brushHalfSpaceTriangle.triangle;

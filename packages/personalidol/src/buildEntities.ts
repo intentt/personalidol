@@ -1,17 +1,14 @@
-import { buildGeometryAttributes } from "../../quakemaps/src/buildGeometryAttributes";
 import { generateUUID } from "../../math/src/generateUUID";
 import { UnmarshalException } from "../../quakemaps/src/UnmarshalException";
 import { unmarshalVector3 } from "../../quakemaps/src/unmarshalVector3";
 
-import type { Vector3 } from "three";
-
 import type { Brush } from "../../quakemaps/src/Brush.type";
 import type { EntityProperties } from "../../quakemaps/src/EntityProperties.type";
 import type { EntitySketch } from "../../quakemaps/src/EntitySketch.type";
-import type { TextureDimensionsResolver } from "../../quakemaps/src/TextureDimensionsResolver.type";
 import type { Vector3Simple } from "../../quakemaps/src/Vector3Simple.type";
 
 import type { AnyEntity } from "./AnyEntity.type";
+import type { BuildGeometryAttributesCallback } from "./BuildGeometryAttributesCallback.type";
 import type { EntityFuncGroup } from "./EntityFuncGroup.type";
 import type { EntityGLTFModel } from "./EntityGLTFModel.type";
 import type { EntityLightAmbient } from "./EntityLightAmbient.type";
@@ -56,8 +53,7 @@ function _getEntityOrigin(filename: string, entity: EntitySketch): Vector3Simple
 export function* buildEntities(
   filename: string,
   entitySketches: ReadonlyArray<EntitySketch>,
-  resolveTextureDimensions: TextureDimensionsResolver,
-  discardOccluding: null | Vector3 = null
+  buildGeometryAttributes: BuildGeometryAttributesCallback
 ): Generator<AnyEntity> {
   // brushes to be merged into the bigger static geometry
   const worldBrushes: Array<EntitySketch> = [];
@@ -88,7 +84,7 @@ export function* buildEntities(
               classname: entityClassName,
               id: generateUUID(),
               properties: entity.properties,
-              ...buildGeometryAttributes(entity.brushes, resolveTextureDimensions, true, null),
+              ...buildGeometryAttributes(entity.brushes),
             };
             break;
         }
@@ -136,7 +132,7 @@ export function* buildEntities(
           classname: entityClassName,
           id: generateUUID(),
           properties: entity.properties,
-          ...buildGeometryAttributes(entity.brushes, resolveTextureDimensions, true, null),
+          ...buildGeometryAttributes(entity.brushes),
         };
         break;
       case "scripted_zone":
@@ -145,7 +141,7 @@ export function* buildEntities(
           classname: entityClassName,
           id: generateUUID(),
           properties: entity.properties,
-          ...buildGeometryAttributes(entity.brushes, resolveTextureDimensions, true, null),
+          ...buildGeometryAttributes(entity.brushes),
         };
         break;
       case "spark_particles":
@@ -239,6 +235,6 @@ export function* buildEntities(
     classname: "worldspawn",
     id: generateUUID(),
     properties: worldProperties,
-    ...buildGeometryAttributes(mergedBrushes, resolveTextureDimensions, true, discardOccluding),
+    ...buildGeometryAttributes(mergedBrushes),
   };
 }

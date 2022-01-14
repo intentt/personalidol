@@ -1,10 +1,10 @@
 /// <reference lib="webworker" />
 
 import Loglevel from "loglevel";
-import { Vector3 } from "three/src/math/Vector3";
 
 import { attachMultiRouter } from "../../framework/src/attachMultiRouter";
 import { buildEntities } from "../../personalidol/src/buildEntities";
+import { buildGeometryAttributes } from "../../quakemaps/src/buildGeometryAttributes";
 import { createRouter } from "../../framework/src/createRouter";
 import { createRPCLookupTable } from "../../framework/src/createRPCLookupTable";
 import { generateUUID } from "../../math/src/generateUUID";
@@ -15,22 +15,20 @@ import { Progress } from "../../framework/src/Progress";
 import { sendRPCMessage } from "../../framework/src/sendRPCMessage";
 import { unmarshalMap } from "../../quakemaps/src/unmarshalMap";
 
-import type { Vector3 as IVector3 } from "three";
-
 import type { AnyEntity } from "../../personalidol/src/AnyEntity.type";
 import type { AtlasResponse } from "../../texture-loader/src/AtlasResponse.type";
 import type { AtlasTextureDimension } from "../../texture-loader/src/AtlasTextureDimension.type";
+import type { Brush } from "../../quakemaps/src/Brush.type";
 import type { EntitySketch } from "../../quakemaps/src/EntitySketch.type";
+import type { Geometry } from "../../quakemaps/src/Geometry.type";
 import type { MessageWorkerReady } from "../../framework/src/MessageWorkerReady.type";
 import type { Progress as IProgress } from "../../framework/src/Progress.interface";
 import type { RPCLookupTable } from "../../framework/src/RPCLookupTable.type";
 import type { RPCMessage } from "../../framework/src/RPCMessage.type";
-import type { Vector3Simple } from "../../quakemaps/src/Vector3Simple.type";
 
 declare var self: DedicatedWorkerGlobalScope;
 
 type UnmarshalRequest = RPCMessage & {
-  discardOccluding: null | Vector3Simple;
   filename: string;
   rpc: string;
 };
@@ -90,23 +88,13 @@ async function _fetchUnmarshalMapContent(
   atlasMessagePort: MessagePort,
   progressMessagePort: MessagePort,
   filename: string,
-  rpc: string,
-  discardOccluding: null | Vector3Simple = null
+  rpc: string
 ): Promise<void> {
   const content: string = await fetch(filename)
     .then(monitorResponseProgress(progress.progress, true))
     .then(_responseToText);
 
-  return _onMapContentLoaded(
-    progress,
-    messagePort,
-    atlasMessagePort,
-    progressMessagePort,
-    filename,
-    rpc,
-    content,
-    discardOccluding
-  );
+  return _onMapContentLoaded(progress, messagePort, atlasMessagePort, progressMessagePort, filename, rpc, content);
 }
 
 async function _onMapContentLoaded(
@@ -116,12 +104,8 @@ async function _onMapContentLoaded(
   progressMessagePort: MessagePort,
   filename: string,
   rpc: string,
-  content: string,
-  discardOccluding: null | Vector3Simple = null
+  content: string
 ): Promise<void> {
-  const discardOccludingVector3: null | IVector3 = discardOccluding
-    ? new Vector3(discardOccluding.x, discardOccluding.y, discardOccluding.z)
-    : null;
   const entities: Array<AnyEntity> = [];
   const textureUrls: Array<string> = [];
   const transferables: Array<Transferable> = [];
@@ -151,6 +135,10 @@ async function _onMapContentLoaded(
     return textureUrl;
   }
 
+  function _buildGeometryAttributes(brushes: Array<Brush>): Geometry {
+    return buildGeometryAttributes(_resolveTextureDimensions, brushes);
+  }
+
   const entitySketches: Array<EntitySketch> = Array.from(unmarshalMap(filename, content, _resolveTextureUrl));
 
   progressMessagePort.postMessage({
@@ -169,7 +157,7 @@ async function _onMapContentLoaded(
   textureAtlas = response.createTextureAtlas;
   transferables.push(textureAtlas.imageDataBuffer);
 
-  for (let entity of buildEntities(filename, entitySketches, _resolveTextureDimensions, discardOccludingVector3)) {
+  for (let entity of buildEntities(filename, entitySketches, _buildGeometryAttributes)) {
     entities.push(entity);
     transferables.push(...entity.transferables);
   }
@@ -191,7 +179,7 @@ function _responseToText(response: Response): Promise<string> {
 }
 
 const quakeMapsMessagesRouter = {
-  unmarshal(messagePort: MessagePort, { discardOccluding, filename, rpc }: UnmarshalRequest): void {
+  unmarshal(messagePort: MessagePort, { filename, rpc }: UnmarshalRequest): void {
     if (null === _atlasMessagePort) {
       throw new Error(`Atlas message port must be set in WORKER(${self.name}) before loading map.`);
     }
@@ -203,15 +191,7 @@ const quakeMapsMessagesRouter = {
     const progress = Progress(_progressMessagePort, "map", filename);
 
     progress.wait(
-      _fetchUnmarshalMapContent(
-        progress,
-        messagePort,
-        _atlasMessagePort,
-        _progressMessagePort,
-        filename,
-        rpc,
-        discardOccluding
-      )
+      _fetchUnmarshalMapContent(progress, messagePort, _atlasMessagePort, _progressMessagePort, filename, rpc)
     );
   },
 };

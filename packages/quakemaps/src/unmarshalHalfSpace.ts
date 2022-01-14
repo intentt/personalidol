@@ -1,7 +1,6 @@
 import { Plane } from "three/src/math/Plane";
 import { Vector3 } from "three/src/math/Vector3";
 
-import { isEmptyTexturePlaceholder } from "./isEmptyTexturePlaceholder";
 import { sanitizeVector3 } from "./sanitizeVector3";
 import { UnmarshalException } from "./UnmarshalException";
 
@@ -12,10 +11,6 @@ const REGEXP_WHITESPACE = /\s+/;
 
 function resolveTextureUrl(textureName: string, textureUrlResolver: null | TextureUrlResolver = null): string {
   if (!textureUrlResolver) {
-    return textureName;
-  }
-
-  if (isEmptyTexturePlaceholder(textureName)) {
     return textureName;
   }
 

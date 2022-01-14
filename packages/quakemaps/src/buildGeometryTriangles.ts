@@ -1,6 +1,5 @@
 import { getIntersectingPoint } from "./getIntersectingPoint";
 import { isAlmostEqual } from "./isAlmostEqual";
-import { isEmptyTexturePlaceholder } from "./isEmptyTexturePlaceholder";
 import { triangulateFacePoints } from "./triangulateFacePoints";
 
 import type { Vector3 as IVector3 } from "three/src/math/Vector3";
@@ -8,8 +7,6 @@ import type { Vector3 as IVector3 } from "three/src/math/Vector3";
 import type { Brush } from "./Brush.type";
 import type { BrushHalfSpaceTriangle } from "./BrushHalfSpaceTriangle.type";
 import type { IntersectingPointsCache } from "./IntersectingPointsCache.type";
-
-const PI_HALF: number = Math.PI / 2;
 
 function _addUniquePointToBrush(brush: Brush, points: Array<IVector3>, point: IVector3): void {
   if (points.includes(point)) {
@@ -35,11 +32,7 @@ function _isPointInsideBrush(brush: Brush, point: IVector3): boolean {
   return true;
 }
 
-export function* buildGeometryTriangles(
-  brushes: ReadonlyArray<Brush>,
-  skipPlaceholders: boolean = true,
-  discardOccluding: null | IVector3 = null
-): Generator<BrushHalfSpaceTriangle> {
+export function* buildGeometryTriangles(brushes: ReadonlyArray<Brush>): Generator<BrushHalfSpaceTriangle> {
   const pointsCache: IntersectingPointsCache = {};
 
   for (let brush of brushes) {
@@ -72,18 +65,7 @@ export function* buildGeometryTriangles(
 
   for (let brush of brushes) {
     for (let halfSpace of brush.halfSpaces) {
-      if (skipPlaceholders && isEmptyTexturePlaceholder(halfSpace.texture.name)) {
-        // no texture means that those vertcies should not be rendered
-        continue;
-      }
-
       const normal = halfSpace.plane.normal;
-
-      if (discardOccluding && discardOccluding.angleTo(normal) < PI_HALF) {
-        // optionally, do not render vertcies that won't be ever visible by
-        // the camera anyway
-        continue;
-      }
 
       for (let triangle of triangulateFacePoints(normal, halfSpace.points)) {
         yield Object.seal({

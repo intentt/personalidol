@@ -71,7 +71,7 @@ export function GhostZoneSimulant(
 
         _disposables.add(disposableAmmo(ammo, shape));
 
-        for (let point of buildGeometryPoints([brush], false)) {
+        for (let point of buildGeometryPoints([brush])) {
           const shapePoint = new ammo.btVector3(point.x, point.y, point.z);
 
           _disposables.add(disposableAmmo(ammo, shapePoint));
