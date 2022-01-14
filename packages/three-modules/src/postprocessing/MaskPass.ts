@@ -21,7 +21,14 @@ export class MaskPass extends Pass {
     this.camera = camera;
   }
 
-  render(renderer: WebGLRenderer, writeBuffer: WebGLRenderTarget, readBuffer: WebGLRenderTarget) {
+  dispose() {}
+
+  render(
+    renderer: WebGLRenderer,
+    renderToScreen: boolean,
+    writeBuffer: WebGLRenderTarget,
+    readBuffer: WebGLRenderTarget
+  ) {
     const context = renderer.getContext();
     const state = renderer.state;
 

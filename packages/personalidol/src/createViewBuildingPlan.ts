@@ -7,7 +7,6 @@ import { isTargeting } from "./isTargeting";
 import type { AnyEntity } from "./AnyEntity.type";
 import type { TargetedEntity } from "./TargetedEntity.type";
 import type { TargetingEntity } from "./TargetingEntity.type";
-import type { UIState } from "./UIState.type";
 import type { ViewBuildingStep } from "./ViewBuildingStep.type";
 
 function _findTargetedEntitiesByEntity(
@@ -34,10 +33,7 @@ function _findTargetedEntitiesByEntity(
   return ret;
 }
 
-export async function* createViewBuildingPlan(
-  uiState: UIState,
-  entities: ReadonlyArray<AnyEntity>
-): AsyncGenerator<ViewBuildingStep> {
+export function* createViewBuildingPlan(entities: ReadonlyArray<AnyEntity>): Generator<ViewBuildingStep> {
   const targetedEntities: ReadonlyArray<TargetedEntity> = entities.filter(isTarget);
   const targetedEntitiesCache: WeakMap<TargetingEntity, ReadonlyArray<TargetedEntity>> = new WeakMap();
   const dependencies: Array<[TargetedEntity, TargetingEntity]> = [];

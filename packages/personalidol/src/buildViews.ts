@@ -13,7 +13,6 @@ import type { AnyEntity } from "./AnyEntity.type";
 import type { EntityView } from "./EntityView.interface";
 import type { EntityViewFactory } from "./EntityViewFactory.interface";
 import type { GameState } from "./GameState.type";
-import type { UIState } from "./UIState.type";
 import type { ViewBuildingStep } from "./ViewBuildingStep.type";
 
 function _findTargetedViews(
@@ -45,7 +44,6 @@ function _findTargetedViews(
 export async function* buildViews(
   logger: Logger,
   gameState: GameState,
-  uiState: UIState,
   entityViewFactory: EntityViewFactory,
   evaluator: Evaluator,
   worldspawnTexture: ITexture,
@@ -54,7 +52,7 @@ export async function* buildViews(
   const entityViews: WeakMap<AnyEntity, EntityView<AnyEntity>> = new WeakMap();
   const filteredEntities: ReadonlyArray<AnyEntity> = await LocationMapEntityFilter(evaluator).filter(entities);
 
-  for await (let step of createViewBuildingPlan(uiState, filteredEntities)) {
+  for await (let step of createViewBuildingPlan(filteredEntities)) {
     const targetedViews = _findTargetedViews(entityViews, step);
     const entityView = entityViewFactory.create(step.entity, targetedViews, worldspawnTexture);
 

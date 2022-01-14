@@ -20,14 +20,7 @@ test("attaches router to the message channel", function (done) {
 
 test("fails when event is not defined", function (done) {
   const messageChannel = new MessageChannel();
-  const messageRouter = createRouter(
-    {},
-    {
-      error(err) {
-        done();
-      },
-    }
-  );
+  const messageRouter = createRouter({});
 
   // @ts-ignore .onmessage do exists on MessagePort
   messageChannel.port1.onmessage = messageRouter;

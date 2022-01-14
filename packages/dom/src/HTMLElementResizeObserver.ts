@@ -1,12 +1,11 @@
-/// <reference types="@types/resize-observer-browser" />
-
 import { generateUUID } from "../../math/src/generateUUID";
 
-import { DimensionsIndices } from "./DimensionsIndices.enum";
+import { DimensionsIndices } from "../../framework/src/DimensionsIndices.enum";
+
+import type { MainLoopUpdatableState } from "../../framework/src/MainLoopUpdatableState.type";
+import type { TickTimerState } from "../../framework/src/TickTimerState.type";
 
 import type { HTMLElementResizeObserver as IHTMLElementResizeObserver } from "./HTMLElementResizeObserver.interface";
-import type { MainLoopUpdatableState } from "./MainLoopUpdatableState.type";
-import type { TickTimerState } from "./TickTimerState.type";
 
 export function HTMLElementResizeObserver(
   htmlElement: HTMLElement,
